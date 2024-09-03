@@ -45,7 +45,7 @@ class UserResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return config('filament-users.group');
+        return trans("admin.nav.groups.system_settings");
     }
 
     public function getTitle(): string

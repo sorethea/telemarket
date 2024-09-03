@@ -8,6 +8,9 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+Route::post('bot/webhook', function (){
+    return Telegram::setWebhook(['url' => 'https://tele.hieatapps.com/api/{token}/webhook']);
+});
 Route::post('/{token}/webhook', function () {
     Telegram::commandsHandler(true);
     $update = Telegram::getWebhookUpdate();

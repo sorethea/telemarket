@@ -17,6 +17,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
 
 class MarketingPanelProvider extends PanelProvider
 {
@@ -27,6 +28,9 @@ class MarketingPanelProvider extends PanelProvider
             ->path('')
             ->colors([
                 'primary' => Color::Indigo,
+            ])
+            ->plugins([
+                BreezyCore::make()->myProfile(),
             ])
             ->discoverResources(in: app_path('Filament/Marketing/Resources'), for: 'App\\Filament\\Marketing\\Resources')
             ->discoverPages(in: app_path('Filament/Marketing/Pages'), for: 'App\\Filament\\Marketing\\Pages')

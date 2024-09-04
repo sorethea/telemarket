@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Providers\Filament;
-
-use App\Filament\Profiles\CustomerProfilePage;
-use App\Filament\Profiles\PersonalInfo;
+use App\Livewire\Profile\PersonalInfo;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -34,7 +32,6 @@ class CustomerPanelProvider extends PanelProvider
             ->plugins([
                 BreezyCore::make()
                     ->myProfile()
-                    ->customMyProfilePage(CustomerProfilePage::class)
                     ->myProfileComponents([
                         'personal_info'=>PersonalInfo::class
                     ])

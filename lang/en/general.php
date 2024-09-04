@@ -1,4 +1,8 @@
 <?php
 return[
-    "phone_number"=>"Phone Number",
+    "contact"=>[
+        "title"=>"Contact",
+        "phone_number"=>"Phone Number",
+        "notify"=>"Contact update successful.",
+        ]
 ];

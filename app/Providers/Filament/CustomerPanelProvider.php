@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers\Filament;
+use App\Livewire\Profile\Contact;
 use App\Livewire\Profile\PersonalInfo;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -33,7 +34,7 @@ class CustomerPanelProvider extends PanelProvider
                 BreezyCore::make()
                     ->myProfile()
                     ->myProfileComponents([
-                        'personal_info'=>PersonalInfo::class
+                        Contact::class,
                     ])
             ])
             ->discoverResources(in: app_path('Filament/Customer/Resources'), for: 'App\\Filament\\Customer\\Resources')

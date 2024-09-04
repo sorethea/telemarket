@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Auth\Login;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -26,7 +27,7 @@ class UserPanelProvider extends PanelProvider
         return $panel
             ->id('user')
             ->path('')
-            ->login()
+            ->login(Login::class)
             ->plugins([
                 BreezyCore::make()->myProfile(),
             ])
@@ -41,7 +42,7 @@ class UserPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/User/Widgets'), for: 'App\\Filament\\User\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                //Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

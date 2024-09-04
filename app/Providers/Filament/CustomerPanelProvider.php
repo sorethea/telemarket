@@ -35,10 +35,7 @@ class CustomerPanelProvider extends PanelProvider
             ->login(Login::class)
             ->plugins([
                 BreezyCore::make()
-                    ->customMyProfilePage(CustomerProfile::class)
-                    ->myProfileComponents([
-                        Contact::class,
-                    ])
+                    ->myProfile()
             ])
             ->discoverResources(in: app_path('Filament/Customer/Resources'), for: 'App\\Filament\\Customer\\Resources')
             ->discoverPages(in: app_path('Filament/Customer/Pages'), for: 'App\\Filament\\Customer\\Pages')

@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Auth\Login;
+use App\Filament\Profiles\MyProfile;
 use App\Filament\Profiles\PersonalInfo;
 use App\Filament\Profiles\UserProfile;
 use Filament\Http\Middleware\Authenticate;
@@ -32,6 +33,7 @@ class UserPanelProvider extends PanelProvider
             ->login(Login::class)
             ->plugins([
                 BreezyCore::make()
+                    ->customMyProfilePage(MyProfile::class)
                     ->myProfileComponents([
                         "personal_info"=>PersonalInfo::class
                     ]),

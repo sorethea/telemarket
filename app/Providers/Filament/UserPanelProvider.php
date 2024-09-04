@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Auth\Login;
+use App\Filament\Profiles\PersonalInfo;
 use App\Filament\Profiles\UserProfile;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -30,7 +31,11 @@ class UserPanelProvider extends PanelProvider
             ->path('')
             ->login(Login::class)
             ->plugins([
-                BreezyCore::make()->myProfile(UserProfile::class),
+                BreezyCore::make()
+                    ->myProfile()
+                    ->myProfileComponents([
+                        "personal_info"=>PersonalInfo::class
+                    ]),
             ])
             ->colors([
                 'primary' => Color::Red,

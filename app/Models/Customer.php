@@ -10,10 +10,11 @@ class Customer extends Model
     use HasFactory;
 
     protected $fillable = [
-        "telegram_id",
         "first_name",
         "last_name",
         "phone_number",
+        "user_id",
+        "channel",
         "is_subscript",
     ];
 }

@@ -21,7 +21,7 @@ class Login extends AuthLogin
     protected function getLoginFormComponent(): Component
     {
         return TextInput::make('login')
-            ->label('Login')
+            ->label(__('general.contact.phone_number'))
             ->required()
             ->autocomplete()
             ->autofocus()

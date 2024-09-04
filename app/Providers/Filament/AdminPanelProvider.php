@@ -35,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentShieldPlugin::make(),
-                //BreezyCore::make()->myProfile(),
+                BreezyCore::make(),
                 FilamentUsersPlugin::make(),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

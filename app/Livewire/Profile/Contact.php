@@ -38,6 +38,7 @@ class Contact extends MyProfileComponent
     public function submit(): void
     {
         $data = collect($this->form->getState())->only($this->only)->all();
+        dd($data);
         $this->user->update($data);
         Notification::make()
             ->success()

@@ -2,7 +2,7 @@
 return[
     "contact"=>[
         "title"=>"Contact",
-        "submit"=>"Submit",
+        "update"=>"Update",
         "phone_number"=>"Phone Number",
         "notify"=>"Contact update successful.",
         ]

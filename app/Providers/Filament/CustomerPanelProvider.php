@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers\Filament;
+use App\Filament\Auth\Login;
 use App\Livewire\Profile\Contact;
 use App\Livewire\Profile\PersonalInfo;
 use Filament\Http\Middleware\Authenticate;
@@ -30,6 +31,7 @@ class CustomerPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->login(Login::class)
             ->plugins([
                 BreezyCore::make()
                     ->myProfile()

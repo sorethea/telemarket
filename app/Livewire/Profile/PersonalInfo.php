@@ -20,7 +20,7 @@ class PersonalInfo extends MyProfileComponent
 
     public bool $hasAvatars;
 
-    public array $only = ['name', 'email','phone_number'];
+    public array $only = ['name','phone_number'];
 
     public static $sort = 10;
 
@@ -42,7 +42,7 @@ class PersonalInfo extends MyProfileComponent
         $groupFields = Forms\Components\Group::make([
             $this->getNameComponent(),
             $this->getPhoneComponent(),
-            $this->getEmailComponent(),
+            //$this->getEmailComponent(),
         ])->columnSpan(2);
 
         return ($this->hasAvatars)

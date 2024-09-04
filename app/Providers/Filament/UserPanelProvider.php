@@ -31,7 +31,7 @@ class UserPanelProvider extends PanelProvider
                 BreezyCore::make()->myProfile(),
             ])
             ->colors([
-                'primary' => Color::Green,
+                'primary' => Color::Red,
             ])
             ->discoverResources(in: app_path('Filament/User/Resources'), for: 'App\\Filament\\User\\Resources')
             ->discoverPages(in: app_path('Filament/User/Pages'), for: 'App\\Filament\\User\\Pages')

@@ -35,7 +35,6 @@ class CustomerPanelProvider extends PanelProvider
             ->login(Login::class)
             ->plugins([
                 BreezyCore::make()
-                    ->myProfile()
                     ->customMyProfilePage(CustomerProfile::class)
                     ->myProfileComponents([
                         Contact::class,

@@ -5,6 +5,8 @@ use Filament\Forms\Components\Component;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Auth\Login as AuthLogin;
+use Illuminate\Validation\ValidationException;
+
 class Login extends AuthLogin
 {
     public function form(Form $form): Form
@@ -33,5 +35,12 @@ class Login extends AuthLogin
             $login_type => $data['login'],
             'password'  => $data['password'],
         ];
+    }
+
+    protected function throwFailureValidationException(): never
+    {
+        throw ValidationException::withMessages([
+            'data.login' => __('filament-panels::pages/auth/login.messages.failed'),
+        ]);
     }
 }

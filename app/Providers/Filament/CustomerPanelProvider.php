@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Profiles\CustomerProfilePage;
+use App\Filament\Profiles\PersonalInfo;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -34,6 +35,9 @@ class CustomerPanelProvider extends PanelProvider
                 BreezyCore::make()
                     ->myProfile()
                     ->customMyProfilePage(CustomerProfilePage::class)
+                    ->myProfileComponents([
+                        'personal_info'=>PersonalInfo::class
+                    ])
             ])
             ->discoverResources(in: app_path('Filament/Customer/Resources'), for: 'App\\Filament\\Customer\\Resources')
             ->discoverPages(in: app_path('Filament/Customer/Pages'), for: 'App\\Filament\\Customer\\Pages')

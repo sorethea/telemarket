@@ -28,7 +28,7 @@ class CustomerPanelProvider extends PanelProvider
     {
         return $panel
             ->id('customer')
-            ->path('')
+            ->path('customer')
             ->colors([
                 'primary' => Color::Amber,
             ])

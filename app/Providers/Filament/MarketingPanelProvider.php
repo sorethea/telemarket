@@ -25,13 +25,13 @@ class MarketingPanelProvider extends PanelProvider
     {
         return $panel
             ->id('marketing')
-            ->path('marketing')
+            ->path('')
             ->login()
             ->colors([
                 'primary' => Color::Indigo,
             ])
             ->plugins([
-                BreezyCore::make()->myProfile(),
+                //BreezyCore::make()->myProfile(),
             ])
             ->discoverResources(in: app_path('Filament/Marketing/Resources'), for: 'App\\Filament\\Marketing\\Resources')
             ->discoverPages(in: app_path('Filament/Marketing/Pages'), for: 'App\\Filament\\Marketing\\Pages')

@@ -14,7 +14,8 @@ class Customer extends Model
         "last_name",
         "phone_number",
         "user_id",
-        "channel",
+        "channel_name",
+        "channel_id",
         "is_subscript",
     ];
 }

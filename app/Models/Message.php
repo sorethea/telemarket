@@ -10,6 +10,7 @@ class Message extends Model
     use HasFactory;
     protected $fillable = [
         "chat_id",
+        "bot",
         "type",
         "text",
         "message",
@@ -17,6 +18,7 @@ class Message extends Model
 
     protected $casts =[
         "chat_id"=>"string",
+        "bot"=>"string",
         "type"=>"string",
         "text"=>"string",
         "message"=>"array",

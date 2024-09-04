@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('chat_id')->nullable();
-            $table->string('type')->nullable();
+            $table->string('chat_id');
+            $table->string('type');
+            $table->string('bot');
             $table->text('text')->nullable();
             $table->text('message')->nullable();
             $table->timestamps();

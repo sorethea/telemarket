@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('channel_id');
             $table->string('channel_name');
+            $table->string('bot');
             $table->foreignId('user_id')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

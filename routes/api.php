@@ -9,6 +9,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 Route::post('bot/webhook', function (){
-    return Telegram::setWebhook(['url' => 'https://tele.hieatapps.com/api/{token}/webhook']);
+    foreach (config('telegram.bots') as $key => $bot){
+        Telegram::bot($key)->setWebhook(['url' => 'https://tele.hieatapps.com/api/{token}/webhook?bot='.$key]);
+    }
 });
 Route::post('/{token}/webhook', [\App\Http\Controllers\Api\TelegramAPIController::class,'webhook']);

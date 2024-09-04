@@ -10,7 +10,7 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TelegramAPIController extends Controller
 {
-    public function webhook(){
+    public function webhook(Request $request){
         Telegram::commandsHandler(true);
         $update = Telegram::getWebhookUpdate();
         $chat = $update->getChat();
@@ -26,6 +26,7 @@ class TelegramAPIController extends Controller
             $customer = new Customer();
             $customer->channel_id=$chat->getId();
             $customer->channel_name = "telegram";
+            $customer->bot = $request->get('bot');
             $customer->first_name=$chat->get('first_name');
             $customer->last_name=$chat->get('last_name');
             $customer->save();

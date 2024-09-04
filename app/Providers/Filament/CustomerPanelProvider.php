@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 use App\Filament\Auth\Login;
 use App\Livewire\Profile\Contact;
+use App\Livewire\Profile\CustomerProfile;
 use App\Livewire\Profile\PersonalInfo;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -35,6 +36,7 @@ class CustomerPanelProvider extends PanelProvider
             ->plugins([
                 BreezyCore::make()
                     ->myProfile()
+                    ->customMyProfilePage(CustomerProfile::class)
                     ->myProfileComponents([
                         Contact::class,
                     ])

@@ -20,13 +20,12 @@ class TelegramAPIController extends Controller
         $message->type = $chat->get("type");
         $message->message = $msg;
         $message->save();
-        $from = $update->get('from');
-        $customer = Customer::where('telegram_id',$from->get('id'))->first();
+        $customer = Customer::where('telegram_id',$chat->getId())->first();
         if(empty($customer)){
             $customer = new Customer();
-            $customer->telegram_id=$from->get('id');
-            $customer->first_name=$from->get('first_name');
-            $customer->last_name=$from->get('last_name');
+            $customer->telegram_id=$chat->getId();
+            $customer->first_name=$chat->get('first_name');
+            $customer->last_name=$chat->get('last_name');
             $customer->save();
         }
     }

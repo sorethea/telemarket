@@ -32,7 +32,6 @@ class UserPanelProvider extends PanelProvider
             ->login(Login::class)
             ->plugins([
                 BreezyCore::make()
-                    ->myProfile()
                     ->myProfileComponents([
                         "personal_info"=>PersonalInfo::class
                     ]),

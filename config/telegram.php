@@ -43,6 +43,18 @@ return [
                 //Acme\Project\Commands\MyTelegramBot\BotCommand::class
             ],
         ],
+        'thea' => [
+            'token' => env('TELEGRAM_BOT_TOKEN', '7528102206:AAE85TOA57mNaBPPZDdQbjQoCgp7AzqrtQM'),
+            'certificate_path' => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
+            'webhook_url' => env('TELEGRAM_WEBHOOK_URL', 'https://tele.hieatapps.com/api/{token}/webhook'),
+            /*
+             * @see https://core.telegram.org/bots/api#update
+             */
+            'allowed_updates' => null,
+            'commands' => [
+                //Acme\Project\Commands\MyTelegramBot\BotCommand::class
+            ],
+        ],
 
         //        'mySecondBot' => [
         //            'token' => '123456:abc',

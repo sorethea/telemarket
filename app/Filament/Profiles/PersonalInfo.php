@@ -6,6 +6,7 @@ use Filament\Forms\Components\TextInput;
 use Jeffgreco13\FilamentBreezy\Livewire\PersonalInfo as BasePersonalInfo;
 class PersonalInfo extends BasePersonalInfo
 {
+    public array $only = ['name','email','phone_number'];
     protected function getProfileFormSchema(): array
     {
         $groupFields = Group::make([

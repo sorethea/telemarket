@@ -21,7 +21,7 @@ class TelegramAPIController extends Controller
         $message->text = $msg->get('text');
         $message->message = $msg;
         $message->save();
-        $customer = Customer::where('telegram_id',$chat->getId())->first();
+        $customer = Customer::where('channel_id',$chat->getId())->where('channel_name','telegram')->first();
         if(empty($customer)){
             $customer = new Customer();
             $customer->channel_id=$chat->getId();

@@ -12,6 +12,7 @@ class Login extends AuthLogin
     public function form(Form $form): Form
     {
         return $form->schema([
+            $this->getLoginFormComponent(),
             $this->getPasswordFormComponent(),
             $this->getRememberFormComponent()
         ])

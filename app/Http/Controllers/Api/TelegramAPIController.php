@@ -34,6 +34,12 @@ class TelegramAPIController extends Controller
             $customer->last_name=$chat->get('last_name');
             $customer->save();
         }
+        $contact = $msg->get('contact');
+        if(!empty($contact)){
+            $customer->phone_number = $contact->get('phone_number');
+            $customer->is_subscribed = true;
+            $customer->save();
+        }
     }
 
     public function subscript(Request $request){

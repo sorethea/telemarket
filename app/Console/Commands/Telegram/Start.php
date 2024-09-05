@@ -19,9 +19,9 @@ class Start extends Command
         $this->replyWithMessage([
             'text' => __('command.start', ['bot'=>$bot]),
             'reply_markup'=>json_encode([
-                'inline_keyboard'=>[
-                    [['text'=>$bot, "switch_inline_query"=>'share_contact']],
-                ],
+//                'inline_keyboard'=>[
+//                    [['text'=>$bot, "switch_inline_query"=>'share_contact']],
+//                ],
                 'keyboard'=>[
                     [['text'=>'Subscript', "request_contact"=>true,'border'=>true]],
 

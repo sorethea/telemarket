@@ -36,7 +36,24 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make("first_name")
+                    ->label(trans('market.customer.first_name'))
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make("last_name")
+                    ->label(trans('market.customer.last_name'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make("phone_number")
+                    ->label(trans('market.customer.phone_number'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make("last_name")
+                    ->label(trans('market.customer.last_name'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make("created_at")
+                    ->label(trans('general.created_at'))
+                    ->sortable('desc')
+                    ->since()
+                    ->dateTime(),
             ])
             ->filters([
                 //

@@ -29,8 +29,9 @@ class MessagesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('chat_id')
             ->columns([
-                Tables\Columns\TextColumn::make('chat_id'),
                 Tables\Columns\TextColumn::make('text'),
+                Tables\Columns\TextColumn::make('type'),
+                Tables\Columns\TextColumn::make('created_at')->since(),
             ])
             ->filters([
                 //

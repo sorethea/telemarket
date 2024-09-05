@@ -20,7 +20,7 @@ class Start extends Command
             'text' => __('command.start', ['bot'=>$bot]),
             'reply_markup'=>json_encode([
                 'inline_keyboard'=>[
-                    [['text'=>'Subscript', "switch_inline_query"=>"share_contact"]],
+                    [['text'=>'Subscript', "switch_inline_query"=>"share_phone_number"]],
                 ],
 //                'keyboard'=>[
 //                    [['text'=>'Subscript','callback_data'=>'subscript', "request_contact"=>true,'border'=>true]],

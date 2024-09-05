@@ -7,6 +7,7 @@ use App\Filament\Marketing\Resources\CustomerResource\RelationManagers;
 use App\Models\Customer;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Pages\ViewRecord;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -63,6 +64,7 @@ class CustomerResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

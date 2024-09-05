@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Telegram;
 
+use Illuminate\Support\Facades\Request;
 use Telegram\Bot\Commands\Command;
 
 class Start extends Command
@@ -12,8 +13,11 @@ class Start extends Command
 
     public function handle(): void
     {
+
+        $botKey = Request::get('bot');
+        $bot = $bots = config('telegram.bots.'.$botKey.'.name');
         $this->replyWithMessage([
-            'text' => __('command.start'),
+            'text' => __('command.start', $bot),
             'reply_markup'=>json_encode([
                 'keyboard'=>[
                     [['text'=>'Subscript','callback_data'=>'subscript', "request_contact"=>true,'border'=>true]],

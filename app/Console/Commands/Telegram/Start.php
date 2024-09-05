@@ -15,9 +15,9 @@ class Start extends Command
     {
 
         $botKey = Request::get('bot');
-        $bot = $bots = config('telegram.bots.'.$botKey.'.name');
+        $bot = config('telegram.bots.'.$botKey.'.name');
         $this->replyWithMessage([
-            'text' => __('command.start', $bot),
+            'text' => __('command.start', ['bot'=>$bot]),
             'reply_markup'=>json_encode([
                 'keyboard'=>[
                     [['text'=>'Subscript','callback_data'=>'subscript', "request_contact"=>true,'border'=>true]],

@@ -22,10 +22,10 @@ class Start extends Command
                 'inline_keyboard'=>[
                     [['text'=>'Subscript','callback_data'=>'subscript']],
                 ],
-                'keyboard'=>[
-                    [['text'=>'Subscript','callback_data'=>'subscript', "request_contact"=>true,'border'=>true]],
-
-                ],
+//                'keyboard'=>[
+//                    [['text'=>'Subscript','callback_data'=>'subscript', "request_contact"=>true,'border'=>true]],
+//
+//                ],
                 'resize_keyboard' => true, // Optional
                 'one_time_keyboard' => true, // Optional
                 'selective_width' => false, // Optional

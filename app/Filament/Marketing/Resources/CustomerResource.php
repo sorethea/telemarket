@@ -31,8 +31,11 @@ class CustomerResource extends Resource implements HasShieldPermissions
         return $form
             ->schema([
                 Forms\Components\Section::make([
-                    Forms\Components\TextInput::make("channel_id")
+                    Forms\Components\TextInput::make("id")
                         ->label(trans('market.customer.channel_id'))
+                        ->required(),
+                    Forms\Components\TextInput::make("channel")
+                        ->label(trans('market.customer.channel'))
                         ->required(),
                     Forms\Components\TextInput::make("first_name")
                         ->label(trans('market.customer.first_name'))
@@ -54,8 +57,11 @@ class CustomerResource extends Resource implements HasShieldPermissions
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make("channel_id")
+                Tables\Columns\TextColumn::make("id")
                     ->label(trans('market.customer.channel_id'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make("channel")
+                    ->label(trans('market.customer.channel'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make("first_name")
                     ->label(trans('market.customer.first_name'))

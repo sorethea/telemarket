@@ -30,7 +30,20 @@ class CustomerResource extends Resource implements HasShieldPermissions
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make("channel_id")
+                    ->label(trans('market.customer.channel_id'))
+                    ->required(),
+                Forms\Components\TextInput::make("fist_name")
+                    ->label(trans('market.customer.first_name'))
+                    ->required(),
+                Forms\Components\TextInput::make("last_name")
+                    ->label(trans('market.customer.last_name'))
+                    ->required(),
+                Forms\Components\TextInput::make("phone_number")
+                    ->label(trans('market.customer.phone_number'))
+                    ->required(),
+                Forms\Components\Toggle::make("is_subscribed")
+                    ->label(trans('market.customer.is_subscribed')),
             ]);
     }
 
@@ -38,6 +51,9 @@ class CustomerResource extends Resource implements HasShieldPermissions
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make("channel_id")
+                    ->label(trans('market.customer.channel_id'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make("first_name")
                     ->label(trans('market.customer.first_name'))
                     ->searchable(),
@@ -47,9 +63,6 @@ class CustomerResource extends Resource implements HasShieldPermissions
                     ->searchable(),
                 Tables\Columns\TextColumn::make("phone_number")
                     ->label(trans('market.customer.phone_number'))
-                    ->searchable(),
-                Tables\Columns\TextColumn::make("last_name")
-                    ->label(trans('market.customer.last_name'))
                     ->searchable(),
                 Tables\Columns\IconColumn::make("is_subscribed")
                     ->label(trans('market.customer.is_subscribed'))

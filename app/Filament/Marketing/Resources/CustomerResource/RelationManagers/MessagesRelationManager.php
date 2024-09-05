@@ -24,6 +24,11 @@ class MessagesRelationManager extends RelationManager
             ]);
     }
 
+    protected function applyDefaultSortingToTableQuery(Builder $query): Builder
+    {
+        return $query->latest('created_at');
+    }
+
     public function table(Table $table): Table
     {
         return $table

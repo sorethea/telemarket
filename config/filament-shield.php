@@ -24,9 +24,9 @@ return [
         'intercept_gate' => 'before', // after
     ],
 
-    'customer' => [
+    'panel_user' => [
         'enabled' => true,
-        'name' => 'customer',
+        'name' => 'marketing',
     ],
 
     'permission_prefixes' => [

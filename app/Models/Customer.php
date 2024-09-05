@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
 {
@@ -14,8 +15,13 @@ class Customer extends Model
         "last_name",
         "phone_number",
         "user_id",
-        "channel_name",
-        "channel_id",
+        "channel",
         "is_subscript",
     ];
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class,'chat_id');
+    }
+
 }

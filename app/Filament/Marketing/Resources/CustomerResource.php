@@ -45,7 +45,7 @@ class CustomerResource extends Resource implements HasShieldPermissions
                         ->required(),
                     Forms\Components\Toggle::make("is_subscribed")
                         ->label(trans('market.customer.is_subscribed')),
-                ])->columns(2)
+                ])->columns(2),
 
             ]);
     }

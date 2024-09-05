@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
-            $table->string('channel_id');
-            $table->string('channel_name');
+            $table->integer('id')->unsigned();
+            $table->string('channel');
             $table->string('bot');
             $table->foreignId('user_id')->nullable();
             $table->string('first_name')->nullable();

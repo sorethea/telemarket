@@ -35,4 +35,8 @@ class TelegramAPIController extends Controller
             $customer->save();
         }
     }
+
+    public function subscript(Request $request){
+
+    }
 }

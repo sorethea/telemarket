@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('phone_number')->nullable();
-            $table->boolean('is_subscript')->default(false);
+            $table->boolean('is_subscribed')->default(false);
             $table->timestamps();
         });
     }

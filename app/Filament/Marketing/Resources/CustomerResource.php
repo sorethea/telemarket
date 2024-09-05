@@ -33,7 +33,7 @@ class CustomerResource extends Resource implements HasShieldPermissions
                 Forms\Components\TextInput::make("channel_id")
                     ->label(trans('market.customer.channel_id'))
                     ->required(),
-                Forms\Components\TextInput::make("fist_name")
+                Forms\Components\TextInput::make("first_name")
                     ->label(trans('market.customer.first_name'))
                     ->required(),
                 Forms\Components\TextInput::make("last_name")

@@ -49,6 +49,9 @@ class CustomerResource extends Resource
                 Tables\Columns\TextColumn::make("last_name")
                     ->label(trans('market.customer.last_name'))
                     ->searchable(),
+                Tables\Columns\IconColumn::make("is_subscribed")
+                    ->label(trans('market.customer.is_subscribed'))
+                    ->boolean(),
                 Tables\Columns\TextColumn::make("created_at")
                     ->label(trans('general.created_at'))
                     ->sortable('desc')

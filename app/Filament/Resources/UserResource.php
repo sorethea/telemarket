@@ -57,26 +57,23 @@ class UserResource extends Resource implements HasShieldPermissions
     public static function form(Form $form): Form
     {
         $rows = [
-            Forms\Components\Section::make([
-                TextInput::make('name')
-                    ->required()
-                    ->label(trans('filament-users::user.resource.name')),
+            TextInput::make('name')
+                ->required()
+                ->label(trans('filament-users::user.resource.name')),
 //            TextInput::make('email')
 //                ->email()
 //                ->required()
 //                ->label(trans('filament-users::user.resource.email')),
-                TextInput::make('phone_number')
-                    ->label(__('general.contact.phone_number'))
-                    ->required(),
-                TextInput::make('password')
-                    ->label(trans('filament-users::user.resource.password'))
-                    ->password()
-                    ->maxLength(255)
-                    ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
-                    ->dehydrated(fn (?string $state): bool => filled($state))
-                    ->required(fn (string $operation): bool => $operation === 'create'),
-            ])->columns(2),
-
+            TextInput::make('phone_number')
+                ->label(__('general.contact.phone_number'))
+                ->required(),
+            TextInput::make('password')
+                ->label(trans('filament-users::user.resource.password'))
+                ->password()
+                ->maxLength(255)
+                ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
+                ->dehydrated(fn (?string $state): bool => filled($state))
+                ->required(fn (string $operation): bool => $operation === 'create'),
         ];
 
 
@@ -88,7 +85,7 @@ class UserResource extends Resource implements HasShieldPermissions
                 ->label(trans('filament-users::user.resource.roles'));
         }
 
-        $form->schema($rows);
+        $form->schema([Forms\Components\Section::make($rows)->columns(2)]);
 
         return $form;
     }

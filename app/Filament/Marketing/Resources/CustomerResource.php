@@ -30,20 +30,23 @@ class CustomerResource extends Resource implements HasShieldPermissions
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make("channel_id")
-                    ->label(trans('market.customer.channel_id'))
-                    ->required(),
-                Forms\Components\TextInput::make("first_name")
-                    ->label(trans('market.customer.first_name'))
-                    ->required(),
-                Forms\Components\TextInput::make("last_name")
-                    ->label(trans('market.customer.last_name'))
-                    ->required(),
-                Forms\Components\TextInput::make("phone_number")
-                    ->label(trans('market.customer.phone_number'))
-                    ->required(),
-                Forms\Components\Toggle::make("is_subscribed")
-                    ->label(trans('market.customer.is_subscribed')),
+                Forms\Components\Section::make([
+                    Forms\Components\TextInput::make("channel_id")
+                        ->label(trans('market.customer.channel_id'))
+                        ->required(),
+                    Forms\Components\TextInput::make("first_name")
+                        ->label(trans('market.customer.first_name'))
+                        ->required(),
+                    Forms\Components\TextInput::make("last_name")
+                        ->label(trans('market.customer.last_name'))
+                        ->required(),
+                    Forms\Components\TextInput::make("phone_number")
+                        ->label(trans('market.customer.phone_number'))
+                        ->required(),
+                    Forms\Components\Toggle::make("is_subscribed")
+                        ->label(trans('market.customer.is_subscribed')),
+                ])->columns(2)
+
             ]);
     }
 

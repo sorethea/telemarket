@@ -39,6 +39,7 @@ class TelegramAPIController extends Controller
             $customer->phone_number = $contact->get('phone_number');
             $customer->is_subscribed = true;
             $customer->save();
+
         }
     }
 

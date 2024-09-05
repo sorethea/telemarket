@@ -19,6 +19,11 @@ class CustomerResource extends Resource
 
     protected static ?string $navigationIcon = 'gmdi-face';
 
+    public static function getNavigationGroup(): string
+    {
+        return trans('market.nav.group');
+    }
+
     public static function form(Form $form): Form
     {
         return $form

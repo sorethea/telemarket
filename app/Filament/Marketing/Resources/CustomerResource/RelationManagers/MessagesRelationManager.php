@@ -30,6 +30,7 @@ class MessagesRelationManager extends RelationManager
             ->recordTitleAttribute('chat_id')
             ->columns([
                 Tables\Columns\TextColumn::make('chat_id'),
+                Tables\Columns\TextColumn::make('text'),
             ])
             ->filters([
                 //

@@ -49,7 +49,6 @@ class CustomerResource extends Resource implements HasShieldPermissions
                     Forms\Components\Toggle::make("is_subscribed")
                         ->label(trans('market.customer.is_subscribed')),
                 ])->columns(2),
-
             ]);
     }
 
@@ -99,7 +98,7 @@ class CustomerResource extends Resource implements HasShieldPermissions
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\MessagesRelationManager::class
         ];
     }
 

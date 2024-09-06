@@ -13,6 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class MessageResource extends Resource implements HasShieldPermissions
 {
@@ -47,7 +48,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Columns\TextColumn::make("text")
                     ->label(trans('general.text'))
                     ->limit(30)
-                    ->tooltip(fn($record)=>$record->text)
+                    ->tooltip(fn($record)=>Str::length($record->text)>30?$record->text:'')
                     ->searchable()
                     ->sortable(),
 

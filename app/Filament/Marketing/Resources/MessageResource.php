@@ -46,6 +46,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->sortable(),
                 Tables\Columns\TextColumn::make("text")
                     ->label(trans('general.text'))
+                    ->limit(50)
+                    ->tooltip(fn($stage)=>$stage)
                     ->searchable()
                     ->sortable(),
 

@@ -33,7 +33,6 @@ class Start extends Command
                 'selective_width' => false, // Optional
             ])
         ]);
-
-        $this->store($bot,$update);
+        logger(json_encode($update));
     }
 }

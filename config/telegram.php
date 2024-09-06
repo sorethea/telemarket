@@ -45,6 +45,7 @@ return [
             ],
         ],
         'thea' => [
+            'name'=>'the A',
             'token' => env('TELEGRAM_BOT_TOKEN', '7528102206:AAE85TOA57mNaBPPZDdQbjQoCgp7AzqrtQM'),
             'certificate_path' => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
             'webhook_url' => env('TELEGRAM_WEBHOOK_URL', 'https://tele.hieatapps.com/api/{token}/webhook'),

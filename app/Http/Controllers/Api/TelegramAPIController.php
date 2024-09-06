@@ -11,8 +11,10 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 class TelegramAPIController extends Controller
 {
     public function webhook(Request $request){
-        Telegram::commandsHandler(true);
-        $update = Telegram::getWebhookUpdate();
+        $bot = $request->get('bot');
+        $telegram = Telegram::bot($bot);
+        $telegram->commandsHandler(true);
+        $update = $telegram->getWebhookUpdate();
         $chat = $update->getChat();
         $msg = $update->getMessage();
         $message = new Message();
@@ -20,7 +22,7 @@ class TelegramAPIController extends Controller
         $message->type = $chat->get("type");
         $message->text = $msg->get('text');
         $message->message = $msg;
-        $message->bot = $request->get("bot");
+        $message->bot = $bot;
         $message->save();
         $customer = Customer::where('id',$chat->getId())
             ->where('channel','telegram')
@@ -44,6 +46,13 @@ class TelegramAPIController extends Controller
     }
 
     public function subscript(Request $request){
+
+    }
+
+    public function sendPhoto(Request $request){
+        $bot = $request->get('bot');
+        $telegram = Telegram::bot($bot);
+        //$telegram->sendPhoto();
 
     }
 }

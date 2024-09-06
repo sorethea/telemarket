@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TelegramAPIController extends Controller
@@ -45,7 +46,16 @@ class TelegramAPIController extends Controller
         }
     }
 
-    public function subscript(Request $request){
+    public function send(Request $request){
+        $bot = $request->get("bot");
+        if(!empty($bot)){
+            $telegram = Telegram::bot($bot);
+            $telegram->setWebhook(config('telegram.bots.'.$bot.'.webhook_url'));
+            $telegram->sendMessage([
+                'chat_id'=>$request->get('chat_id'),
+                'text'=>$request->get('text'),
+            ]);
+        }
 
     }
 

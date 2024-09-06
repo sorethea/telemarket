@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('chat_id');
             $table->string('type');
             $table->string('bot');
+            $table->string('status')->nullable();
             $table->text('text')->nullable();
             $table->text('message')->nullable();
             $table->timestamps();

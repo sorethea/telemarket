@@ -49,7 +49,10 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->searchable()
                     ->sortable(),
 
-
+                Tables\Columns\TextColumn::make("created_at")
+                    ->label(trans('general.created_at'))
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //

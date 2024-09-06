@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Customer extends Model
 {
     use HasFactory;
-    protected $primaryKey =['id','bot'];
+    //protected $primaryKey =['id','bot'];
 
     protected $fillable = [
         "first_name",

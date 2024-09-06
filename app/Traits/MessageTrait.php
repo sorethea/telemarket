@@ -7,22 +7,30 @@ use App\Models\Message;
 
 trait MessageTrait
 {
+    public function storeMessage($data){
+        $message = new Message();
+        $message->save($data);
+    }
     public function store($bot,$update){
         $chat = $update->getChat();
         $msg = $update->getMessage();
-        $message = new Message();
-        $message->chat_id = $chat->getId();
-        $message->type = $chat->get("type");
-        $message->text = $msg->get('text');
-        $message->message = $msg;
-        $message->bot = $bot;
-        $message->save();
-        $customer = Customer::where('id',$chat->getId())
+        $chatId = $chat->getId();
+        $chatType = $chat->get("type");
+        $text = $msg->get('text');
+        $data = [
+            'chat_id'=>$chatId,
+            'type'=>$chatType,
+            'text'=>$text,
+            'bot'=>$bot,
+            'message'=>$msg,
+        ];
+        $this->storeMessage($data);
+        $customer = Customer::where('id',$chatId)
             ->where('channel','telegram')
             ->where('bot',$bot)->first();
         if(empty($customer)){
             $customer = new Customer();
-            $customer->id=$chat->getId();
+            $customer->id=$chatId;
             $customer->channel = "telegram";
             $customer->bot = $bot;
             $customer->first_name=$chat->get('first_name');

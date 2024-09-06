@@ -14,8 +14,6 @@ class TelegramAPIController extends Controller
 {
     use MessageTrait;
     public function webhook(Request $request){
-        $input = $request->all();
-
         $bot = $request->get('bot');
         $telegram = Telegram::bot($bot);
         $telegram->commandsHandler(true);

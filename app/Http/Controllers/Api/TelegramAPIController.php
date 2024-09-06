@@ -12,6 +12,8 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 class TelegramAPIController extends Controller
 {
     public function webhook(Request $request){
+        $input = $request->all();
+
         $bot = $request->get('bot');
         $telegram = Telegram::bot($bot);
         $telegram->commandsHandler(true);

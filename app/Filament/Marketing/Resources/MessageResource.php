@@ -21,6 +21,12 @@ class MessageResource extends Resource implements HasShieldPermissions
 
     protected static ?string $navigationIcon = 'gmdi-mail';
 
+
+    public static function getNavigationGroup(): string
+    {
+        return trans('market.nav.group');
+    }
+
     public static function form(Form $form): Form
     {
         return $form

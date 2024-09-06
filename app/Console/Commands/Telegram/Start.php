@@ -2,12 +2,14 @@
 
 namespace App\Console\Commands\Telegram;
 
+use App\Traits\MessageTrait;
 use Illuminate\Support\Facades\Request;
 use Telegram\Bot\Commands\Command;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 class Start extends Command
 {
+    use MessageTrait;
     protected string $name = 'start';
 
     protected string $description = 'Start command for telegram bot.';
@@ -19,13 +21,9 @@ class Start extends Command
         $botName = config('telegram.bots.'.$bot.'.name');
         $botWebhookUrl = config('telegram.bots.'.$bot.'.webhook_url');
         $telegram->setWebhook(['url'=>$botWebhookUrl]);
-
         $this->replyWithMessage([
             'text' => __('command.start', ['bot'=>$botName]),
             'reply_markup'=>json_encode([
-//                'inline_keyboard'=>[
-//                    [['text'=>$bot, "switch_inline_query"=>'share_contact']],
-//                ],
                 'keyboard'=>[
                     [['text'=>'Subscript', "request_contact"=>true,'border'=>true]],
 
@@ -35,5 +33,7 @@ class Start extends Command
                 'selective_width' => false, // Optional
             ])
         ]);
+        $update = $this->getUpdate();
+        $this->store($bot,$update);
     }
 }

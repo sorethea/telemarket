@@ -35,7 +35,7 @@ return [
             'token' => env('TELEGRAM_BOT_TOKEN', '7534825533:AAE8VM3zZUKbtKnSiGZ9WBiIs5r6WndjQs8'),
             'certificate_path' => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
             'webhook_url' => env('TELEGRAM_WEBHOOK_URL', 'https://tele.hieatapps.com/api/{token}/webhook'),
-            'name'=>'Ichiban',
+            'name'=>'𝗜𝗰𝗵𝗶𝗯𝗮𝗻 𝗕𝘂𝗳𝗳𝗲𝘁',
             /*
              * @see https://core.telegram.org/bots/api#update
              */

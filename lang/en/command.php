@@ -1,4 +1,4 @@
 <?php
 return [
-  'start'=>'Welcome, this is a :bot! What could I help you? Please subscribe to get more infos & promotions.'
+  'start'=>'សួស្តី!!! បងសូមស្វាគមន៍មកកាន់ ✨:bot✨ ក្រុមការងារយើងខ្ញុំនឹងធ្វើការឆ្លើយតបបង ក្នុងពេលបន្តិចទៀតនេះ​ សូមអរគុណសម្រាប់ការជួយគាំទ្រ🙏'
 ];

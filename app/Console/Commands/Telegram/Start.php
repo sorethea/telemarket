@@ -4,6 +4,7 @@ namespace App\Console\Commands\Telegram;
 
 use Illuminate\Support\Facades\Request;
 use Telegram\Bot\Commands\Command;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class Start extends Command
 {
@@ -13,11 +14,14 @@ class Start extends Command
 
     public function handle(): void
     {
+        $bot = Request::get('bot');
+        $telegram = Telegram::bot($bot);
+        $botName = config('telegram.bots.'.$bot.'.name');
+        $botWebhookUrl = config('telegram.bots.'.$bot.'.webhook_url');
+        $telegram->setWebhook(['url'=>$botWebhookUrl]);
 
-        $botKey = Request::get('bot');
-        $bot = config('telegram.bots.'.$botKey.'.name');
         $this->replyWithMessage([
-            'text' => __('command.start', ['bot'=>$bot]),
+            'text' => __('command.start', ['bot'=>$botName]),
             'reply_markup'=>json_encode([
 //                'inline_keyboard'=>[
 //                    [['text'=>$bot, "switch_inline_query"=>'share_contact']],

@@ -50,7 +50,7 @@ class TelegramAPIController extends Controller
         $bot = $request->get("bot");
         if(!empty($bot)){
             $telegram = Telegram::bot($bot);
-            $telegram->setWebhook(config('telegram.bots.'.$bot.'.webhook_url'));
+            $telegram->setWebhook([config('telegram.bots.'.$bot.'.webhook_url')]);
             $telegram->sendMessage([
                 'chat_id'=>$request->get('chat_id'),
                 'text'=>$request->get('text'),

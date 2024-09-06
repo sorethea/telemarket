@@ -8,8 +8,7 @@ use App\Models\Message;
 trait MessageTrait
 {
     public function storeMessage($data){
-        $message = new Message();
-        $message->save($data);
+
     }
     public function store($bot,$update){
         $chat = $update->getChat();
@@ -17,14 +16,13 @@ trait MessageTrait
         $chatId = $chat->getId();
         $chatType = $chat->get("type");
         $text = $msg->get('text');
-        $data = [
-            'chat_id'=>$chatId,
-            'type'=>$chatType,
-            'text'=>$text,
-            'bot'=>$bot,
-            'message'=>$msg,
-        ];
-        $this->storeMessage($data);
+        $message = new Message();
+        $message->chat_id=$chatId;
+        $message->type=$chatType;
+        $message->text=$text;
+        $message->bot=$bot;
+        $message->message=$msg;
+        $message->save();
         $customer = Customer::where('id',$chatId)
             ->where('channel','telegram')
             ->where('bot',$bot)->first();

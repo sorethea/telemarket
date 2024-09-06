@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->boolean('is_subscribed')->default(false);
             $table->timestamps();
-            $table->primary('id');
+            $table->primary(['id','bot']);
         });
     }
 

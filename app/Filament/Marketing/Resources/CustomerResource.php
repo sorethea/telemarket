@@ -59,6 +59,9 @@ class CustomerResource extends Resource implements HasShieldPermissions
                 Tables\Columns\TextColumn::make("id")
                     ->label(trans('market.customer.channel_id'))
                     ->searchable(),
+                Tables\Columns\TextColumn::make("bot")
+                    ->label(trans('general.bot'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make("channel")
                     ->label(trans('market.customer.channel'))
                     ->searchable(),

@@ -21,7 +21,7 @@ class Start extends Command
         $botName = config('telegram.bots.'.$bot.'.name');
         $botWebhookUrl = config('telegram.bots.'.$bot.'.webhook_url');
         $telegram->setWebhook(['url'=>$botWebhookUrl]);
-        $this->replyWithMessage([
+        $update = $this->replyWithMessage([
             'text' => __('command.start', ['bot'=>$botName]),
             'reply_markup'=>json_encode([
                 'keyboard'=>[
@@ -33,7 +33,7 @@ class Start extends Command
                 'selective_width' => false, // Optional
             ])
         ]);
-        $update = $this->getUpdate();
+
         $this->store($bot,$update);
     }
 }

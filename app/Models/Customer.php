@@ -22,7 +22,7 @@ class Customer extends Model
 
     public function messages(): HasMany
     {
-        return $this->hasMany(Message::class,['id'=>'chat_id','bot'=>'bot']);
+        return $this->hasMany(Message::class,);
     }
 
 }

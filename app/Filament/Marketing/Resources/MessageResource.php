@@ -57,6 +57,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->dateTime()
                     ->sortable(),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
@@ -69,7 +70,6 @@ class MessageResource extends Resource implements HasShieldPermissions
                 ]),
             ]);
     }
-
     public static function getRelations(): array
     {
         return [

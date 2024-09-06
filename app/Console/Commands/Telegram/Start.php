@@ -33,6 +33,5 @@ class Start extends Command
                 'selective_width' => false, // Optional
             ])
         ]);
-        $this->store($bot,$telegram->getWebhookUpdate());
     }
 }

@@ -27,7 +27,7 @@ class Start extends Command
         $posts = Post::query()->limit(3)->get();
         foreach ($posts as $post){
             $this->replyWithPhoto([
-                "photo"=>InputFile::create("storage/".$post->photo)
+                "photo"=>InputFile::create("storage/".$post->photos)
             ]);
         }
         $this->replyWithMessage([

@@ -7,9 +7,6 @@ use App\Models\Message;
 
 trait MessageTrait
 {
-    public function storeMessage($data){
-
-    }
     public function store($bot,$update){
         $chat = $update->getChat();
         $msg = $update->getMessage();

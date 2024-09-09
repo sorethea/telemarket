@@ -10,7 +10,8 @@ class Telegram extends Command
 {
 
     public function __construct(){
-        $this->telegram->setCommandBus(config('telegram.command_list'));
+        $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot("thea");
+        $telegram->setCommandBus(config('telegram.command_list'));
     }
     /**
      * Execute the console command.

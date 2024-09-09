@@ -11,6 +11,10 @@ return [
         "last_name"=>"Last Name",
         "phone_number"=>"Phone Number",
         "is_subscribed"=>"Is Subscribed",
-
+    ],
+    "post"=>[
+        "title"=>"Title",
+        "content"=>"Content",
+        "photo"=>"Photo",
     ]
 ];

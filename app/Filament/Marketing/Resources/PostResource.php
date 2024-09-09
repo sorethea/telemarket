@@ -33,10 +33,11 @@ class PostResource extends Resource implements HasShieldPermissions
                     ->label(trans("market.post.title"))
                     ->required(),
                 Forms\Components\MarkdownEditor::make("content")
-                    ->label(trans("market.post.photo"))
+                    ->label(trans("market.post.content"))
                     ->nullable(),
-                Forms\Components\FileUpload::make('photo')
+                Forms\Components\FileUpload::make('photos')
                     ->image()
+                    ->label(trans("market.post.photos"))
                     ->multiple(false)
                     ->nullable(),
 

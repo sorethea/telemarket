@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Telegram;
 
+use App\Models\Post;
 use App\Traits\MessageTrait;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Support\Facades\Request;
@@ -23,9 +24,12 @@ class Start extends Command
         $botName = config('telegram.bots.'.$bot.'.name');
         $botWebhookUrl = config('telegram.bots.'.$bot.'.webhook_url');
         $telegram->setWebhook(['url'=>$botWebhookUrl]);
-        $this->replyWithPhoto([
-            'photo'=>InputFile::create('storage/01J7AV2EV67W2GARHA0PQ0P37J.jpg')
-        ]);
+        $posts = Post::query()->limit(3)->get();
+        foreach ($posts as $post){
+            $this->replyWithPhoto([
+                "photo"=>InputFile::create("storage/".$post->photo)
+            ]);
+        }
         $this->replyWithMessage([
             'text' => __('command.start', ['bot'=>$botName]),
             'reply_markup'=>json_encode([

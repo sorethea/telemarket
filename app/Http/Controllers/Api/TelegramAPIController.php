@@ -35,7 +35,11 @@ class TelegramAPIController extends Controller
     public function sendPhoto(Request $request){
         $bot = $request->get('bot');
         $telegram = Telegram::bot($bot);
-        $telegram->sendPhoto();
+        $telegram->sendPhoto([
+            'chat_id'=>$request->get('chat_id'),
+            'photo'=>$request->get('photo'),
+            'caption'=>$request->get('caption'),
+        ]);
 
     }
 }

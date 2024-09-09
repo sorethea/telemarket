@@ -38,7 +38,7 @@ class TelegramAPIController extends Controller
         $telegram = Telegram::bot($bot);
         $telegram->sendPhoto([
             'chat_id'=>$request->get('chat_id'),
-            'photo'=>InputFile::create($request->get('photo')),
+            'photo'=>InputFile::create("storage/".$request->get('photo')),
             'caption'=>$request->get('caption'),
         ]);
 

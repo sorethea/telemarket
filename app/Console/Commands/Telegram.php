@@ -8,15 +8,9 @@ use Telegram\Bot\Commands\Command;
 
 class Telegram extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected string $name = '';
 
-    public function __construct($name){
-        $this->name = $name;
+    public function __construct(){
+        $this->telegram->setCommandBus(config('telegram.command_list'));
     }
     /**
      * Execute the console command.

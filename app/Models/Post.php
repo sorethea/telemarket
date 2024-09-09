@@ -13,5 +13,13 @@ class Post extends Model
         "title",
         "content",
         "photos",
+        "user_id",
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->user_id = auth()->id();
+        });
+    }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->string('status')->default('draft');
             $table->foreignId('user_id')->nullable();
-            $table->string('bot');
+            $table->string('bot')->nullable();
             $table->timestamps();
         });
     }

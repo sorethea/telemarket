@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Traits\MessageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Telegram\Bot\FileUpload\InputFile;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TelegramAPIController extends Controller
@@ -37,7 +38,7 @@ class TelegramAPIController extends Controller
         $telegram = Telegram::bot($bot);
         $telegram->sendPhoto([
             'chat_id'=>$request->get('chat_id'),
-            'photo'=>$request->get('photo'),
+            'photo'=>InputFile::create($request->get('photo')),
             'caption'=>$request->get('caption'),
         ]);
 

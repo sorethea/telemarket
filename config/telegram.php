@@ -146,7 +146,6 @@ return [
     'commands' => [
         HelpCommand::class,
         \App\Console\Commands\Telegram\Start::class,
-        \App\Console\Commands\Telegram::class,
     ],
 
     /*

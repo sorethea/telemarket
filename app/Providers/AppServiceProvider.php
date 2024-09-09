@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Console\Commands\Telegram;
 use App\Models\Customer;
 use App\Policies\CustomerPolicy;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
     }
 
     /**

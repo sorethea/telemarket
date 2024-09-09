@@ -18,7 +18,7 @@ class PostResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Post::class;
 
-    protected static ?string $navigationIcon = 'gmdi-post';
+    protected static ?string $navigationIcon = 'gmdi-list_alt';
 
     public static function getNavigationGroup(): string
     {

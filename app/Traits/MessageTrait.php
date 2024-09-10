@@ -8,6 +8,7 @@ use App\Models\Message;
 trait MessageTrait
 {
     public function store($bot,$update){
+        if(empty($bot))$bot=config('telegram.default');
         $chat = $update->getChat();
         $msg = $update->getMessage();
         $chatId = $chat->getId();
@@ -17,7 +18,7 @@ trait MessageTrait
         $message->chat_id=$chatId;
         $message->type=$chatType;
         $message->text=$text;
-        $message->bot=$bot??request()->get('bot','ichiban');
+        $message->bot=$bot;
         $message->message=$msg;
         $message->save();
         $customer = Customer::where('id',$chatId)

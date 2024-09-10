@@ -6,7 +6,7 @@ use Telegram\Bot\FileUpload\InputFile;
 
 trait Telegram
 {
-    public function sendToTelegram(\App\Models\Telegram $telegram): void
+    public static function sendToTelegram(\App\Models\Telegram $telegram): void
     {
         $sendTo = $telegram->send_to;
         $content = $telegram->content;

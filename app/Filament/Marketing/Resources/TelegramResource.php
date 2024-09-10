@@ -65,7 +65,19 @@ class TelegramResource extends Resource implements HasShieldPermissions
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')
+                    ->label(trans('market.telegram.title'))
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('content')
+                    ->label(trans('market.telegram.content'))
+                    ->tooltip(fn($state)=>$state)
+                    ->icon(fn($state)=>$state?'heroicon-o-document-text':''),
+                Tables\Columns\ImageColumn::make('photos')
+                    ->label(trans('market.telegram.photos'))
+                    ->circular()
+                    ->stacked(),
+
+
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

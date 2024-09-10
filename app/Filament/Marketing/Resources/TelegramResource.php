@@ -78,9 +78,9 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     ->circular()
                     ->stacked(),
 
-                Tables\Columns\SelectColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
                     ->label(trans('market.telegram.status.title'))
-                    ->options(Status::class)
+                    ->badge(Status::class)
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

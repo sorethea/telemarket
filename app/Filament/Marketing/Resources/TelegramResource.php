@@ -5,6 +5,7 @@ namespace App\Filament\Marketing\Resources;
 use App\Filament\Marketing\Resources\TelegramResource\Pages;
 use App\Filament\Marketing\Resources\TelegramResource\RelationManagers;
 use App\Models\Telegram;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,11 +14,17 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TelegramResource extends Resource
+class TelegramResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Telegram::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function getNavigationGroup(): string
+    {
+        return trans('market.nav.group');
+    }
+
 
     public static function form(Form $form): Form
     {
@@ -72,5 +79,17 @@ class TelegramResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'view',
+            'view_any',
+            'create',
+            'update',
+            'delete',
+            'delete_any',
+        ];
     }
 }

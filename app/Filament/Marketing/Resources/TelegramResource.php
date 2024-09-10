@@ -31,7 +31,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
 
     public static function form(Form $form): Form
     {
-        $sendTo = Customer::where('is_subscribed',true)->where('bot',Auth::user()->bot)->get()->pluck('phone_number','chat_id');
+        $sendTo = Customer::where('is_subscribed',true)->where('bot',Auth::user()->bot)->pluck('phone_number','chat_id');
         return $form
             ->schema([
                 Forms\Components\Section::make([

@@ -4,6 +4,7 @@ namespace App\Filament\Marketing\Resources;
 
 use App\Filament\Marketing\Resources\TelegramResource\Pages;
 use App\Filament\Marketing\Resources\TelegramResource\RelationManagers;
+use App\Models\Customer;
 use App\Models\Telegram;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
@@ -13,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class TelegramResource extends Resource implements HasShieldPermissions
 {
@@ -28,9 +30,32 @@ class TelegramResource extends Resource implements HasShieldPermissions
 
     public static function form(Form $form): Form
     {
+        $sendTo = Customer::where('is_subscribed',true)->where('bot',Auth::user()->bot)->get()->pluck('phone_number','chat_id');
         return $form
             ->schema([
-                //
+                Forms\Components\Section::make([
+                    Forms\Components\TextInput::make("title")
+                        ->label(trans('market.telegram.title'))
+                        ->required(),
+//                Forms\Components\Select::make("status")
+//                    ->label(trans('market.telegram.status.title'))
+//                    ->options(trans('market.telegram.status.options'))
+//                    ->default('draft')
+//                    ->required(),
+
+                    Forms\Components\MarkdownEditor::make('content')
+                        ->label(trans('market.telegram.content')),
+                    Forms\Components\FileUpload::make('photos')
+                        ->label(trans('market.telegram.photos'))
+                        ->multiple()
+                        ->image(),
+                    Forms\Components\Select::make("send_to")
+                        ->label(trans('market.telegram.send_to'))
+                        ->options($sendTo)
+                        ->default('draft')
+                        ->required(),
+                ]),
+
             ]);
     }
 

@@ -16,5 +16,20 @@ return [
         "title"=>"Title",
         "content"=>"Content",
         "photo"=>"Photo",
+    ],
+    "telegram"=>[
+        "title"=>"Title",
+        "content"=>"Content",
+        "status"=>[
+            "title"=>"Status",
+            "options"=>[
+                    "draft"=>"Draft",
+                    "sent"=>"Sent",
+                    "cancel"=>"Cancel",
+                ],
+            ],
+        "type"=>"Photos",
+        "send_to"=>"Send To",
+        "photos"=>"Photos",
     ]
 ];

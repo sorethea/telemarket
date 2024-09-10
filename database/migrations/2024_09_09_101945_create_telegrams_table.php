@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->text('send_to')->nullable();
             $table->foreignId('user_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

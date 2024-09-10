@@ -5,7 +5,6 @@ namespace App\Filament\Marketing\Resources;
 use App\Filament\Marketing\Resources\TelegramResource\Pages;
 use App\Filament\Marketing\Resources\TelegramResource\RelationManagers;
 use App\Models\Telegram;
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,17 +13,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TelegramResource extends Resource implements HasShieldPermissions
+class TelegramResource extends Resource
 {
     protected static ?string $model = Telegram::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
-
-
-    public static function getNavigationGroup(): string
-    {
-        return trans('market.nav.group');
-    }
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -41,7 +34,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
                 //
             ])
             ->filters([
-                //
+                Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -50,6 +43,8 @@ class TelegramResource extends Resource implements HasShieldPermissions
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -71,15 +66,11 @@ class TelegramResource extends Resource implements HasShieldPermissions
         ];
     }
 
-    public static function getPermissionPrefixes(): array
+    public static function getEloquentQuery(): Builder
     {
-        return [
-            'view',
-            'view_any',
-            'create',
-            'update',
-            'delete',
-            'delete_any',
-        ];
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }

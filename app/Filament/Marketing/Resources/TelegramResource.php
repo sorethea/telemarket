@@ -41,10 +41,11 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     Forms\Components\TextInput::make("title")
                         ->label(trans('market.telegram.title'))
                         ->required(),
-//                Forms\Components\Select::make("status")
-//                    ->label(trans('market.telegram.status.title'))
-//                    ->options(Status::class)
-//                    ->required(),
+                Forms\Components\Select::make("status")
+                    ->label(trans('market.telegram.status.title'))
+                    ->options(Status::class)
+                    ->default('draft')
+                    ->required(),
 
                     Forms\Components\MarkdownEditor::make('content')
                         ->label(trans('market.telegram.content'))

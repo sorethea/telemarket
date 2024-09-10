@@ -95,7 +95,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
             ->actions([
                 Tables\Actions\Action::make("send")
                     ->icon('heroicon-o-paper-airplane')
-                    ->visible(fn($record)=>$record->status === "draft")
+                    ->visible(fn($record)=>$record["status"] === "draft")
                     ->label(trans("market.telegram.send"))
                     ->action(fn($record)=>static::sendAction($record)),
                 Tables\Actions\ViewAction::make(),

@@ -82,6 +82,8 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     ->badge()
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('send_to')
+                    ->label(trans('market.telegram.send_to')),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -89,6 +91,9 @@ class TelegramResource extends Resource implements HasShieldPermissions
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make("send")
+                    ->label(trans("market.telegram.send")),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

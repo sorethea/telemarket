@@ -31,6 +31,7 @@ return [
             ],
         "type"=>"Photos",
         "send_to"=>"Send To",
+        "send"=>"Send",
         "photos"=>"Photos",
     ]
 ];

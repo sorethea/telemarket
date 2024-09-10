@@ -4,6 +4,7 @@ namespace App\Filament\Marketing\Resources;
 
 use App\Filament\Marketing\Resources\TelegramResource\Pages;
 use App\Filament\Marketing\Resources\TelegramResource\RelationManagers;
+use App\Http\Controllers\TelegramController;
 use App\Models\Customer;
 use App\Models\Telegram;
 use App\Options\Status;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Auth;
 
 class TelegramResource extends Resource implements HasShieldPermissions
 {
+    use \App\Traits\Telegram;
+
     protected static ?string $model = Telegram::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
@@ -31,7 +34,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
 
     public static function form(Form $form): Form
     {
-        $sendTo = Customer::where('is_subscribed',true)->where('bot',Auth::user()->bot)->pluck('phone_number','id');
+        $sendTo = Customer::where('bot',Auth::user()->bot)->pluck('phone_number','id');
         return $form
             ->schema([
                 Forms\Components\Section::make([
@@ -92,7 +95,8 @@ class TelegramResource extends Resource implements HasShieldPermissions
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make("send")
-                    ->label(trans("market.telegram.send")),
+                    ->label(trans("market.telegram.send"))
+                    ->action(fn($record)=>static::sendAction($record)),
 
             ])
             ->bulkActions([
@@ -139,5 +143,9 @@ class TelegramResource extends Resource implements HasShieldPermissions
             'delete',
             'delete_any',
         ];
+    }
+
+    public function sendAction(Telegram $telegram):void{
+        static::sendToTelegram($telegram);
     }
 }

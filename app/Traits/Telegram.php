@@ -15,22 +15,27 @@ trait Telegram
         $telegramBot = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
         if(!empty($sendTo)){
             foreach ($sendTo as $chatId){
-                if(!empty($photos)){
-                    foreach ($photos as $photo){
-                        $photoFile = InputFile::create('storage/'.$photo);
-                        $telegramBot->sendPhoto([
+                if(!empty($photos) || !empty($content)){
+                    if(!empty($photos)){
+                        foreach ($photos as $photo){
+                            $photoFile = InputFile::create('storage/'.$photo);
+                            $telegramBot->sendPhoto([
+                                'chat_id'=>$chatId,
+                                'photo'=>$photoFile,
+                            ]);
+                        }
+                    }
+                    if(!empty($content)){
+                        $telegramBot->sendMessage([
                             'chat_id'=>$chatId,
-                            'photo'=>$photoFile,
+                            'text'=>$content,
                         ]);
                     }
                 }
-                if(!empty($content)){
-                    $telegramBot->sendMessage([
-                        'chat_id'=>$chatId,
-                        'text'=>$content,
-                    ]);
+                $telegram->status = "sent";
+                $telegram->save();
                 }
-            }
+
         }
     }
 }

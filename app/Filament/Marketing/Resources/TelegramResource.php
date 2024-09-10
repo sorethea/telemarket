@@ -44,15 +44,17 @@ class TelegramResource extends Resource implements HasShieldPermissions
 //                    ->required(),
 
                     Forms\Components\MarkdownEditor::make('content')
-                        ->label(trans('market.telegram.content')),
+                        ->label(trans('market.telegram.content'))
+                        ->requiredWith('field','photos'),
                     Forms\Components\FileUpload::make('photos')
                         ->label(trans('market.telegram.photos'))
                         ->multiple()
-                        ->image(),
+                        ->image()
+                        ->requiredWith('field','content'),
                     Forms\Components\Select::make("send_to")
                         ->label(trans('market.telegram.send_to'))
                         ->options($sendTo)
-                        ->default('draft')
+                        ->multiple()
                         ->required(),
                 ]),
 

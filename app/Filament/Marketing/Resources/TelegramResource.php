@@ -6,6 +6,7 @@ use App\Filament\Marketing\Resources\TelegramResource\Pages;
 use App\Filament\Marketing\Resources\TelegramResource\RelationManagers;
 use App\Models\Customer;
 use App\Models\Telegram;
+use App\Options\Status;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -77,7 +78,9 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     ->circular()
                     ->stacked(),
 
-
+                Tables\Columns\SelectColumn::make('status')
+                    ->label(trans('market.telegram.status.title'))
+                    ->options(Status::class)
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

@@ -26,6 +26,7 @@ return [
                     "draft"=>"Draft",
                     "sent"=>"Sent",
                     "cancel"=>"Cancel",
+                    "rejected"=>"Rejected",
                 ],
             ],
         "type"=>"Photos",

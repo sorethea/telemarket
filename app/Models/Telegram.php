@@ -28,6 +28,6 @@ class Telegram extends Model
         "photos"=>"array",
         "send_to"=>"array",
         "user_id"=>"integer",
-        "status"=>"string",
+        "status"=>"enum",
     ];
 }

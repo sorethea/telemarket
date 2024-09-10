@@ -18,7 +18,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Telegram::class;
 
-    protected static ?string $navigationIcon = 'gmdi-chat_bubble';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
     public static function getNavigationGroup(): string
     {

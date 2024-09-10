@@ -43,7 +43,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
 //                    ->default('draft')
 //                    ->required(),
 
-                    Forms\Components\TextInput::make('content')
+                    Forms\Components\MarkdownEditor::make('content')
                         ->label(trans('market.telegram.content'))
                         ->required(fn($get)=>!$get('photos')),
                     Forms\Components\FileUpload::make('photos')

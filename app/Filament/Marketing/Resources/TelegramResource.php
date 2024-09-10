@@ -145,7 +145,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
         ];
     }
 
-    public function sendAction(Telegram $telegram):void{
+    public static function sendAction(Telegram $telegram):void{
         static::sendToTelegram($telegram);
     }
 }

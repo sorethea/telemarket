@@ -17,7 +17,7 @@ trait MessageTrait
         $message->chat_id=$chatId;
         $message->type=$chatType;
         $message->text=$text;
-        $message->bot=$bot;
+        $message->bot=$bot??request()->get('bot','ichiban');
         $message->message=$msg;
         $message->save();
         $customer = Customer::where('id',$chatId)

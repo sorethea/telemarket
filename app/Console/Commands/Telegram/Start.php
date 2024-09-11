@@ -34,7 +34,7 @@ class Start extends Command
             'text' => __('command.start', ['bot'=>$botName]),
             'reply_markup'=>json_encode([
                 'keyboard'=>[
-                    [['text'=>'Subscript', "request_contact"=>true,'border'=>true]],
+                    [['text'=>'Subscribe', "request_contact"=>true,'border'=>true]],
 
                 ],
                 'resize_keyboard' => true, // Optional

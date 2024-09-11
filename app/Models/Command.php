@@ -14,12 +14,14 @@ class Command extends Model
         "text",
         "photos",
         "bot",
+        "reply_markup"
     ];
 
     protected $casts =[
         "name"=>"string",
         "text"=>"string",
         "photos"=>"array",
+        "reply_markup"=>"array",
         "bot"=>"string",
     ];
 }

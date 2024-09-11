@@ -35,13 +35,13 @@ class Start extends Command
                 ]);
             }
         }
+
         $replyMarkup = Keyboard::make()
             ->inline()
             ->row([
                 Keyboard::button([
                     'text'=>'Booking',
-                    'url'=>'https://tele.hieatapps.com',
-                    'login_url'=>'https://tele.hieatapps.com/login'
+                    'url'=>'https://tele.hieatapps.com/customer/booking',
                 ])
             ])
             ->setResizeKeyboard(true)

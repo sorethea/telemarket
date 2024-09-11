@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("name");
             $table->text("text")->nullable();
             $table->text("photos")->nullable();
+            $table->json("reply_markup")->nullable();
             $table->string("bot")->nullable();
             $table->timestamps();
         });

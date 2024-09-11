@@ -44,6 +44,9 @@ class CommandResource extends Resource implements HasShieldPermissions
                         ->multiple()
                         ->image()
                         ->required(fn($get)=>!$get('text')),
+                    Forms\Components\KeyValue::make("reply_markup")
+                        ->label(trans("market.command.reply_markup"))
+                        ->nullable(),
                 ]),
             ]);
     }

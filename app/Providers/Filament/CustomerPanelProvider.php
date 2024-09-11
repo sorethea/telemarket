@@ -29,6 +29,7 @@ class CustomerPanelProvider extends PanelProvider
         return $panel
             ->id('customer')
             ->path('customer')
+            ->registration()
             ->colors([
                 'primary' => Color::Amber,
             ])

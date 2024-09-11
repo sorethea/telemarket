@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 use App\Filament\Auth\Login;
+use App\Filament\Marketing\Pages\Register;
 use App\Livewire\Profile\Contact;
 use App\Livewire\Profile\CustomerProfile;
 use App\Livewire\Profile\PersonalInfo;
@@ -29,7 +30,7 @@ class CustomerPanelProvider extends PanelProvider
         return $panel
             ->id('customer')
             ->path('customer')
-            ->registration()
+            ->registration(Register::class)
             ->colors([
                 'primary' => Color::Amber,
             ])

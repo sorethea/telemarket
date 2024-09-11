@@ -29,14 +29,14 @@ class Start extends Command
         if(!empty($photos = $startCommandObj->photos)){
             foreach ($photos as $photo){
                 $this->replyWithPhoto([
-                    "photo"=>InputFile::create(storage_path($photo)),
+                    "photo"=>InputFile::create('storage/'.$photo),
                 ]);
             }
         }
         if(!empty($startCommandObj->text)){
             $this->replyWithMessage([
                 'text' => $startCommandObj->text,
-                'reply_markup'=>File::get(storage_path($startCommandObj->reply_markup)),
+                'reply_markup'=>File::get('storage/'.$startCommandObj->reply_markup),
                 /*json_encode([
                     'keyboard'=>[
                         [['text'=>'Subscribe', "request_contact"=>true,'border'=>true]],

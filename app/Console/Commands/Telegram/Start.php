@@ -5,6 +5,7 @@ namespace App\Console\Commands\Telegram;
 use App\Models\Post;
 use App\Traits\MessageTrait;
 use Filament\Forms\Components\FileUpload;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Request;
 use Telegram\Bot\Commands\Command;
 use Telegram\Bot\FileUpload\InputFile;
@@ -28,21 +29,25 @@ class Start extends Command
         if(!empty($photos = $startCommandObj->photos)){
             foreach ($photos as $photo){
                 $this->replyWithPhoto([
-                    "photo"=>InputFile::create('storage/'.$photo),
+                    "photo"=>InputFile::create(storage_path($photo)),
                 ]);
             }
         }
-        $this->replyWithMessage([
-            'text' => __('command.start', ['bot'=>$botName]),
-            'reply_markup'=>json_encode([
-                'keyboard'=>[
-                    [['text'=>'Subscribe', "request_contact"=>true,'border'=>true]],
+        if(!empty($startCommandObj->text)){
+            $this->replyWithMessage([
+                'text' => $startCommandObj->text,
+                'reply_markup'=>File::get(storage_path($startCommandObj->reply_markup)),
+                /*json_encode([
+                    'keyboard'=>[
+                        [['text'=>'Subscribe', "request_contact"=>true,'border'=>true]],
 
-                ],
-                'resize_keyboard' => true, // Optional
-                'one_time_keyboard' => true, // Optional
-                'selective_width' => false, // Optional
-            ])
-        ]);
+                    ],
+                    'resize_keyboard' => true, // Optional
+                    'one_time_keyboard' => true, // Optional
+                    'selective_width' => false, // Optional
+                ])*/
+            ]);
+        }
+
     }
 }

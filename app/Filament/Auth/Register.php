@@ -16,6 +16,7 @@ class Register extends BaseRegister
     public function mount(): void
     {
         $this->tid = request()->get('tid');
+        logger($this->tid);
         parent::mount();
     }
 

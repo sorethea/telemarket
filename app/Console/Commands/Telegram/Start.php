@@ -23,6 +23,8 @@ class Start extends Command
     public function handle(): void
     {
         $bot = Request::get('bot',config('telegram.default'));
+        $update = $this->getUpdate();
+        logger(json_encode($update));
         $telegram = Telegram::bot($bot);
         $botName = config('telegram.bots.'.$bot.'.name');
         $botWebhookUrl = config('telegram.bots.'.$bot.'.webhook_url');
@@ -40,8 +42,8 @@ class Start extends Command
             ->inline()
             ->row([
                 Keyboard::button([
-                    'text'=>'Booking',
-                    'url'=>'https://tele.hieatapps.com/customer/booking',
+                    'text'=>'Register',
+                    'url'=>'https://tele.hieatapps.com/customer/register',
                 ])
             ])
             ->setResizeKeyboard(true)

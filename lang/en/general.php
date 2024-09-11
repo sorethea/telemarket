@@ -1,5 +1,8 @@
 <?php
 return[
+    "command"=>[
+        "title"=>"Command",
+    ],
     "contact"=>[
         "title"=>"Contact",
         "update"=>"Update",

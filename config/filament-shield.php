@@ -26,7 +26,7 @@ return [
 
     'panel_user' => [
         'enabled' => true,
-        'name' => 'marketing',
+        'name' => 'user',
     ],
 
     'permission_prefixes' => [

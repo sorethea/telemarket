@@ -55,6 +55,16 @@ class CommandResource extends Resource implements HasShieldPermissions
 
     public static function table(Table $table): Table
     {
+        $buttonConfig = [
+            'color' => 'warning',
+            'size' => 'xs',
+        ];
+        $modalConfig = literal(
+            icon: 'heroicon-m-sparkles',
+            alignment: 'start',
+            width: 'xl',
+            closedButton: false,
+        );
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
@@ -65,7 +75,8 @@ class CommandResource extends Resource implements HasShieldPermissions
                     ->tooltip(fn($state)=>$state)
                     ->icon(fn($state)=>$state?'heroicon-o-document-text':''),
                 JsonColumn::make("reply_markup")
-                    ->asDrawer(),
+                    ->button($buttonConfig)
+                    ->modal($modalConfig),
                 Tables\Columns\ImageColumn::make('photos')
                     ->label(trans('market.telegram.photos'))
                     ->circular()

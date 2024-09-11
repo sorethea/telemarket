@@ -33,6 +33,9 @@ class CommandResource extends Resource implements HasShieldPermissions
                     Forms\Components\TextInput::make("name")
                         ->label(trans('market.command.name'))
                         ->required(),
+                    Forms\Components\TextInput::make("bot")
+                        ->label(trans('market.command.bot'))
+                        ->required(),
                     Forms\Components\MarkdownEditor::make('text')
                         ->label(trans('market.command.text'))
                         ->required(fn($get)=>!$get('photos')),

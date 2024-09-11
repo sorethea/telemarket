@@ -36,6 +36,7 @@ return [
     ],
     "command"=>[
         "name"=>"Name",
+        "bot"=>"Bot",
         "text"=>"Text",
         "photos"=>"Photos",
     ]

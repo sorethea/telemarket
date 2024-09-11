@@ -11,15 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Register extends BaseRegister
 {
-    public int $tid;
-
-    public function mount(): void
-    {
-        $this->tid = request()->get('tid');
-        logger($this->tid);
-        parent::mount();
-    }
-
     protected function getForms(): array
     {
         return [
@@ -46,11 +37,12 @@ class Register extends BaseRegister
     }
     protected function handleRegistration(array $data): Model
     {
+        logger(request()->all());
         $user = $this->getUserModel()::create($data);
         $user->assignRole('user');
-        if(!empty($this->tid)){
-            Customer::where('id',$this->tid)->update(['user_id',$user->id]);
-        }
+//        if(!empty($this->tid)){
+//            Customer::where('id',$this->tid)->update(['user_id',$user->id]);
+//        }
         return $user;
     }
 }

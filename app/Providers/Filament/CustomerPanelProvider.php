@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 use App\Filament\Auth\Login;
+use App\Filament\Customer\Dashboard;
 use App\Filament\Marketing\Pages\Register;
 use App\Livewire\Profile\Contact;
 use App\Livewire\Profile\CustomerProfile;
@@ -42,7 +43,7 @@ class CustomerPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Customer/Resources'), for: 'App\\Filament\\Customer\\Resources')
             ->discoverPages(in: app_path('Filament/Customer/Pages'), for: 'App\\Filament\\Customer\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Customer/Widgets'), for: 'App\\Filament\\Customer\\Widgets')
             ->widgets([

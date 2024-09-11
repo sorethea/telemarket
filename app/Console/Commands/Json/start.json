@@ -5,6 +5,13 @@
                 "text": "Subscribe",
                 "request_contact": true,
                 "border": true
+            },
+            {
+                "text": "Booking",
+                "webapp_info": {
+                    "url": "https://tele.hieatapps.com"
+                }
+
             }
         ]
 

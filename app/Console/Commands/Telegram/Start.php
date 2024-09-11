@@ -37,15 +37,6 @@ class Start extends Command
             $this->replyWithMessage([
                 'text' => $startCommandObj->text,
                 'reply_markup'=>File::get('storage/'.$startCommandObj->reply_markup),
-                /*json_encode([
-                    'keyboard'=>[
-                        [['text'=>'Subscribe', "request_contact"=>true,'border'=>true]],
-
-                    ],
-                    'resize_keyboard' => true, // Optional
-                    'one_time_keyboard' => true, // Optional
-                    'selective_width' => false, // Optional
-                ])*/
             ]);
         }
 

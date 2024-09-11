@@ -23,12 +23,12 @@ class Start extends Command
     public function handle(): void
     {
         $bot = Request::get('bot',config('telegram.default'));
-        $update = $this->getUpdate();
-        logger(json_encode($update));
+
         $telegram = Telegram::bot($bot);
         $botName = config('telegram.bots.'.$bot.'.name');
         $botWebhookUrl = config('telegram.bots.'.$bot.'.webhook_url');
         $telegram->setWebhook(['url'=>$botWebhookUrl]);
+        $chatId = $this->getUpdate()->getChat()->getId();
         $startCommandObj = \App\Models\Command::query()->where('name','start')->where('bot',$bot)->first();
         if(!empty($photos = $startCommandObj->photos)){
             foreach ($photos as $photo){
@@ -43,7 +43,7 @@ class Start extends Command
             ->row([
                 Keyboard::button([
                     'text'=>'Register',
-                    'url'=>'https://tele.hieatapps.com/customer/register',
+                    'url'=>'https://tele.hieatapps.com/customer/register?tid='.$chatId,
                 ])
             ])
             ->setResizeKeyboard(true)

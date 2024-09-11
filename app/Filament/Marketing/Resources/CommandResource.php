@@ -46,25 +46,15 @@ class CommandResource extends Resource implements HasShieldPermissions
                         ->multiple()
                         ->image()
                         ->required(fn($get)=>!$get('text')),
-                    PrettyJson::make("reply_markup")
-                        ->label(trans("market.command.reply_markup"))
-                        ->nullable(),
+                    Forms\Components\FileUpload::make('reply_markup')
+                        ->label(trans('market.command.reply_markup'))
+                        ->acceptedFileTypes(['text/json']),
                 ]),
             ]);
     }
 
     public static function table(Table $table): Table
     {
-        $buttonConfig = [
-            'color' => 'warning',
-            'size' => 'xs',
-        ];
-        $modalConfig = literal(
-            icon: 'heroicon-m-sparkles',
-            alignment: 'start',
-            width: 'xl',
-            closedButton: false,
-        );
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
@@ -74,9 +64,6 @@ class CommandResource extends Resource implements HasShieldPermissions
                     ->label(trans('market.command.text'))
                     ->tooltip(fn($state)=>$state)
                     ->icon(fn($state)=>$state?'heroicon-o-document-text':''),
-                JsonColumn::make("reply_markup")
-                    ->button($buttonConfig)
-                    ->modal($modalConfig),
                 Tables\Columns\ImageColumn::make('photos')
                     ->label(trans('market.telegram.photos'))
                     ->circular()

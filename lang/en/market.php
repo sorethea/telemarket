@@ -29,9 +29,14 @@ return [
                     "rejected"=>"Rejected",
                 ],
             ],
-        "type"=>"Photos",
+        "type"=>"Type",
         "send_to"=>"Send To",
         "send"=>"Send",
+        "photos"=>"Photos",
+    ],
+    "command"=>[
+        "name"=>"Name",
+        "text"=>"Text",
         "photos"=>"Photos",
     ]
 ];

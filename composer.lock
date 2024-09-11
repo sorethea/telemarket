@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b41e0b2ba80ad8d9ff0eb24128b93bb",
+    "content-hash": "eb4d0062e16ddde601352a7e49937967",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4334,6 +4334,78 @@
             "time": "2024-07-01T20:03:41+00:00"
         },
         {
+            "name": "novadaemon/filament-pretty-json",
+            "version": "v2.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/novadaemon/filament-pretty-json.git",
+                "reference": "fd7b9258480a668f0416fe4055e28a36679d916b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/novadaemon/filament-pretty-json/zipball/fd7b9258480a668f0416fe4055e28a36679d916b",
+                "reference": "fd7b9258480a668f0416fe4055e28a36679d916b",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0",
+                "filament/forms": "^3.0",
+                "illuminate/contracts": "^10.0|^11.0",
+                "php": "^8.1|^8.2",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9|^8.1",
+                "phpstan/extension-installer": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Novadaemon\\FilamentPrettyJson\\FilamentPrettyJsonServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Novadaemon\\FilamentPrettyJson\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jesús García",
+                    "email": "novadaemon@gmail.com"
+                }
+            ],
+            "description": "Read-only field to show pretty json in your filamentphp forms",
+            "homepage": "https://github.com/novadaemon/filament-pretty-json",
+            "keywords": [
+                "Forms",
+                "field",
+                "filament",
+                "filament-pretty-json",
+                "json",
+                "laravel",
+                "novadaemon"
+            ],
+            "support": {
+                "issues": "https://github.com/novadaemon/filament-pretty-json/issues",
+                "source": "https://github.com/novadaemon/filament-pretty-json"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/novadaemon",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-08-16T18:25:47+00:00"
+        },
+        {
             "name": "nunomaduro/termwind",
             "version": "v2.0.1",
             "source": {
@@ -4580,6 +4652,87 @@
                 "source": "https://github.com/paragonie/constant_time_encoding"
             },
             "time": "2024-05-08T12:18:48+00:00"
+        },
+        {
+            "name": "pepperfm/filament-json",
+            "version": "1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pepperfm/filament-json.git",
+                "reference": "0b5c7521709b8edf4a3e0297d98ada16d5fe868b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pepperfm/filament-json/zipball/0b5c7521709b8edf4a3e0297d98ada16d5fe868b",
+                "reference": "0b5c7521709b8edf4a3e0297d98ada16d5fe868b",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0",
+                "illuminate/support": "^10.45|^11.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.59",
+                "larastan/larastan": "^2.0.1",
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^2.1",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "pestphp/pest-plugin-livewire": "^2.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PepperFM\\FilamentJson\\FilamentJsonServiceProvider"
+                    ],
+                    "aliases": {
+                        "FilamentJson": "PepperFM\\FilamentJson\\Facades\\FilamentJson"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PepperFM\\FilamentJson\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PepperFM",
+                    "email": "Damon3453@yandex.ru",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Filament plugin for processing JSON field",
+            "homepage": "https://github.com/pepperfm/filament-json",
+            "keywords": [
+                "filament-json",
+                "laravel",
+                "pepperfm"
+            ],
+            "support": {
+                "issues": "https://github.com/pepperfm/filament-json/issues",
+                "source": "https://github.com/pepperfm/filament-json"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/pepperfm",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-07-17T14:49:22+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",

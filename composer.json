@@ -17,6 +17,8 @@
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "novadaemon/filament-pretty-json": "^2.2",
+        "pepperfm/filament-json": "^1.1",
         "pxlrbt/filament-activity-log": "^1.1",
         "stechstudio/filament-impersonate": "^3.14",
         "tomatophp/filament-users": "^1.0"

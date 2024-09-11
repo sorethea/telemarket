@@ -39,5 +39,6 @@ return [
         "bot"=>"Bot",
         "text"=>"Text",
         "photos"=>"Photos",
+        "reply_markup"=>"Reply Markup",
     ]
 ];

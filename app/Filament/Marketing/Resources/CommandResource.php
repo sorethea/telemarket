@@ -13,6 +13,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Novadaemon\FilamentPrettyJson\PrettyJson;
+use PepperFM\FilamentJson\Columns\JsonColumn;
 
 class CommandResource extends Resource implements HasShieldPermissions
 {
@@ -44,7 +46,7 @@ class CommandResource extends Resource implements HasShieldPermissions
                         ->multiple()
                         ->image()
                         ->required(fn($get)=>!$get('text')),
-                    Forms\Components\KeyValue::make("reply_markup")
+                    PrettyJson::make("reply_markup")
                         ->label(trans("market.command.reply_markup"))
                         ->nullable(),
                 ]),
@@ -62,6 +64,8 @@ class CommandResource extends Resource implements HasShieldPermissions
                     ->label(trans('market.command.text'))
                     ->tooltip(fn($state)=>$state)
                     ->icon(fn($state)=>$state?'heroicon-o-document-text':''),
+                JsonColumn::make("reply_markup")
+                    ->asDrawer(),
                 Tables\Columns\ImageColumn::make('photos')
                     ->label(trans('market.telegram.photos'))
                     ->circular()

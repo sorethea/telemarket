@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Request;
 use Telegram\Bot\Commands\Command;
 use Telegram\Bot\FileUpload\InputFile;
+use Telegram\Bot\Keyboard\Button;
+use Telegram\Bot\Keyboard\Keyboard;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 class Start extends Command
@@ -33,10 +35,21 @@ class Start extends Command
                 ]);
             }
         }
+        $replyMarkup = Keyboard::make()
+            ->inline()
+            ->row([
+                Keyboard::button([
+                    'text'=>'Booking',
+                    'url'=>'https://tele.hieatapps.com'
+                ])
+            ])
+            ->setResizeKeyboard(true)
+            ->setOneTimeKeyboard(true);
         if(!empty($startCommandObj->text)){
             $this->replyWithMessage([
                 'text' => $startCommandObj->text,
-                'reply_markup'=>File::get('storage/'.$startCommandObj->reply_markup),
+                //'reply_markup'=>File::get('storage/'.$startCommandObj->reply_markup),
+                'reply_markup'=>$replyMarkup,
             ]);
         }
 

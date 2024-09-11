@@ -21,7 +21,7 @@ class ManageCommand extends SettingsPage
                 Forms\Components\Repeater::make("command")
                     ->schema([
                         Forms\Components\TextInput::make("name")->required(),
-                        Forms\Components\TextInput::make("text")->nullable(),
+                        Forms\Components\MarkdownEditor::make("text")->nullable(),
                         Forms\Components\FileUpload::make("photo")->nullable(),
                     ])
                     ->label(trans("general.command.title")),

@@ -40,7 +40,8 @@ class Start extends Command
             ->row([
                 Keyboard::button([
                     'text'=>'Booking',
-                    'url'=>'https://tele.hieatapps.com'
+                    'url'=>'https://tele.hieatapps.com',
+                    'login_url'=>'https://tele.hieatapps.com/login'
                 ])
             ])
             ->setResizeKeyboard(true)

@@ -30,7 +30,7 @@ class CustomerPanelProvider extends PanelProvider
         return $panel
             ->id('customer')
             ->path('customer')
-            ->registration(Register::class)
+            ->registration(\App\Filament\Auth\Register::class)
             ->colors([
                 'primary' => Color::Amber,
             ])

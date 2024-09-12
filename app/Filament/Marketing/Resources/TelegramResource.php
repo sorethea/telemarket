@@ -34,7 +34,10 @@ class TelegramResource extends Resource implements HasShieldPermissions
 
     public static function form(Form $form): Form
     {
-        $sendTo = Customer::where('bot',Auth::user()->bot)->pluck('phone_number'??'id','id');
+        $sendTo = Customer::where('bot',Auth::user()->bot)->pluck('phone_number','id');
+        $sendToOptions = $sendTo->map(function ($sendTo){
+            if(empty($sendTo[0])) $sendTo[0]=$sendTo[1];
+        });
         return $form
             ->schema([
                 Forms\Components\Section::make([
@@ -57,7 +60,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
                         ->required(fn($get)=>!$get('content')),
                     Forms\Components\Select::make("send_to")
                         ->label(trans('market.telegram.send_to'))
-                        ->options($sendTo)
+                        ->options($sendToOptions)
                         ->multiple()
                         ->required(),
                 ]),

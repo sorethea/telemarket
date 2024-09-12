@@ -27,7 +27,7 @@ class MarketingPanelProvider extends PanelProvider
     {
         return $panel
             ->id('marketing')
-            ->path('')
+            ->path('marketing')
             ->login(Login::class)
             ->colors([
                 'primary' => Color::Indigo,

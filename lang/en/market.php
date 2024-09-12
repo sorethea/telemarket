@@ -20,6 +20,15 @@ return [
     "telegram"=>[
         "title"=>"Title",
         "content"=>"Content",
+        "type"=>[
+            "title"=>"Type",
+            "options"=>[
+                    "promotion"=>"Promotion",
+                    "message"=>"Message",
+                    "notification"=>"Notification",
+                    "command"=>"Command",
+                ],
+            ],
         "status"=>[
             "title"=>"Status",
             "options"=>[
@@ -29,7 +38,6 @@ return [
                     "rejected"=>"Rejected",
                 ],
             ],
-        "type"=>"Type",
         "send_to"=>"Send To",
         "send"=>"Send",
         "send_cycle"=>"Send Cycle",

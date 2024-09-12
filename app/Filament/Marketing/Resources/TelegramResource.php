@@ -8,6 +8,7 @@ use App\Http\Controllers\TelegramController;
 use App\Models\Customer;
 use App\Models\Telegram;
 use App\Options\Status;
+use App\Options\Type;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -48,6 +49,11 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     ->options(Status::class)
                     ->default('draft')
                     ->required(),
+                Forms\Components\Select::make("type")
+                    ->label(trans('market.telegram.type.title'))
+                    ->options(Type::class)
+                    ->default('promotion')
+                    ->required(),
 
                     Forms\Components\MarkdownEditor::make('content')
                         ->label(trans('market.telegram.content'))
@@ -83,6 +89,11 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     ->circular()
                     ->stacked(),
 
+                Tables\Columns\TextColumn::make('type')
+                    ->label(trans('market.telegram.type.title'))
+                    ->badge()
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->label(trans('market.telegram.status.title'))
                     ->badge()

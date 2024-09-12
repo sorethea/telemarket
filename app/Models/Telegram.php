@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Options\Status;
+use App\Options\Type;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,10 +26,12 @@ class Telegram extends Model
 
     protected $casts = [
         "bot"=>"string",
-        "type"=>"string",
+        "type"=>Type::class,
         "title"=>"string",
         "content"=>"string",
         "photos"=>"array",
+        "send_cycle"=>"integer",
+        "send_count"=>"integer",
         "send_to"=>"array",
         "user_id"=>"integer",
         "status"=>Status::class,

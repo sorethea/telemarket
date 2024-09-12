@@ -43,7 +43,7 @@ class Start extends Command
             ->row([
                 Keyboard::button([
                     'text'=>'Register',
-                    'url'=>'https://tele.hieatapps.com/customer/register?tid='.$chatId,
+                    'url'=>'https://tele.hieatapps.com/register?tid='.$chatId,
                 ])
             ])
             ->setResizeKeyboard(true)

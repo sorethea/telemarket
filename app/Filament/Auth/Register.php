@@ -2,11 +2,14 @@
 
 namespace App\Filament\Auth;
 use App\Models\Customer;
+use Filament\Facades\Filament;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
+use Filament\Notifications\Auth\VerifyEmail;
 use Filament\Pages\Auth\Register as BaseRegister;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Model;
 
 class Register extends BaseRegister
@@ -54,5 +57,27 @@ class Register extends BaseRegister
             }
         }
         return $user;
+    }
+
+    protected function sendTelegramVerificationNotification(Model $user): void
+    {
+        if (! $user instanceof MustVerifyAccount) {
+            return;
+        }
+
+        if ($user->hasVerifiedEmail()) {
+            return;
+        }
+
+        if (! method_exists($user, 'notify')) {
+            $userClass = $user::class;
+
+            throw new Exception("Model [{$userClass}] does not have a [notify()] method.");
+        }
+
+        $notification = app(VerifyEmail::class);
+        $notification->url = Filament::getVerifyEmailUrl($user);
+
+        $user->notify($notification);
     }
 }

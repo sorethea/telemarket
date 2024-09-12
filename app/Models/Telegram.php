@@ -17,7 +17,8 @@ class Telegram extends Model
         "content",
         "photos",
         "send_to",
-        "sent",
+        "sent_cycle",
+        "sent_count",
         "user_id",
         "status",
     ];

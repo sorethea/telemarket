@@ -31,11 +31,11 @@ trait Telegram
                             'text'=>$content,
                         ]);
                     }
+                    $telegram->sent_count +=1;
                 }
-
                 }
             $telegram->status = "sent";
-            $telegram->sent +=1;
+            $telegram->sent_cycle +=1;
             $telegram->save();
 
         }

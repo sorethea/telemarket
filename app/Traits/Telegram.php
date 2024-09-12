@@ -33,6 +33,7 @@ trait Telegram
                     }
                 }
                 $telegram->status = "sent";
+                $telegram->sent +=1;
                 $telegram->save();
                 }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('photos')->nullable();
             $table->text('content')->nullable();
             $table->text('send_to')->nullable();
+            $table->integer('sent')->default(0);
             $table->foreignId('user_id')->nullable();
             $table->softDeletes();
             $table->timestamps();

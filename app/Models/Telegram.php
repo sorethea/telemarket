@@ -31,4 +31,5 @@ class Telegram extends Model
         "user_id"=>"integer",
         "status"=>Status::class,
     ];
+
 }

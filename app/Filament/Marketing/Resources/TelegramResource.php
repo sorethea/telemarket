@@ -66,8 +66,12 @@ class TelegramResource extends Resource implements HasShieldPermissions
                         ->required(fn($get)=>!$get('content')),
                     Forms\Components\Select::make("send_to")
                         ->label(trans('market.telegram.send_to'))
-                        ->options($customers)
                         ->multiple()
+                        ->getSearchResultsUsing(fn (string $search): array => Customer::where('first_name', 'like', "%{$search}%")
+                            ->limit(50)->pluck('first_name', 'id')
+                            ->toArray())
+                        ->getOptionLabelsUsing(fn (array $values): array => Customer::select(DB::raw("CASE WHEN phone_number IS NULL THEN CONCAT(first_name,' ',last_name) ELSE phone_number END AS label"),'id')
+                            ->whereIn('id', $values)->pluck('name', 'id')->toArray())
                         ->required(),
                 ]),
 

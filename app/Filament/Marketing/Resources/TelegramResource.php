@@ -88,7 +88,13 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     ->badge()
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('sent')
+                Tables\Columns\TextColumn::make('sent_cycle')
+                    ->label(trans('market.telegram.cycle'))
+                    ->color('primary')
+                    ->badge(),
+                Tables\Columns\TextColumn::make('sent_count')
+                    ->label(trans('market.telegram.count'))
+                    ->color('success')
                     ->badge(),
                 Tables\Columns\TextColumn::make('send_to')
                     ->label(trans('market.telegram.send_to')),

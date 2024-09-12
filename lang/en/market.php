@@ -32,6 +32,10 @@ return [
         "type"=>"Type",
         "send_to"=>"Send To",
         "send"=>"Send",
+        "send_cycle"=>"Send Cycle",
+        "send_count"=>"Send Count",
+        "cycle"=>"Cycle",
+        "count"=>"Count",
         "photos"=>"Photos",
     ],
     "command"=>[

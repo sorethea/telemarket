@@ -83,7 +83,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
                 Tables\Columns\IconColumn::make('content')
                     ->label(trans('market.telegram.content'))
                     ->tooltip(fn($state)=>$state)
-                    ->icon(fn($state)=>$state?'heroicon-o-document-text':''),
+                    ->icon('heroicon-o-document-text'),
                 Tables\Columns\ImageColumn::make('photos')
                     ->label(trans('market.telegram.photos'))
                     ->circular()
@@ -107,11 +107,10 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     ->label(trans('market.telegram.count'))
                     ->color('success')
                     ->badge(),
-                Tables\Columns\TextColumn::make('send_to')
+                Tables\Columns\IconColumn::make('send_to')
                     ->label(trans('market.telegram.send_to'))
-                    ->limit(1)
                     ->tooltip(fn($state)=>implode(', ',$state))
-                    ->icon(fn($state)=>$state?'heroicon-o-user-group':''),
+                    ->icon('heroicon-o-user-group'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

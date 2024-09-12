@@ -16,6 +16,19 @@ class User extends Authenticatable implements FilamentUser
     use HasFactory, Notifiable, HasRoles, HasPanelShield;
 
 
+    protected static function booted(): void
+    {
+        parent::booted();
+        static::authenticated(function ($user) {
+            if ($user->hasRole('admin')) {
+                return redirect('/admin');
+            } elseif ($user->hasRole('marketing')) {
+                return redirect('/marketing');
+            } else {
+                return redirect('/'); // Default redirect
+            }
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -56,4 +69,6 @@ class User extends Authenticatable implements FilamentUser
     public function accounts():HasMany{
         return $this->hasMany(Customer::class);
     }
+
+
 }

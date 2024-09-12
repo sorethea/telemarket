@@ -17,6 +17,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TelegramResource extends Resource implements HasShieldPermissions
 {
@@ -34,10 +35,8 @@ class TelegramResource extends Resource implements HasShieldPermissions
 
     public static function form(Form $form): Form
     {
-        $sendTo = Customer::where('bot',Auth::user()->bot)->pluck('phone_number','id');
-        $sendToOptions = $sendTo->map(function ($sendTo){
-            if(empty($sendTo[0])) $sendTo[0]=$sendTo[1];
-        });
+        $customers = Customer::select(DB::raw("CASE WHEN phone_number IS NULL THEN id ELSE phone_number END AS label"),'id')
+            ->where('bot',Auth::user()->bot)->pluck('label','id');
         return $form
             ->schema([
                 Forms\Components\Section::make([
@@ -60,7 +59,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
                         ->required(fn($get)=>!$get('content')),
                     Forms\Components\Select::make("send_to")
                         ->label(trans('market.telegram.send_to'))
-                        ->options($sendToOptions)
+                        ->options($customers)
                         ->multiple()
                         ->required(),
                 ]),

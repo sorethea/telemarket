@@ -49,7 +49,8 @@ class Register extends BaseRegister
         if(!empty($this->tid)){
             $customers = Customer::where('id',$this->tid)->get();
             foreach($customers as $customer){
-                $customer->user($user)->save();
+                $customer->user_id=$user->id;
+                $customer->save();
             }
         }
         return $user;

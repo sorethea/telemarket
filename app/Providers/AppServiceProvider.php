@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Console\Commands\Telegram;
 use App\Models\Customer;
 use App\Policies\CustomerPolicy;
+use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-
+        $this->app->bind(LoginResponse::class,\App\Responses\LoginResponse::class);
     }
 
     /**
@@ -23,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::policy(Customer::class,CustomerPolicy::class);
+
     }
 }

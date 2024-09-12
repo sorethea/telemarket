@@ -19,15 +19,6 @@ class User extends Authenticatable implements FilamentUser
     protected static function booted(): void
     {
         parent::booted();
-        static::authenticated(function ($user) {
-            if ($user->hasRole('admin')) {
-                return redirect('/admin');
-            } elseif ($user->hasRole('marketing')) {
-                return redirect('/marketing');
-            } else {
-                return redirect('/'); // Default redirect
-            }
-        });
     }
 
     /**

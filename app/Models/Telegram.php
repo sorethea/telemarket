@@ -6,6 +6,7 @@ use App\Options\Status;
 use App\Options\Type;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Telegram extends Model
@@ -36,5 +37,7 @@ class Telegram extends Model
         "user_id"=>"integer",
         "status"=>Status::class,
     ];
-
+    public function customers(): BelongsToMany{
+        return $this->belongsToMany(Customer::class,'telegram_customers');
+    }
 }

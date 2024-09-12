@@ -11,11 +11,11 @@ class LoginResponse implements LoginResponseContract
 
         $user = auth()->user();
         if($user->hasRole('admin')){
-            $url = '/admin';
+            $url = '/marketing';
         }elseif ($user->hasRole('marketing')){
             $url = '/marketing';
         }else{
-            $url='';
+            $url='/marketing';
         }
         return redirect()->intended($url);
     }

@@ -108,10 +108,9 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     ->color('success')
                     ->badge(),
                 Tables\Columns\TextColumn::make('send_to')
-                    ->counts(fn($state)=>count($state))
                     ->label(trans('market.telegram.send_to'))
                     ->tooltip(fn($state)=>implode(', ',$state))
-                    ->icon('heroicon-o-user-group'),
+                    ->summarize(Tables\Columns\Summarizers\Count::make()->icons()),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

@@ -61,7 +61,9 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->tooltip(fn($record)=>Str::length($record->text)>30?$record->text:'')
                     ->searchable()
                     ->sortable(),
-
+                Tables\Columns\TextColumn::make('reply_to_text')
+                    ->label(trans('market.message.reply_to'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make("created_at")
                     ->label(trans('general.created_at'))
                     ->dateTime()

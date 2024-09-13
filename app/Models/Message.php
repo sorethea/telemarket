@@ -15,6 +15,7 @@ class Message extends Model
         "type",
         "text",
         "message",
+        "reply_to_text",
     ];
 
     protected $casts =[
@@ -25,7 +26,16 @@ class Message extends Model
         "message"=>"array",
     ];
 
+    protected $appends =[
+        "reply_to_text"
+    ];
     public function customer(): BelongsTo{
         return $this->belongsTo(Customer::class,'chat_id','id');
+    }
+
+    public function getReplyToTextAttribute(): string
+    {
+        $replyTo = $this->message->get("reply_to_message");
+        return $replyTo->chat->text??"";
     }
 }

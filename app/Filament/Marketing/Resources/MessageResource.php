@@ -58,8 +58,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Columns\IconColumn::make("text")
                     ->label(trans('general.text'))
                     ->icon(fn($state):string=>match ($state){
-                        ''=>'heroicon-o-chat-bubble-bottom-center-text',
-                        default=>'heroicon-o-envelope',
+                        ' '=>'heroicon-o-no-symbol',
+                        default=>'heroicon-o-x-mark',
                     })
                     ->tooltip(fn($state)=>$state)
                     ->searchable()

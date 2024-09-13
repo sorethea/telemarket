@@ -40,7 +40,7 @@ class Message extends Model
         try {
             $replyTo = $this->message["reply_to_message"]??"";
             if(!empty($replyTo)){
-                $text = $replyTo["chat"]["text"];
+                $text = $replyTo["text"];
             }
 
         }catch (Exception $exception){

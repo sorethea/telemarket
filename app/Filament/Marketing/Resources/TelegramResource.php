@@ -114,7 +114,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
                         foreach ($customers as $customer){
                             $data[] = $customer->first_name." ".$customer->last_name;
                         }
-                        return nl2br(implode("<br>",$data));
+                        return nl2br(implode(", /n",$data));
                     })
                     ->label(trans('market.telegram.send_to')),
             ])

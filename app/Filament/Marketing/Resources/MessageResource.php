@@ -57,13 +57,15 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->sortable(),
                 Tables\Columns\IconColumn::make("text")
                     ->label(trans('general.text'))
-                    ->icon(fn($state)=>$state?'heroicon-o-envelope':'heroicon-o-x-mark')
+                    ->icon(function($state):string{
+                        return !empty($state)?'heroicon-o-envelope':'heroicon-o-no-symbol';
+                    })
                     ->tooltip(fn($state)=>$state)
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('reply_to_text')
                     ->label(trans('market.message.reply_to'))
-                    ->icon(fn($state)=>$state?'heroicon-o-envelope':'heroicon-o-x-mark')
+                    ->icon(fn($state):string=>$state?'heroicon-o-envelope':'heroicon-o-x-mark')
                     ->tooltip(fn($state)=>$state)
                     ->searchable(),
                 Tables\Columns\TextColumn::make("created_at")

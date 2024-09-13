@@ -23,7 +23,7 @@ class Message extends Model
         "bot"=>"string",
         "type"=>"string",
         "text"=>"string",
-        "message"=>"object",
+        "message"=>"json",
     ];
 
     protected $appends =[

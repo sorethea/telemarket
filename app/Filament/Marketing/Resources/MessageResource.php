@@ -70,7 +70,6 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Columns\TextColumn::make("created_at")
                     ->label(trans('general.created_at'))
                     ->since()
-                    ->dateTime()
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')

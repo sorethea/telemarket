@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Mockery\Exception;
+use function Laravel\Prompts\error;
 
 class Message extends Model
 {
@@ -44,9 +45,8 @@ class Message extends Model
             }
 
         }catch (Exception $exception){
-            logger($exception->getMessage());
+            error($exception->getMessage());
         }
-
 
         return $text;
     }

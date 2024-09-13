@@ -55,14 +55,16 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->label(trans('general.bot'))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make("text")
+                Tables\Columns\IconColumn::make("text")
                     ->label(trans('general.text'))
-                    ->limit(30)
-                    ->tooltip(fn($record)=>Str::length($record->text)>30?$record->text:'')
+                    ->icon(fn($state)=>!empty($state)?'heroicon-o-document-text':'')
+                    ->tooltip(fn($state)=>$state)
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('reply_to_text')
                     ->label(trans('market.message.reply_to'))
+                    ->icon(fn($state)=>!empty($state)?'heroicon-o-document-text':'')
+                    ->tooltip(fn($state)=>$state)
                     ->searchable(),
                 Tables\Columns\TextColumn::make("created_at")
                     ->label(trans('general.created_at'))

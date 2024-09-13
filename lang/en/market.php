@@ -52,5 +52,12 @@ return [
         "text"=>"Text",
         "photos"=>"Photos",
         "reply_markup"=>"Reply Markup",
+    ],
+    "message"=>[
+        "name"=>"Name",
+        "text"=>"Text",
+        "photos"=>"Photos",
+        "video"=>"Video",
+        "reply_to"=>"Reply to",
     ]
 ];

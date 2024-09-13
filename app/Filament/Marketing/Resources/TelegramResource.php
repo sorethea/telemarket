@@ -108,11 +108,11 @@ class TelegramResource extends Resource implements HasShieldPermissions
                     ->label(trans('market.telegram.count'))
                     ->color('success')
                     ->badge(),
+
+                Tables\Columns\TextColumn::make('send_to_total')
+                    ->label(trans('market.telegram.send_to')),
                 Tables\Columns\TextColumn::make('send_to')
                     ->label(trans('market.telegram.send_to'))
-//                    ->formatStateUsing(function ($state):string{
-//                      return count($state);
-//                    })
                     ->tooltip(fn($state)=>implode(', ',$state)),
             ])
             ->filters([

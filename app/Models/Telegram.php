@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Telegram extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function getSendToTotalAttribute(){
+        return count($this->send_to);
+    }
     protected $fillable = [
         "bot",
         "type",
@@ -19,12 +23,15 @@ class Telegram extends Model
         "content",
         "photos",
         "send_to",
+        "send_to_total",
         "sent_cycle",
         "sent_count",
         "user_id",
         "status",
     ];
-
+    protected $appends = [
+        "send_to_total",
+    ];
     protected $casts = [
         "bot"=>"string",
         "type"=>Type::class,

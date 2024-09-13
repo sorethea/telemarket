@@ -112,7 +112,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
                         $customers = Customer::whereIn('id',$record->send_to)->limit(10)->get();
                         $data ="";
                         foreach ($customers as $customer){
-                            $data.= $customer->first_name." ".$customer->last_name.", /r/n";
+                            $data.= $customer->first_name." ".$customer->last_name.", ";
                         }
                         return $data;
                     })

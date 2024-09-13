@@ -109,12 +109,12 @@ class TelegramResource extends Resource implements HasShieldPermissions
 
                 Tables\Columns\TextColumn::make('send_to_total')
                     ->tooltip(function ($record){
-                        $customers = Customer::whereIn('id',$record->send_to)->get();
+                        $customers = Customer::whereIn('id',$record->send_to)->limit(10);
                         $data = [];
                         foreach ($customers as $customer){
                             $data[] = $customer->first_name." ".$customer->last_name;
                         }
-                        return nl2br(implode(', /r/n',$data));
+                        return nl2br(implode(', ',$data));
                     })
                     ->label(trans('market.telegram.send_to')),
             ])

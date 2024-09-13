@@ -69,6 +69,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->tooltip(fn($state)=>$state),
                 Tables\Columns\TextColumn::make("created_at")
                     ->label(trans('general.created_at'))
+                    ->since()
                     ->dateTime()
                     ->sortable(),
             ])

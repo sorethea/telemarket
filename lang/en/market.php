@@ -54,7 +54,8 @@ return [
         "reply_markup"=>"Reply Markup",
     ],
     "message"=>[
-        "name"=>"Name",
+        "from"=>"From",
+        "to"=>"To",
         "text"=>"Text",
         "photos"=>"Photos",
         "video"=>"Video",

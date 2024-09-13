@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Mockery\Exception;
 
 class Message extends Model
 {
@@ -35,7 +36,15 @@ class Message extends Model
 
     public function getReplyToTextAttribute(): string
     {
-        $replyTo = $this->message["reply_to_message"];
-        return $replyTo["chat"]["text"]??"";
+        $text = "";
+        try {
+            $replyTo = $this->message["reply_to_message"]??"";
+            $text = $replyTo["chat"]["text"];
+        }catch (Exception $exception){
+            logger($exception->getMessage());
+        }
+
+
+        return $text;
     }
 }

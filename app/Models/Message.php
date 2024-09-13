@@ -23,7 +23,7 @@ class Message extends Model
         "bot"=>"string",
         "type"=>"string",
         "text"=>"string",
-        "message"=>"json",
+        "message"=>"array",
     ];
 
     protected $appends =[
@@ -35,7 +35,7 @@ class Message extends Model
 
     public function getReplyToTextAttribute(): string
     {
-        $replyTo = $this->message->reply_to_message;
-        return $replyTo->chat->text??"";
+        $replyTo = $this->message["reply_to_message"];
+        return $replyTo["chat"]["text"]??"";
     }
 }

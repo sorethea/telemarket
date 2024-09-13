@@ -38,7 +38,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
     {
 //        $customers = Customer::select(DB::raw("CASE WHEN phone_number IS NULL THEN CONCAT(first_name,' ',last_name) ELSE phone_number END AS label"),'id')
 //            ->where('bot',Auth::user()->bot)->pluck('label','id');
-        $customers = Customer::all()->pluck('first_name','id');
+        $customers = Customer::all()->pluck('name','id');
         return $form
             ->schema([
                 Forms\Components\Section::make([

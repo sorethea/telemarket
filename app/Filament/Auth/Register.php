@@ -48,7 +48,7 @@ class Register extends BaseRegister
     protected function handleRegistration(array $data): Model
     {
         $user = $this->getUserModel()::create($data);
-        $user->assignRole('user');
+        //$user->assignRole('user');
         if(!empty($this->tid)){
             $customers = Customer::where('id',$this->tid)->get();
             foreach($customers as $customer){

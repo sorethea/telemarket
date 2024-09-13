@@ -36,8 +36,6 @@ class TelegramResource extends Resource implements HasShieldPermissions
 
     public static function form(Form $form): Form
     {
-//        $customers = Customer::select(DB::raw("CASE WHEN phone_number IS NULL THEN CONCAT(first_name,' ',last_name) ELSE phone_number END AS label"),'id')
-//            ->where('bot',Auth::user()->bot)->pluck('label','id');
         $customers = Customer::all()->pluck('name','id');
         return $form
             ->schema([
@@ -111,7 +109,7 @@ class TelegramResource extends Resource implements HasShieldPermissions
 
                 Tables\Columns\TextColumn::make('send_to_total')
                     ->tooltip(function ($record){
-                        return implode(" <br> ",$record->send_to);
+                        return implode(", ",Customer::whereIn('id',$record->send_to)->pluck("name"));
                     })
                     ->label(trans('market.telegram.send_to')),
             ])

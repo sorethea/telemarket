@@ -35,7 +35,7 @@ class Message extends Model
 
     public function getReplyToTextAttribute(): string
     {
-        $replyTo = $this->message->get("reply_to_message");
+        $replyTo = $this->message->reply_to_message;
         return $replyTo->chat->text??"";
     }
 }

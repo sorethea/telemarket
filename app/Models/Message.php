@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Message extends Model
 {
@@ -23,4 +24,8 @@ class Message extends Model
         "text"=>"string",
         "message"=>"array",
     ];
+
+    public function customer(): BelongsTo{
+        return $this->belongsTo(Customer::class,'chat_id','id');
+    }
 }

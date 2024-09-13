@@ -43,6 +43,10 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->label(trans('general.id'))
                     ->searchable()
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('customer.name')
+                    ->label(trans('market.message.from'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make("type")
                     ->label(trans('general.type'))
                     ->searchable()

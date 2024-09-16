@@ -79,8 +79,7 @@ class MessageResource extends Resource implements HasShieldPermissions
             ->filters([
                 Tables\Filters\SelectFilter::make('chat_id')
                     ->label(trans('market.message.from'))
-                    ->relationship('customer','name')
-                    ->searchable(),
+                    ->relationship('customer','name'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

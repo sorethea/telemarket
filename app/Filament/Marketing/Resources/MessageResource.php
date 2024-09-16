@@ -80,7 +80,9 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Filters\SelectFilter::make('chat_id')
                     ->label(trans('market.message.from'))
                     ->getSearchResultsUsing(function ( string $search):array{
-                        return Customer::query()->where("name","like","%{$search}%")
+                        return Customer::query()
+                            ->orWhere("first_name","like","%{$search}%")
+                            ->orWhere("last_name","like","%{$search}%")
                             ->select('id', DB::raw("CONCAT(first_name, ' ', last_name) as name"))
                             ->limit(50)->pluck('name','id')->toArray();
                     })

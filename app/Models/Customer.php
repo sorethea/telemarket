@@ -30,6 +30,9 @@ class Customer extends Model
     public function getNameAttribute(){
         return $this->first_name .' '.$this->last_name;
     }
+    public function setNameAttribute(){
+        $this->attributes['name']= $this->first_name .' '.$this->last_name;
+    }
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class,'chat_id','id');

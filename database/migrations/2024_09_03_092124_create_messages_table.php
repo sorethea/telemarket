@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('chat_id');
+            $table->string('customer_id');
+            $table->string('name');
             $table->string('type');
             $table->string('bot');
             $table->string('status')->nullable();
+            $table->string('file')->nullable();
+            $table->string('file_type')->nullable();
             $table->text('text')->nullable();
-            $table->text('file')->nullable();
-            $table->text('file_type')->nullable();
+            $table->text('chat')->nullable();
             $table->text('message')->nullable();
             $table->timestamps();
         });

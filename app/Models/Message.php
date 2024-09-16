@@ -12,13 +12,15 @@ class Message extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "chat_id",
+        "customer_id",
+        "customer_name",
         "bot",
         "type",
         "text",
-        "from",
+        "file",
+        "file_type",
+        "chat",
         "message",
-        "reply_to_text",
     ];
 
     protected $casts =[
@@ -26,43 +28,11 @@ class Message extends Model
         "bot"=>"string",
         "type"=>"string",
         "text"=>"string",
-        "from"=>"array",
+        "chat"=>"array",
         "message"=>"array",
     ];
 
-    protected $appends =[
-        "reply_to_text",
-        "from",
-    ];
     public function customer(): BelongsTo{
-        return $this->belongsTo(Customer::class,'chat_id','id');
-    }
-
-    public function getReplyToTextAttribute(): string
-    {
-        $text = "";
-        try {
-            $replyTo = $this->message["reply_to_message"]??"";
-            if(!empty($replyTo)){
-                $text = $replyTo["text"];
-            }
-
-        }catch (Exception $exception){
-            error($exception->getMessage());
-        }
-
-        return $text;
-    }
-    public function getFromAttribute(): array
-    {
-        $from = [];
-        try {
-            $from = $this->message["from"]??[];
-
-        }catch (Exception $exception){
-            error($exception->getMessage());
-        }
-
-        return $from;
+        return $this->belongsTo(Customer::class);
     }
 }

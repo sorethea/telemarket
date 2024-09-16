@@ -38,9 +38,6 @@ class Customer extends Model
         return $this->hasMany(Message::class,'chat_id','id');
     }
 
-    public function telegrams(): BelongsToMany{
-        return $this->belongsToMany(Telegram::class,'telegram_customers');
-    }
     public function user():BelongsTo
     {
         return $this->belongsTo(User::class);

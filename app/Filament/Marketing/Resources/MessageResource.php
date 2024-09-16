@@ -4,6 +4,7 @@ namespace App\Filament\Marketing\Resources;
 
 use App\Filament\Marketing\Resources\MessageResource\Pages;
 use App\Filament\Marketing\Resources\MessageResource\RelationManagers;
+use App\Models\Customer;
 use App\Models\Message;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
@@ -77,10 +78,11 @@ class MessageResource extends Resource implements HasShieldPermissions
             ->filters([
                 Tables\Filters\SelectFilter::make('from')
                     ->relationship('customer','name')
-                    ->searchable(function (string $text, \Illuminate\Database\Query\Builder $query){
-                        return $query->where('first_name','like',"%$text%")
-                                ->orWhere('last_name','like',"%$text%");
-                    }),
+                    ->getSearchResultsUsing(function ($text) {
+                        return Customer::query()->orWhere("first_name","like","%$text%")
+                            ->orWhere("last_name","like","%$text%");
+                    })
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

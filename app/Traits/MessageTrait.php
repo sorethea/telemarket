@@ -12,6 +12,14 @@ trait MessageTrait
         $chat = $update->getChat();
         $msg = $update->getMessage();
         $chatId = $chat->getId();
+        $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
+        if(!empty($doucment=$msg->get("document"))){
+            $file = $telegram->getFile([
+                "file_id"=>$doucment->get("file_id"),
+            ]);
+            logger($file);
+        }
+
         $name = $chat->get("first_name")." ".$chat->get("last_name");
         $chatType = $chat->get("type");
         $text = $msg->get('text');
@@ -31,6 +39,8 @@ trait MessageTrait
         $message->photo=$msg->get("photo");
         $message->message=$msg;
         $message->save();
+
+
         $customer = Customer::where('id',$chatId)
             ->where('channel','telegram')
             ->where('bot',$bot)->first();

@@ -81,7 +81,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->getSearchResultsUsing(function ( string $search):array{
                         return Customer::query()->orWhere("first_name","like","%{$search}%")
                             ->orWhere("last_name","like","%{$search}%")
-                            ->limit(50)->pluck(DB::raw('concat("first_name"," ","last_name")'),'id')->toArray();
+                            ->select('id', DB::raw("CONCAT(first_name, ' ', last_name) as name"))
+                            ->limit(50)->pluck('name','id')->toArray();
                     })
                     ->searchable(),
             ])

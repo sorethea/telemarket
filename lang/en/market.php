@@ -57,6 +57,7 @@ return [
         "from"=>"From",
         "first_name"=>"First Name",
         "last_name"=>"Last Name",
+        "phone_number"=>"Phone Number",
         "to"=>"To",
         "text"=>"Text",
         "photos"=>"Photos",

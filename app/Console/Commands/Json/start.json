@@ -87,6 +87,54 @@
             "file_unique_id": "AgADVBEAAsJFQFc",
             "file_size": 1557599
         }
+    },
+    "photo": {
+        "message_id": 476,
+        "from": {
+            "id": 2135787994,
+            "is_bot": false,
+            "first_name": "Sorethea",
+            "last_name": "Ok",
+            "language_code": "en"
+        },
+        "chat": {
+            "id": 2135787994,
+            "first_name": "Sorethea",
+            "last_name": "Ok",
+            "type": "private"
+        },
+        "date": 1726474865,
+        "photo": [
+            {
+                "file_id": "AgACAgUAAxkBAAIB3Gbn6nEPq2E--1JGHy_qRvzx-nOpAAIEuzEbwkVAV0x8hpX4srs0AQADAgADcwADNgQ",
+                "file_unique_id": "AQADBLsxG8JFQFd4",
+                "file_size": 2334,
+                "width": 90,
+                "height": 90
+            },
+            {
+                "file_id": "AgACAgUAAxkBAAIB3Gbn6nEPq2E--1JGHy_qRvzx-nOpAAIEuzEbwkVAV0x8hpX4srs0AQADAgADbQADNgQ",
+                "file_unique_id": "AQADBLsxG8JFQFdy",
+                "file_size": 23675,
+                "width": 320,
+                "height": 320
+            },
+            {
+                "file_id": "AgACAgUAAxkBAAIB3Gbn6nEPq2E--1JGHy_qRvzx-nOpAAIEuzEbwkVAV0x8hpX4srs0AQADAgADeAADNgQ",
+                "file_unique_id": "AQADBLsxG8JFQFd9",
+                "file_size": 79108,
+                "width": 800,
+                "height": 800
+            },
+            {
+                "file_id": "AgACAgUAAxkBAAIB3Gbn6nEPq2E--1JGHy_qRvzx-nOpAAIEuzEbwkVAV0x8hpX4srs0AQADAgADeQADNgQ",
+                "file_unique_id": "AQADBLsxG8JFQFd-",
+                "file_size": 119844,
+                "width": 1280,
+                "height": 1280
+            }
+        ],
+        "caption": "Send photo to bot"
     }
 }
 

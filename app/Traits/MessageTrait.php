@@ -22,6 +22,7 @@ trait MessageTrait
         $message->text=$text;
         $message->bot=$bot;
         $message->chat=$chat;
+        $message->from=$msg->get("from");
         $message->contact=$msg->get("contact");
         $message->location=$msg->get("location");
         $message->document=$msg->get("document");

@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('file')->nullable();
             $table->string('file_type')->nullable();
             $table->text('text')->nullable();
-            $table->text('form')->nullable();
+            $table->text('caption')->nullable();
+            $table->text('from')->nullable();
             $table->text('chat')->nullable();
+            $table->text('photo')->nullable();
             $table->text('location')->nullable();
             $table->text('contact')->nullable();
             $table->text('document')->nullable();

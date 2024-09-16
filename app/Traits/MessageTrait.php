@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Customer;
 use App\Models\Message;
+use Illuminate\Support\Facades\Storage;
 
 trait MessageTrait
 {
@@ -14,10 +15,8 @@ trait MessageTrait
         $chatId = $chat->getId();
         $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
         if(!empty($doucment=$msg->get("document"))){
-            $file = $telegram->getFile([
-                "file_id"=>$doucment->get("file_id"),
-            ]);
-            logger($file);
+            $file = $telegram->getFile(["file_id"=>$doucment->get("file_id")]);
+            Storage::put($doucment->file_name,file_get_contents($file->getFilepath()));
         }
 
         $name = $chat->get("first_name")." ".$chat->get("last_name");
@@ -60,4 +59,6 @@ trait MessageTrait
             $customer->save();
         }
     }
+
+
 }

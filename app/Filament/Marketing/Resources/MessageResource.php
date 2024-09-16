@@ -68,13 +68,16 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->icon(fn($state):string=>$state?'heroicon-o-envelope':'heroicon-o-x-mark')
                     ->tooltip(fn($state)=>$state),
                 Tables\Columns\TextColumn::make("created_at")
+                    ->toggleable()
                     ->label(trans('general.created_at'))
                     ->since()
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('from')
+                    ->relationship('customer','name')
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -28,6 +28,7 @@ trait MessageTrait
         $message->document=$msg->get("document");
         $message->voice=$msg->get("voice");
         $message->video=$msg->get("video");
+        $message->photo=$msg->get("photo");
         $message->message=$msg;
         $message->save();
         $customer = Customer::where('id',$chatId)

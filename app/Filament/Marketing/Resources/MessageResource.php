@@ -77,7 +77,10 @@ class MessageResource extends Resource implements HasShieldPermissions
             ->filters([
                 Tables\Filters\SelectFilter::make('from')
                     ->relationship('customer','name')
-                    ->searchable(),
+                    ->searchable(function (string $text, \Illuminate\Database\Query\Builder $query){
+                        return $query->where('first_name','like',"%$text%")
+                                ->orWhere('last_name','like',"%$text%");
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

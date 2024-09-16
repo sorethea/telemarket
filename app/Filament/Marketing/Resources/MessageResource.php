@@ -77,7 +77,8 @@ class MessageResource extends Resource implements HasShieldPermissions
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
-                Tables\Filters\SelectFilter::make('from')
+                Tables\Filters\SelectFilter::make('chat_id')
+                    ->label(trans('market.message.from'))
                     ->getSearchResultsUsing(function ( string $search):array{
                         return Customer::query()->where("name","like","%{$search}%")
                             ->select('id', DB::raw("CONCAT(first_name, ' ', last_name) as name"))

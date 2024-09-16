@@ -16,7 +16,8 @@ trait MessageTrait
         $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(["file_id"=>$doucment->file_id]);
-            Storage::put($doucment->file_name,file_get_contents($file->getFilepath()));
+            logger($file->getPath());
+            //Storage::put($doucment->file_name,file_get_contents($file->getFilepath()));
         }
 
         $name = $chat->get("first_name")." ".$chat->get("last_name");

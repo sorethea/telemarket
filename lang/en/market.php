@@ -55,6 +55,8 @@ return [
     ],
     "message"=>[
         "from"=>"From",
+        "file"=>"File",
+        "file_type"=>"File Type",
         "first_name"=>"First Name",
         "last_name"=>"Last Name",
         "phone_number"=>"Phone Number",

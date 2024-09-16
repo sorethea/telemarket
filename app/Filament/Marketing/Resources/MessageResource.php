@@ -14,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class MessageResource extends Resource implements HasShieldPermissions
@@ -80,7 +81,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->getSearchResultsUsing(function ( string $search):array{
                         return Customer::query()->orWhere("first_name","like","%{$search}%")
                             ->orWhere("last_name","like","%{$search}%")
-                            ->select('concat("first_name"," ","last_name") as name','id')
+                            ->select(DB::raw('concat("first_name"," ","last_name") as name'),'id')
                             ->limit(50)->pluck('first_name','id')->toArray();
                     })
                     ->searchable(),

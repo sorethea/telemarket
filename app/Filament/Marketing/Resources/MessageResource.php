@@ -77,10 +77,11 @@ class MessageResource extends Resource implements HasShieldPermissions
             ->defaultSort('created_at', 'desc')
             ->filters([
                 Tables\Filters\SelectFilter::make('from')
-                    ->relationship('customer','name')
-                    ->getSearchResultsUsing(function ($text) {
-                        return Customer::query()->orWhere("first_name","like","%$text%")
-                            ->orWhere("last_name","like","%$text%");
+                    ->relationship('customer','first_name')
+                    ->getSearchResultsUsing(function ( string $search):array{
+                        return Customer::query()->orWhere("first_name","like","%{$search}%")
+                            ->orWhere("last_name","like","%{$search}%")
+                            ->limit(50)->pluck('first_name','id')->toArray();
                     })
                     ->searchable(),
             ])

@@ -17,6 +17,7 @@ trait MessageTrait
         $text = $msg->get('text');
         $message = new Message();
         $message->customer_id=$chatId;
+        $message->customer_name=$name;
         $message->type=$chatType;
         $message->text=$text;
         $message->bot=$bot;

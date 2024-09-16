@@ -12,13 +12,20 @@ trait MessageTrait
         $chat = $update->getChat();
         $msg = $update->getMessage();
         $chatId = $chat->getId();
+        $name = $chat->get("first_name")." ".$chat->get("last_name");
         $chatType = $chat->get("type");
         $text = $msg->get('text');
         $message = new Message();
-        $message->chat_id=$chatId;
+        $message->customer_id=$chatId;
         $message->type=$chatType;
         $message->text=$text;
         $message->bot=$bot;
+        $message->chat=$chat;
+        $message->contact=$msg->get("contact");
+        $message->location=$msg->get("location");
+        $message->document=$msg->get("document");
+        $message->voice=$msg->get("voice");
+        $message->video=$msg->get("video");
         $message->message=$msg;
         $message->save();
         $customer = Customer::where('id',$chatId)
@@ -38,7 +45,6 @@ trait MessageTrait
             $customer->phone_number = $contact->get('phone_number');
             $customer->is_subscribed = true;
             $customer->save();
-
         }
     }
 }

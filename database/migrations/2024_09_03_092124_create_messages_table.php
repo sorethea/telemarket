@@ -14,14 +14,20 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('customer_id');
-            $table->string('name');
+            $table->string('customer_name');
             $table->string('type');
             $table->string('bot');
             $table->string('status')->nullable();
             $table->string('file')->nullable();
             $table->string('file_type')->nullable();
             $table->text('text')->nullable();
+            $table->text('form')->nullable();
             $table->text('chat')->nullable();
+            $table->text('location')->nullable();
+            $table->text('contact')->nullable();
+            $table->text('document')->nullable();
+            $table->text('voice')->nullable();
+            $table->text('video')->nullable();
             $table->text('message')->nullable();
             $table->timestamps();
         });

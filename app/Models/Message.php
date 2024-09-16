@@ -16,10 +16,16 @@ class Message extends Model
         "customer_name",
         "bot",
         "type",
-        "text",
         "file",
         "file_type",
+        "text",
+        "from",
         "chat",
+        "contact",
+        "location",
+        "document",
+        "voice",
+        "video",
         "message",
     ];
 
@@ -28,7 +34,13 @@ class Message extends Model
         "bot"=>"string",
         "type"=>"string",
         "text"=>"string",
+        "from"=>"array",
         "chat"=>"array",
+        "contact"=>"array",
+        "location"=>"array",
+        "document"=>"array",
+        "voice"=>"array",
+        "video"=>"array",
         "message"=>"array",
     ];
 

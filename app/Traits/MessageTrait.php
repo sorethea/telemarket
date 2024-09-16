@@ -4,8 +4,10 @@ namespace App\Traits;
 
 use App\Models\Customer;
 use App\Models\Message;
+use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use function Laravel\Prompts\error;
 
 trait MessageTrait
 {
@@ -15,11 +17,14 @@ trait MessageTrait
         $msg = $update->getMessage();
         $chatId = $chat->getId();
         $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
+        $saveFileName = '';
+        $fileType = '';
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
             $fileName = $doucment->file_name;
-            $fileType = "document";
-            $this->saveTelegramFile($bot,$file,$fileName,$fileType);
+            $fileType = $doucment->file_type;
+            $directory = "document";
+            $saveFileName =$this->saveTelegramFile($bot,$file,$fileName,$directory);
         }
 
         $name = $chat->get("first_name")." ".$chat->get("last_name");
@@ -30,6 +35,8 @@ trait MessageTrait
         $message->customer_name=$name;
         $message->type=$chatType;
         $message->text=$text;
+        $message->file=$saveFileName;
+        $message->file_type=$fileType;
         $message->bot=$bot;
         $message->chat=$chat;
         $message->from=$msg->get("from");
@@ -63,11 +70,15 @@ trait MessageTrait
         }
     }
 
-    public function saveTelegramFile($bot,$file,$fileName,$fileType){
-        $token = config("telegram.bots.ichiban.token");
-
-        $filePath = $file->getFilePath();
-        $localFile =Storage::put($fileType."/".$fileName,file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
-        logger($localFile);
+    public function saveTelegramFile($bot,$file,$fileName,$directory) {
+        try {
+            $token = config("telegram.bots.ichiban.token");
+            $filePath = $file->getFilePath();
+            $fileLocation = $directory."/".$fileName;
+            Storage::put($fileLocation,file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
+            return $fileLocation;
+        }catch (\Exception $exception){
+            error($exception->getMessage());
+        }
     }
 }

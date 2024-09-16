@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Customer;
 use App\Models\Message;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 trait MessageTrait
@@ -15,10 +16,10 @@ trait MessageTrait
         $chatId = $chat->getId();
         $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
         if(!empty($doucment=$msg->get("document"))){
-            $file = $telegram->getFile(["file_id"=>$doucment->file_id]);
-            $token = config("telegram.bots.ichiban.token");
-            $file_path = $file->getFilePath();
-            $file_download = Storage::put($doucment->file_name,file_get_contents("https://api.telegram.org/file/bot{$token}/{$file_path}"));
+            $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
+            $fileName = $doucment->file_name;
+            $fileType = "document";
+            $this->saveTelegramFile($bot,$file,$fileName,$fileType);
         }
 
         $name = $chat->get("first_name")." ".$chat->get("last_name");
@@ -62,5 +63,11 @@ trait MessageTrait
         }
     }
 
+    public function saveTelegramFile($bot,$file,$fileName,$fileType){
+        $token = config("telegram.bots.ichiban.token");
 
+        $filePath = $file->getFilePath();
+        $localFile =Storage::put($fileType."/".$fileName,file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
+        logger($localFile);
+    }
 }

@@ -16,6 +16,7 @@ class Message extends Model
         "bot",
         "type",
         "text",
+        "from",
         "message",
         "reply_to_text",
     ];
@@ -25,11 +26,13 @@ class Message extends Model
         "bot"=>"string",
         "type"=>"string",
         "text"=>"string",
+        "from"=>"array",
         "message"=>"array",
     ];
 
     protected $appends =[
-        "reply_to_text"
+        "reply_to_text",
+        "from",
     ];
     public function customer(): BelongsTo{
         return $this->belongsTo(Customer::class,'chat_id','id');
@@ -49,5 +52,17 @@ class Message extends Model
         }
 
         return $text;
+    }
+    public function getFromAttribute(): array
+    {
+        $from = [];
+        try {
+            $from = $this->message["from"]??[];
+
+        }catch (Exception $exception){
+            error($exception->getMessage());
+        }
+
+        return $from;
     }
 }

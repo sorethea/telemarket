@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('bot');
             $table->string('status')->nullable();
             $table->text('text')->nullable();
+            $table->text('file')->nullable();
+            $table->text('file_type')->nullable();
             $table->text('message')->nullable();
             $table->timestamps();
         });

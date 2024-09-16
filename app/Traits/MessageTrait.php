@@ -16,8 +16,9 @@ trait MessageTrait
         $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(["file_id"=>$doucment->file_id]);
+            $token = config("telegram.bots.ichiban.token");
             $file_path = $file->getFilePath();
-            $file_download = Storage::put($doucment->file_name,file_get_contents("https://api.telegram.org/file/bot{$telegram->getToken()}/{$file_path}"));
+            $file_download = Storage::put($doucment->file_name,file_get_contents("https://api.telegram.org/file/bot{$token}/{$file_path}"));
         }
 
         $name = $chat->get("first_name")." ".$chat->get("last_name");

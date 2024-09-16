@@ -22,7 +22,7 @@ trait MessageTrait
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
             $fileName = $doucment->file_name;
-            $fileType = $doucment->file_type;
+            $fileType = $doucment->mime_type;
             $directory = "document";
             $saveFileName =$this->saveTelegramFile($bot,$file,$fileName,$directory);
         }

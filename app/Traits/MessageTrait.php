@@ -18,7 +18,7 @@ trait MessageTrait
             $file = $telegram->getFile(["file_id"=>$doucment->file_id]);
             logger($file);
             logger($file->getFilePath());
-            //Storage::put($doucment->file_name,file_get_contents($file->getFilepath()));
+            Storage::put($doucment->file_name,file_get_contents($file->getFilepath()));
         }
 
         $name = $chat->get("first_name")." ".$chat->get("last_name");

@@ -55,6 +55,8 @@ return [
     ],
     "message"=>[
         "from"=>"From",
+        "first_name"=>"First Name",
+        "last_name"=>"Last Name",
         "to"=>"To",
         "text"=>"Text",
         "photos"=>"Photos",

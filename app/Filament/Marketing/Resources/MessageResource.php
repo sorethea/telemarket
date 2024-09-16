@@ -77,7 +77,7 @@ class MessageResource extends Resource implements HasShieldPermissions
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
-                Tables\Filters\SelectFilter::make('chat_id')
+                Tables\Filters\SelectFilter::make('customer.name')
                     ->label(trans('market.message.from'))
                     ->relationship('customer','name'),
             ])

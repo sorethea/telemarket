@@ -79,8 +79,13 @@ trait MessageTrait
         try {
             $token = config("telegram.bots.{$bot}.token");
             $filePath = $file->getFilePath();
-
-            Storage::put("{$filePath}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
+            $filePathArray = explode("/",$filePath);
+            if(count($filePathArray)>1){
+                $fileName = end($filePathArray);
+            }else{
+                $fileName = $filePath;
+            }
+            Storage::put("public/{$fileName}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
             return $filePath;
         }catch (\Exception $exception){
             error($exception->getMessage());

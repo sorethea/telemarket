@@ -34,7 +34,7 @@ trait MessageTrait
         }
         if(!empty($video=$msg->get("video"))){
             $file = $telegram->getFile(['file_id'=>$video->file_id]);
-            $fileType = $voice->mime_type;
+            $fileType = $video->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
         }
         if(!empty($photos=$msg->get("photo"))){

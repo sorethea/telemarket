@@ -35,6 +35,7 @@ services:
     mem_reservation: 512M
     volumes:
       - ./:/var/www
+      - ./storage:/var/www/storage
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
       - ./docker/nginx/nginx.key:/etc/ssl/private/nginx.key
       - ./docker/nginx/nginx.crt:/etc/ssl/certs/nginx.crt

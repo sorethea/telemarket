@@ -70,6 +70,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->tooltip(fn($state)=>$state),
                 Tables\Columns\ImageColumn::make('file')
                     ->label(trans('market.message.file'))
+                    ->openUrlInNewTab()
                     ->disk('public')
                     ->circular(),
                 Tables\Columns\TextColumn::make('file_type')

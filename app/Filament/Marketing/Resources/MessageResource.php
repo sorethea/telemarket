@@ -12,7 +12,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Hugomyb\FilamentMediaAction\Actions\MediaAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\DB;
@@ -74,7 +73,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->label(trans('market.message.file'))
                     ->url(fn($state)=>Storage::url($state))
                     ->disk('public'),
-                MediaAction::make('file')
+                \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('file')
                     ->label(trans('market.message.media'))
                     ->media(fn($record)=>Storage::url($record->file))
                     ->icon('heroicon-o-media'),

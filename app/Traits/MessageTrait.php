@@ -24,10 +24,10 @@ trait MessageTrait
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
             $fileType = $doucment->mime_type;
-            $saveFileName =$this->saveTelegramFile($bot,$file);
+            $saveFileName ="app/".$this->saveTelegramFile($bot,$file);
             if(!empty($thumbnail = $doucment->thumbnail)){
                 $thumbnailFile = $telegram->getFile(['file_id'=>$thumbnail->get("file_id")]);
-                $saveThumbnailName =$this->saveTelegramFile($bot,$thumbnailFile);
+                $saveThumbnailName ="app/".$this->saveTelegramFile($bot,$thumbnailFile);
             }
         }
 
@@ -79,9 +79,9 @@ trait MessageTrait
         try {
             $token = config("telegram.bots.{$bot}.token");
             $filePath = $file->getFilePath();
-            $fileName = $file->getFileName();
-            Storage::put("public/{$fileName}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
-            return $fileName;
+
+            Storage::put("{$filePath}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
+            return $filePath;
         }catch (\Exception $exception){
             error($exception->getMessage());
         }

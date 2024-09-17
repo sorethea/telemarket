@@ -87,7 +87,7 @@ trait MessageTrait
             }else{
                 $fileName = $filePath;
             }
-            $fileNameArray = explode(".",$fileName,-1);
+            $fileNameArray = explode(".",$fileName);
             $fileExtension = end($fileNameArray);
             $fileName = Str::random(36).".".$fileExtension;
             Storage::put("public/{$fileName}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));

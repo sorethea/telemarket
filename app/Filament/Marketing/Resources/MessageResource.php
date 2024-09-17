@@ -72,10 +72,13 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Columns\ImageColumn::make('file')
                     ->label(trans('market.message.file'))
                     ->getStateUsing(function ($record){
-                        if($record->file_type=="text/csv"){
-                            return "images/csv-file-format-extension.png";
-                        }else{
-                            return Storage::url($record->file);
+                        switch ($record->file_type){
+                            default:
+                                return $record->file;
+                                break;
+                            case "text/csv":
+                                return "images/csv-file-format-extension.png";
+                                break;
                         }
                     })
                     ->url(fn($state)=>Storage::url($state))

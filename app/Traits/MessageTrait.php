@@ -20,19 +20,27 @@ trait MessageTrait
         $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
         $fileName = '';
         $saveFileName = '';
-        $saveThumbnailName = '';
         $fileType = '';
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
             $fileName = $doucment->file_name;
             $fileType = $doucment->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
-//            if(!empty($thumbnail = $doucment->thumbnail)){
-//                $thumbnailFile = $telegram->getFile(['file_id'=>$thumbnail->get("file_id")]);
-//                $saveThumbnailName =$this->saveTelegramFile($bot,$thumbnailFile);
-//            }
         }
-
+        if(!empty($voice=$msg->get("voice"))){
+            $file = $telegram->getFile(['file_id'=>$voice->file_id]);
+            $fileType = $voice->mime_type;
+            $saveFileName =$this->saveTelegramFile($bot,$file);
+        }
+        if(!empty($video=$msg->get("video"))){
+            $file = $telegram->getFile(['file_id'=>$video->file_id]);
+            $fileType = $voice->mime_type;
+            $saveFileName =$this->saveTelegramFile($bot,$file);
+        }
+        if(!empty($photo=end($msg->get("photo")))){
+            $file = $telegram->getFile(['file_id'=>$photo->file_id]);
+            $saveFileName =$this->saveTelegramFile($bot,$file);
+        }
         $name = $chat->get("first_name")." ".$chat->get("last_name");
         $chatType = $chat->get("type");
         $text = $msg->get('text');
@@ -41,7 +49,6 @@ trait MessageTrait
         $message->customer_name=$name;
         $message->type=$chatType;
         $message->text=$text;
-        //$message->thumbnail=$saveThumbnailName;
         $message->file=$saveFileName;
         $message->file_name=$fileName;
         $message->file_type=$fileType;

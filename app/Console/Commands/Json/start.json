@@ -135,6 +135,13 @@
             }
         ],
         "caption": "Send photo to bot"
+    },
+    "voice": {
+        "duration": 2,
+        "mime_type": "audio\/ogg",
+        "file_id": "AwACAgUAAxkBAAICCWbpQjiTCbSavmb9k_L8r9BXKJhFAAKgEAACvthIV28l9k6pKWd0NgQ",
+        "file_unique_id": "AgADoBAAAr7YSFc",
+        "file_size": 7314
     }
 }
 

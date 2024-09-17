@@ -15,6 +15,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class MessageResource extends Resource implements HasShieldPermissions
@@ -71,7 +72,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Columns\ImageColumn::make('file')
                     ->label(trans('market.message.file'))
                     ->openUrlInNewTab()
-                    ->url(fn($state)=>url(storage_path($state)))
+                    ->url(fn($state)=>Storage::url($state))
                     ->disk('public')
                     ->circular(),
                 Tables\Columns\TextColumn::make('file_type')

@@ -37,10 +37,16 @@ trait MessageTrait
             $fileType = $voice->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
         }
-        if(!empty($photo=$msg->get("photo"))){
-            $photo = end($photo);
-            $file = $telegram->getFile(['file_id'=>$photo->file_id]);
-            $saveFileName =$this->saveTelegramFile($bot,$file);
+        if(!empty($photos=$msg->get("photo"))){
+            $i = 1;
+            $n = count($photos);
+            foreach ($photos as $photo){
+                if($i==$n){
+                    $file = $telegram->getFile(['file_id'=>$photo->file_id]);
+                    $saveFileName =$this->saveTelegramFile($bot,$file);
+                }
+                $i++;
+            }
         }
         $name = $chat->get("first_name")." ".$chat->get("last_name");
         $chatType = $chat->get("type");

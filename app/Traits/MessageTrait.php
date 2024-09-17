@@ -7,6 +7,7 @@ use App\Models\Message;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use function Laravel\Prompts\error;
 
 trait MessageTrait
@@ -20,11 +21,13 @@ trait MessageTrait
         $saveFileName = '';
         $fileType = '';
         if(!empty($doucment=$msg->get("document"))){
+            $thumbnail = $telegram->getFile(['file_id'=>$doucment->thumbnail->file_id]);
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
             $fileName = $doucment->file_name;
             $fileType = $doucment->mime_type;
             $directory = "document";
             $saveFileName =$this->saveTelegramFile($bot,$file,$fileName,$directory);
+            $saveThumbnailName =$this->saveTelegramFile($bot,$thumbnail,$fileName,$directory);
         }
 
         $name = $chat->get("first_name")." ".$chat->get("last_name");
@@ -35,6 +38,7 @@ trait MessageTrait
         $message->customer_name=$name;
         $message->type=$chatType;
         $message->text=$text;
+        $message->thumbnail=$saveThumbnailName;
         $message->file=$saveFileName;
         $message->file_type=$fileType;
         $message->bot=$bot;
@@ -72,9 +76,10 @@ trait MessageTrait
 
     public function saveTelegramFile($bot,$file,$fileName,$directory) {
         try {
-            $token = config("telegram.bots.ichiban.token");
+            $token = config("telegram.bots.{$bot}.token");
             $filePath = $file->getFilePath();
-            $fileLocation = $directory."/".$fileName;
+            $extension = $file->getClientOriginalExtension();
+            $fileLocation = $directory."/".Str::random().".".$extension;
             Storage::put($fileLocation,file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
             return $fileLocation;
         }catch (\Exception $exception){

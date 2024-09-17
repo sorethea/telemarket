@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('bot');
             $table->string('status')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->string('file')->nullable();
             $table->string('file_type')->nullable();
             $table->text('text')->nullable();

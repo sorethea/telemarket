@@ -54,7 +54,6 @@ trait MessageTrait
         $message->message=$msg;
         $message->save();
 
-
         $customer = Customer::where('id',$chatId)
             ->where('channel','telegram')
             ->where('bot',$bot)->first();

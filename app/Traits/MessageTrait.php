@@ -37,8 +37,8 @@ trait MessageTrait
             $fileType = $voice->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
         }
-        if(!empty($photo=end($msg->get("photo")))){
-            $file = $telegram->getFile(['file_id'=>$photo->file_id]);
+        if(!empty($photo=$msg->get("photo"))){
+            $file = $telegram->getFile(['file_id'=>end($photo)->file_id]);
             $saveFileName =$this->saveTelegramFile($bot,$file);
         }
         $name = $chat->get("first_name")." ".$chat->get("last_name");

@@ -21,7 +21,7 @@ trait MessageTrait
         $saveFileName = '';
         $fileType = '';
         if(!empty($doucment=$msg->get("document"))){
-            $thumbnail = $telegram->getFile(['file_id'=>$doucment->thumbnail->file_id]);
+            $thumbnail = $telegram->getFile(['file_id'=>$doucment->get("thumbnail")->get("file_id")]);
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
             $fileName = $doucment->file_name;
             $fileType = $doucment->mime_type;

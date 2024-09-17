@@ -109,7 +109,7 @@ class MessageResource extends Resource implements HasShieldPermissions
         return [
             'index' => Pages\ListMessages::route('/'),
 //            'create' => Pages\CreateMessage::route('/create'),
-            'edit' => Pages\EditMessage::route('/{record}/edit'),
+            //'edit' => Pages\EditMessage::route('/{record}/edit'),
         ];
     }
 

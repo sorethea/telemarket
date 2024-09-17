@@ -75,7 +75,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->disk('public'),
                 \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('file')
                     ->label(trans('market.message.media'))
-                    ->media(fn($record)=>Storage::url($record->file))
+                    ->media(fn($stage)=>Storage::url($stage))
                     ->icon('heroicon-o-media'),
                 Tables\Columns\TextColumn::make('file_type')
                     ->label(trans('market.message.file_type'))

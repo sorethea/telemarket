@@ -87,8 +87,11 @@ trait MessageTrait
             }else{
                 $fileName = $filePath;
             }
-            Storage::put("public/{$filePath}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
-            return $filePath;
+            $fileNameArray = explode(".",$fileName,-1);
+            $fileExtension = end($fileNameArray);
+            $fileName = Str::random(36).".".$fileExtension;
+            Storage::put("public/{$fileName}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
+            return $fileName;
         }catch (\Exception $exception){
             error($exception->getMessage());
         }

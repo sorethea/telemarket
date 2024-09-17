@@ -103,6 +103,7 @@ trait MessageTrait
             }
             $fileNameArray = explode(".",$fileName);
             $fileExtension = end($fileNameArray);
+            if($fileExtension=="oga")$fileExtension="ogg";
             $fileName = Str::random(36).".".$fileExtension;
             Storage::put("public/{$fileName}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
             return $fileName;

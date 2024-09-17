@@ -19,15 +19,17 @@ trait MessageTrait
         $chatId = $chat->getId();
         $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
         $saveFileName = '';
+        $saveThumbnailName = '';
         $fileType = '';
         if(!empty($doucment=$msg->get("document"))){
-            //$thumbnail = $telegram->getFile(['file_id'=>$doucment->get("thumbnail")->get("file_id")]);
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
-            $fileName = $doucment->file_name;
             $fileType = $doucment->mime_type;
             $directory = "document";
-            $saveFileName =$this->saveTelegramFile($bot,$file,$fileName,$directory);
-            //$saveThumbnailName =$this->saveTelegramFile($bot,$thumbnail,$fileName,$directory);
+            $saveFileName =$this->saveTelegramFile($bot,$file,$directory);
+            if(!empty($thumbnail = $doucment->thumbnail)){
+                $thumbnailFile = $telegram->getFile(['file_id'=>$thumbnail->get("file_id")]);
+                $saveThumbnailName =$this->saveTelegramFile($bot,$thumbnailFile,$directory);
+            }
         }
 
         $name = $chat->get("first_name")." ".$chat->get("last_name");
@@ -38,7 +40,7 @@ trait MessageTrait
         $message->customer_name=$name;
         $message->type=$chatType;
         $message->text=$text;
-        //$message->thumbnail=$saveThumbnailName;
+        $message->thumbnail=$saveThumbnailName;
         $message->file=$saveFileName;
         $message->file_type=$fileType;
         $message->bot=$bot;
@@ -74,12 +76,11 @@ trait MessageTrait
         }
     }
 
-    public function saveTelegramFile($bot,$file,$fileName,$directory) {
+    public function saveTelegramFile($bot,$file,$directory) {
         try {
             $token = config("telegram.bots.{$bot}.token");
             $filePath = $file->getFilePath();
-            $extension = $file->getClientOriginalExtension();
-            $fileLocation = $directory."/".Str::random().".".$extension;
+            $fileLocation = $directory."/".$filePath;
             Storage::put($fileLocation,file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
             return $fileLocation;
         }catch (\Exception $exception){

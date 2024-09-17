@@ -71,8 +71,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->tooltip(fn($state)=>$state),
                 Tables\Columns\ImageColumn::make('file')
                     ->label(trans('market.message.file'))
-                    ->openUrlInNewTab()
                     ->url(fn($state)=>Storage::url($state))
+                    ->defaultImageUrl("https://www.gravatar.com/avatar")
                     ->disk('public')
                     ->circular(),
                 Tables\Columns\TextColumn::make('file_type')

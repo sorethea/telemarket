@@ -74,8 +74,10 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->url(fn($state)=>Storage::url($state))
                     ->disk('public'),
                 Tables\Columns\TextColumn::make('file_type')
-                    ->label(trans('market.message.file_type')),
+                    ->label(trans('market.message.file_type'))
+                    ->toggleable(),
                 Tables\Columns\IconColumn::make('message.reply_to_message.text')
+                    ->toggleable()
                     ->label(trans('market.message.reply_to'))
                     ->icon(fn($state):string=>$state?'heroicon-o-envelope':'heroicon-o-x-mark')
                     ->tooltip(fn($state)=>$state),

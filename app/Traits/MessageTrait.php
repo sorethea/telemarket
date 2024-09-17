@@ -18,17 +18,19 @@ trait MessageTrait
         $msg = $update->getMessage();
         $chatId = $chat->getId();
         $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
+        $fileName = '';
         $saveFileName = '';
         $saveThumbnailName = '';
         $fileType = '';
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
+            $fileName = $doucment->file_name;
             $fileType = $doucment->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
-            if(!empty($thumbnail = $doucment->thumbnail)){
-                $thumbnailFile = $telegram->getFile(['file_id'=>$thumbnail->get("file_id")]);
-                $saveThumbnailName =$this->saveTelegramFile($bot,$thumbnailFile);
-            }
+//            if(!empty($thumbnail = $doucment->thumbnail)){
+//                $thumbnailFile = $telegram->getFile(['file_id'=>$thumbnail->get("file_id")]);
+//                $saveThumbnailName =$this->saveTelegramFile($bot,$thumbnailFile);
+//            }
         }
 
         $name = $chat->get("first_name")." ".$chat->get("last_name");
@@ -39,8 +41,9 @@ trait MessageTrait
         $message->customer_name=$name;
         $message->type=$chatType;
         $message->text=$text;
-        $message->thumbnail=$saveThumbnailName;
+        //$message->thumbnail=$saveThumbnailName;
         $message->file=$saveFileName;
+        $message->file_name=$fileName;
         $message->file_type=$fileType;
         $message->bot=$bot;
         $message->chat=$chat;
@@ -84,8 +87,8 @@ trait MessageTrait
             }else{
                 $fileName = $filePath;
             }
-            Storage::put("public/{$fileName}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
-            return $fileName;
+            Storage::put("public/{$filePath}",file_get_contents("https://api.telegram.org/file/bot{$token}/{$filePath}"));
+            return $filePath;
         }catch (\Exception $exception){
             error($exception->getMessage());
         }

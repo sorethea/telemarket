@@ -12,6 +12,7 @@
         "filament/filament": "^3.2",
         "filament/spatie-laravel-settings-plugin": "^3.2",
         "filipfonal/filament-log-manager": "^2.0",
+        "hugomyb/filament-media-action": "v3.1.0.7",
         "irazasyed/telegram-bot-sdk": "^3.14",
         "jeffgreco13/filament-breezy": "^2.4",
         "laravel/framework": "^11.9",

@@ -24,10 +24,10 @@ trait MessageTrait
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
             $fileType = $doucment->mime_type;
-            $saveFileName ="app/".$this->saveTelegramFile($bot,$file);
+            $saveFileName =$this->saveTelegramFile($bot,$file);
             if(!empty($thumbnail = $doucment->thumbnail)){
                 $thumbnailFile = $telegram->getFile(['file_id'=>$thumbnail->get("file_id")]);
-                $saveThumbnailName ="app/".$this->saveTelegramFile($bot,$thumbnailFile);
+                $saveThumbnailName =$this->saveTelegramFile($bot,$thumbnailFile);
             }
         }
 

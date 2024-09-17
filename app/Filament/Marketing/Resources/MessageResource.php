@@ -73,9 +73,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->label(trans('market.message.file'))
                     ->url(fn($state)=>Storage::url($state))
                     ->disk('public'),
-                \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('file')
-                    ->label(trans('market.message.media'))
-                    ->icon('heroicon-o-media'),
+
                 Tables\Columns\TextColumn::make('file_type')
                     ->label(trans('market.message.file_type'))
                     ->toggleable(),
@@ -95,6 +93,10 @@ class MessageResource extends Resource implements HasShieldPermissions
             ])
             ->actions([
                 //Tables\Actions\EditAction::make(),
+                \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('file')
+                    ->label(trans('market.message.media'))
+                    ->media("https://www.youtube.com/shorts/V3II55xMdO8")
+                    ->icon('heroicon-o-media'),
             ])
             ->bulkActions([
 //                Tables\Actions\BulkActionGroup::make([

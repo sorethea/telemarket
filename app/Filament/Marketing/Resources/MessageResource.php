@@ -72,9 +72,9 @@ class MessageResource extends Resource implements HasShieldPermissions
                             $icon = 'heroicon-o-x-mark';
                         }
                         return $icon;
-                    })
+                    }),
 
-                    ->tooltip(fn($state)=>$state),
+                    //->tooltip(fn($state)=>$state),
                 Tables\Columns\IconColumn::make('message.reply_to_message.text')
                     ->toggleable()
                     ->label(trans('market.message.reply_to'))

@@ -62,6 +62,7 @@ return [
         "phone_number"=>"Phone Number",
         "to"=>"To",
         "text"=>"Text",
+        "content"=>"Content",
         "photos"=>"Photos",
         "video"=>"Video",
         "reply_to"=>"Reply to",

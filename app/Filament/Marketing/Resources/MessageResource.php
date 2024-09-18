@@ -69,7 +69,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Columns\IconColumn::make('message.reply_to_message.text')
                     ->toggleable()
                     ->label(trans('market.message.reply_to'))
-                    ->icon(fn($state):string=>$state?'heroicon-o-envelope':'heroicon-o-x-mark')
+                    ->icon('heroicon-o-envelope')
                     ->tooltip(fn($state)=>$state),
                 Tables\Columns\TextColumn::make("created_at")
                     ->toggleable()
@@ -84,7 +84,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                 //Tables\Actions\EditAction::make(),
                 \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('media')
                     ->media(fn($record)=>Storage::url($record->file))
-                    ->icon('heroicon-o-users'),
+                    ->icon('heroicon-o-video-camera'),
             ])
             ->bulkActions([
 //                Tables\Actions\BulkActionGroup::make([

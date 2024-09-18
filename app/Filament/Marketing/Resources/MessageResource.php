@@ -63,6 +63,12 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->sortable(),
                 Tables\Columns\TextColumn::make("text")
                     ->label(trans('market.message.content'))
+                    ->getStateUsing(function ($record){
+                        if(empty($record->text) && !empty($record->file_name)){
+                            return $record->file_name;
+                        }
+                        return $record->text;
+                    })
                     ->limit(35)
                     ->icon('heroicon-o-envelope')
                     ->tooltip(fn($state)=>$state),

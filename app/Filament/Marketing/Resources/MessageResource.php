@@ -74,12 +74,12 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->icon('heroicon-o-question-mark-circle')
                     ->iconPosition('after')
                     ->tooltip(fn($state)=>$state),
-                Tables\Columns\IconColumn::make('message.reply_to_message.text')
-                    ->toggleable()
-                    ->label(trans('market.message.reply_to'))
-                    ->icon('heroicon-o-question-mark-circle')
-                    ->iconPosition('after')
-                    ->tooltip(fn($state)=>$state),
+//                Tables\Columns\IconColumn::make('message.reply_to_message.text')
+//                    ->toggleable()
+//                    ->label(trans('market.message.reply_to'))
+//                    ->icon('heroicon-o-question-mark-circle')
+//                    ->iconPosition('after')
+//                    ->tooltip(fn($state)=>$state),
                 Tables\Columns\TextColumn::make("created_at")
                     ->toggleable()
                     ->label(trans('general.created_at'))

@@ -63,6 +63,7 @@ return [
         "to"=>"To",
         "text"=>"Text",
         "content"=>"Content",
+        "message_type"=>"Message Type",
         "photos"=>"Photos",
         "video"=>"Video",
         "reply_to"=>"Reply to",

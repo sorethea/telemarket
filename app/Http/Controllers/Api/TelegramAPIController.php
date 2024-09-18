@@ -22,10 +22,9 @@ class TelegramAPIController extends Controller
         $telegram->commandsHandler(true);
         $update = $telegram->getWebhookUpdate();
         $this->store($bot,$update);
-        \auth()->user()->notify(Notification::make()
+        Notification::make()
             ->title("Received new telegram message!")
-            ->sendToDatabase(),
-        );
+            ->sendToDatabase(\auth()->user());
     }
     public function send(Request $request){
         $bot = $request->get("bot");

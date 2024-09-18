@@ -23,24 +23,28 @@ trait MessageTrait
         $fileType = '';
         $is_media = false;
         $is_download = false;
+        $message_type = "text";
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
             $fileName = $doucment->file_name;
             $fileType = $doucment->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
             $is_download = true;
+            $message_type="document";
         }
         if(!empty($voice=$msg->get("voice"))){
             $file = $telegram->getFile(['file_id'=>$voice->file_id]);
             $fileType = $voice->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
             $is_media = true;
+            $message_type = "voice";
         }
         if(!empty($video=$msg->get("video"))){
             $file = $telegram->getFile(['file_id'=>$video->file_id]);
             $fileType = $video->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
             $is_media = true;
+            $message_type = "video";
         }
         if(!empty($photos=$msg->get("photo"))){
             $i = 1;
@@ -53,6 +57,7 @@ trait MessageTrait
                 $i++;
             }
             $is_media =true;
+            $message_type ="photo";
         }
         $name = $chat->get("first_name")." ".$chat->get("last_name");
         $chatType = $chat->get("type");
@@ -77,6 +82,7 @@ trait MessageTrait
         $message->video=$msg->get("video");
         $message->photo=$msg->get("photo");
         $message->message=$msg;
+        $message->message_type=$message_type;
         $message->save();
 
         $customer = Customer::where('id',$chatId)

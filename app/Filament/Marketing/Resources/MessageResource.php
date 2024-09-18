@@ -88,6 +88,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->icon('heroicon-o-video-camera'),
                 Tables\Actions\Action::make("download")
                     ->visible(fn($record):bool=>$record->is_download)
+                    ->url(fn($record):string=>Storage::url($record->file))
                     ->icon('heroicon-o-arrow-down-tray'),
             ])
             ->bulkActions([

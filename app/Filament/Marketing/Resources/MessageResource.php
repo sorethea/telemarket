@@ -64,8 +64,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Columns\TextColumn::make("text")
                     ->label(trans('market.message.content'))
                     ->getStateUsing(function ($record){
-                        if(empty($record->text) && !empty($record->file_name)){
-                            return $record->file_name;
+                        if(empty($record->text)){
+                            return $record->file_name??$record->file;
                         }
                         return $record->text;
                     })
@@ -76,7 +76,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Columns\IconColumn::make('message.reply_to_message.text')
                     ->toggleable()
                     ->label(trans('market.message.reply_to'))
-                    ->icon('heroicon-o-envelope')
+                    ->icon('heroicon-o-question-mark-circle')
+                    ->iconPosition('after')
                     ->tooltip(fn($state)=>$state),
                 Tables\Columns\TextColumn::make("created_at")
                     ->toggleable()

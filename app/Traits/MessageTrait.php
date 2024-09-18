@@ -21,21 +21,26 @@ trait MessageTrait
         $fileName = '';
         $saveFileName = '';
         $fileType = '';
+        $is_media = false;
+        $is_download = false;
         if(!empty($doucment=$msg->get("document"))){
             $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
             $fileName = $doucment->file_name;
             $fileType = $doucment->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
+            $is_download = true;
         }
         if(!empty($voice=$msg->get("voice"))){
             $file = $telegram->getFile(['file_id'=>$voice->file_id]);
             $fileType = $voice->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
+            $is_media = true;
         }
         if(!empty($video=$msg->get("video"))){
             $file = $telegram->getFile(['file_id'=>$video->file_id]);
             $fileType = $video->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
+            $is_media = true;
         }
         if(!empty($photos=$msg->get("photo"))){
             $i = 1;
@@ -47,6 +52,7 @@ trait MessageTrait
                 }
                 $i++;
             }
+            $is_media =true;
         }
         $name = $chat->get("first_name")." ".$chat->get("last_name");
         $chatType = $chat->get("type");
@@ -61,6 +67,8 @@ trait MessageTrait
         $message->file_type=$fileType;
         $message->bot=$bot;
         $message->chat=$chat;
+        $message->is_media=$is_media;
+        $message->is_download=$is_download;
         $message->from=$msg->get("from");
         $message->contact=$msg->get("contact");
         $message->location=$msg->get("location");

@@ -70,7 +70,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                         return $record->text;
                     })
                     ->limit(35)
-                    ->icon('heroicon-o-envelope')
+                    ->icon('heroicon-o-question-mark-circle')
+                    ->iconPosition('after')
                     ->tooltip(fn($state)=>$state),
                 Tables\Columns\IconColumn::make('message.reply_to_message.text')
                     ->toggleable()

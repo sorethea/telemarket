@@ -24,7 +24,7 @@ class TelegramAPIController extends Controller
         $this->store($bot,$update);
         Notification::make()
             ->title("New income telegram message!")
-            ->sendToDatabase(User::all());
+            ->sendToDatabase(Auth::user());
     }
     public function send(Request $request){
         $bot = $request->get("bot");

@@ -59,6 +59,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->sortable(),
                 Tables\Columns\TextColumn::make("message_type")
                     ->label(trans('market.message.message_type'))
+                    ->formatStateUsing(fn($state)=>Str::ucfirst($state))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make("text")

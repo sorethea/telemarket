@@ -32,6 +32,8 @@ return new class extends Migration
             $table->text('voice')->nullable();
             $table->text('video')->nullable();
             $table->text('message')->nullable();
+            $table->boolean('is_media')->default(false);
+            $table->boolean('is_download')->default(false);
             $table->timestamps();
         });
     }

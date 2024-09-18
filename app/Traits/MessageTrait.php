@@ -26,6 +26,14 @@ trait MessageTrait
         $message_type = "text";
         if (!empty($msg->get("contact")))$message_type="contact";
         if (!empty($msg->get("location")))$message_type="location";
+        if(!empty($audio=$msg->get("audio"))){
+            $file = $telegram->getFile(['file_id'=>$audio->file_id]);
+            $fileName = $audio->file_name;
+            $fileType = $audio->mime_type;
+            $saveFileName =$this->saveTelegramFile($bot,$file);
+            $is_media = true;
+            $message_type="audio";
+        }
         if(!empty($document=$msg->get("document"))){
             $file = $telegram->getFile(['file_id'=>$document->file_id]);
             $fileName = $document->file_name;
@@ -83,6 +91,7 @@ trait MessageTrait
         $message->voice=$msg->get("voice");
         $message->video=$msg->get("video");
         $message->photo=$msg->get("photo");
+        $message->audio=$msg->get("audio");
         $message->message=$msg;
         $message->message_type=$message_type;
         $message->save();

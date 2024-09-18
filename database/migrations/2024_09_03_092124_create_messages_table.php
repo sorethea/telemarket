@@ -31,6 +31,7 @@ return new class extends Migration
             $table->text('contact')->nullable();
             $table->text('document')->nullable();
             $table->text('voice')->nullable();
+            $table->text('audio')->nullable();
             $table->text('video')->nullable();
             $table->text('message')->nullable();
             $table->boolean('is_media')->default(false);

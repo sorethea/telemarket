@@ -24,10 +24,12 @@ trait MessageTrait
         $is_media = false;
         $is_download = false;
         $message_type = "text";
-        if(!empty($doucment=$msg->get("document"))){
-            $file = $telegram->getFile(['file_id'=>$doucment->file_id]);
-            $fileName = $doucment->file_name;
-            $fileType = $doucment->mime_type;
+        if (!empty($msg->get("contact")))$message_type="contact";
+        if (!empty($msg->get("location")))$message_type="location";
+        if(!empty($document=$msg->get("document"))){
+            $file = $telegram->getFile(['file_id'=>$document->file_id]);
+            $fileName = $document->file_name;
+            $fileType = $document->mime_type;
             $saveFileName =$this->saveTelegramFile($bot,$file);
             $is_download = true;
             $message_type="document";

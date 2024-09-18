@@ -61,20 +61,11 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->label(trans('general.bot'))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\IconColumn::make("text")
+                Tables\Columns\TextColumn::make("text")
                     ->label(trans('market.message.content'))
-                    ->icon(function($record):string{
-                        if(!empty($record->text)){
-                            $icon = 'heroicon-o-envelope';
-                        }elseif(!empty($record->file)){
-                            $icon = 'heroicon-o-video-camera';
-                        }else{
-                            $icon = 'heroicon-o-x-mark';
-                        }
-                        return $icon;
-                    }),
-
-                    //->tooltip(fn($state)=>$state),
+                    ->limit(35)
+                    ->icon('heroicon-o-envelope')
+                    ->tooltip(fn($state)=>$state),
                 Tables\Columns\IconColumn::make('message.reply_to_message.text')
                     ->toggleable()
                     ->label(trans('market.message.reply_to'))

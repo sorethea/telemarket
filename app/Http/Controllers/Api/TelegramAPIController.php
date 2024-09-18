@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Message;
+use App\Models\User;
 use App\Traits\MessageTrait;
+use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Telegram\Bot\FileUpload\InputFile;
@@ -20,6 +22,9 @@ class TelegramAPIController extends Controller
         $telegram->commandsHandler(true);
         $update = $telegram->getWebhookUpdate();
         $this->store($bot,$update);
+        Notification::make()
+            ->title("New income telegram message!")
+            ->sendToDatabase(User::all());
     }
     public function send(Request $request){
         $bot = $request->get("bot");

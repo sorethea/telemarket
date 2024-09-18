@@ -83,9 +83,12 @@ class MessageResource extends Resource implements HasShieldPermissions
             ->actions([
                 //Tables\Actions\EditAction::make(),
                 \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('media')
-                    ->visible(fn($record):bool=>!empty($record->file))
+                    ->visible(fn($record):bool=>$record->is_media)
                     ->media(fn($record)=>Storage::url($record->file))
                     ->icon('heroicon-o-video-camera'),
+                Tables\Actions\Action::make("download")
+                    ->visible(fn($record):bool=>$record->is_download)
+                    ->icon('heroicon-o-arrow-down-tray'),
             ])
             ->bulkActions([
 //                Tables\Actions\BulkActionGroup::make([

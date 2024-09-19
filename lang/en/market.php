@@ -9,8 +9,10 @@ return [
         "channel_name"=>"Channel Name",
         "first_name"=>"First Name",
         "last_name"=>"Last Name",
+        "name"=>"Name",
         "phone_number"=>"Phone Number",
         "is_subscribed"=>"Is Subscribed",
+        "is_forward"=>"Forward",
     ],
     "post"=>[
         "title"=>"Title",

@@ -105,7 +105,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ->required(),
                         ])
                         ->action(function (array $data){
-                            dd($this->getRecord());
+                            dd($this->reply($this->getRecord()));
                         })
                         ->modalSubmitActionLabel(trans('market.telegram.send')),
                     Tables\Actions\Action::make("forward")

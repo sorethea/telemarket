@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\True_;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class MessageResource extends Resource implements HasShieldPermissions
 {
@@ -105,7 +106,11 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ->required(),
                         ])
                         ->action(function (array $data,$record){
-                            dd($record);
+                            $telegram = Telegram::bot(auth()->user()->bot);
+                            $telegram->sendMessage([
+                                'chat_id'=>$record->customer_id,
+                                'text'=>$data['text']
+                            ]);
                         })
                         ->modalSubmitActionLabel(trans('market.telegram.send')),
                     Tables\Actions\Action::make("forward")

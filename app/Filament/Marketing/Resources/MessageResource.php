@@ -34,6 +34,10 @@ class MessageResource extends Resource implements HasShieldPermissions
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('customer_name')
+                    ->label(trans('market.message.from')),
+                Forms\Components\RichEditor::make("text")
+                    ->label(trans('market.message.text')),
                 Forms\Components\FileUpload::make("file")
                     ->disk("public")
             ]);

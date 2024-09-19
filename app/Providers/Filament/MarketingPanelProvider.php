@@ -27,7 +27,7 @@ class MarketingPanelProvider extends PanelProvider
     {
         return $panel
             ->id('marketing')
-            ->path('marketing')
+            ->path('')
             ->login(Login::class)
             ->databaseNotifications()
             ->databaseNotificationsPolling(2)

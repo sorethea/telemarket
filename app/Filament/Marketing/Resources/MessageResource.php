@@ -86,6 +86,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->since()
                     ->sortable(),
             ])
+            ->poll('10s')
             ->defaultSort('created_at', 'desc')
             ->filters([
             ])

@@ -30,6 +30,7 @@ class MarketingPanelProvider extends PanelProvider
             ->path('marketing')
             ->login(Login::class)
             ->databaseNotifications()
+            ->databaseNotificationsPolling(2)
             ->colors([
                 'primary' => Color::Indigo,
             ])

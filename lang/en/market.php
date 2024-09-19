@@ -57,6 +57,7 @@ return [
         "from"=>"From",
         "file"=>"File",
         "file_type"=>"File Type",
+        "name"=>"Name",
         "first_name"=>"First Name",
         "last_name"=>"Last Name",
         "phone_number"=>"Phone Number",

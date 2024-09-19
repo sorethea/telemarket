@@ -92,7 +92,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Actions\Action::make("reply")
                 ->icon('heroicon-o-arrow-uturn-left')
                 ->form([
-                    Forms\Components\MarkdownEditor::make('text')
+                    Forms\Components\RichEditor::make('text')
                         ->required(),
                 ]),
                 //Tables\Actions\EditAction::make(),

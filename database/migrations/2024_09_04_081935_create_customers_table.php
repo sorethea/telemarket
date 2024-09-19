@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('phone_number')->nullable();
             $table->boolean('is_subscribed')->default(false);
+            $table->boolean('is_forward')->default(false);
             $table->timestamps();
             $table->primary(['id','bot']);
         });

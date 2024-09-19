@@ -109,7 +109,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                         ->form([
                             Forms\Components\Select::make('customer')
                                 ->label(trans('market.telegram.send_to'))
-                                ->relationship('customer','name')
+                                ->options(fn()=>Customer::where("bot",auth()->user()->bot)->pluck("name","id"))
                                 ->multiple(),
                         ])
                         ->modalSubmitActionLabel(trans('market.telegram.send')),

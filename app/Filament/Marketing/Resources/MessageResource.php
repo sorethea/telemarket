@@ -102,14 +102,14 @@ class MessageResource extends Resource implements HasShieldPermissions
                     Tables\Actions\Action::make("reply")
                         ->icon('heroicon-o-arrow-uturn-left')
                         ->form([
-                            Forms\Components\RichEditor::make('text')
+                            Forms\Components\MarkdownEditor::make('text')
                                 ->required(),
                         ])
                         ->action(function (array $data,$record){
                             $telegram = Telegram::bot(auth()->user()->bot);
                             $telegram->sendMessage([
                                 'chat_id'=>htmlspecialchars($record->customer_id),
-                                'parse_mode'=>'html',
+                                'parse_mode'=>'markdown',
                                 'text'=>$data['text']
                             ]);
                         })

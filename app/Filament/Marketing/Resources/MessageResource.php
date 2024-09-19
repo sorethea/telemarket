@@ -108,7 +108,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                         ->action(function (array $data,$record){
                             $telegram = Telegram::bot(auth()->user()->bot);
                             $telegram->sendMessage([
-                                'chat_id'=>html_entity_decode($record->customer_id),
+                                'chat_id'=>htmlspecialchars($record->customer_id),
                                 'parse_mode'=>'html',
                                 'text'=>$data['text']
                             ]);

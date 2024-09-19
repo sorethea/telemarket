@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use phpDocumentor\Reflection\Types\True_;
 
 class MessageResource extends Resource implements HasShieldPermissions
 {
@@ -109,7 +110,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                         ->form([
                             Forms\Components\Select::make('customer')
                                 ->label(trans('market.telegram.send_to'))
-                                ->options(fn()=>Customer::where("bot",auth()->user()->bot)->pluck("name","id"))
+                                ->options(fn()=>Customer::where("bot",auth()->user()->bot)->where("is_forward",true)->pluck("name","id"))
                                 ->multiple(),
                         ])
                         ->modalSubmitActionLabel(trans('market.telegram.send')),

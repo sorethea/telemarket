@@ -91,7 +91,10 @@ class MessageResource extends Resource implements HasShieldPermissions
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\Action::make("reply")
                 ->icon('heroicon-o-arrow-uturn-left')
-                ->form([]),
+                ->form([
+                    Forms\Components\MarkdownEditor::make('text')
+                        ->required(),
+                ]),
                 //Tables\Actions\EditAction::make(),
                 \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('media')
                     ->visible(fn($record):bool=>$record->is_media)

@@ -104,8 +104,7 @@ trait MessageTrait
             $customer->id=$chatId;
             $customer->channel = "telegram";
             $customer->bot = $bot;
-            $customer->first_name=$chat->get('first_name');
-            $customer->last_name=$chat->get('last_name');
+            $customer->name=$chat->get('first_name')." ".$chat->get('last_name');
             $customer->save();
         }
         $contact = $msg->get('contact');

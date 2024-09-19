@@ -14,25 +14,16 @@ class Customer extends Model
     //protected $primaryKey =['id','bot'];
 
     protected $fillable = [
-        "first_name",
-        "last_name",
+        "name",
         "name",
         "phone_number",
         "user_id",
         "channel",
         "is_subscribed",
+        "is_forward",
     ];
 
-    protected $appends = [
-        "name"
-    ];
 
-    public function getNameAttribute(){
-        return $this->first_name .' '.$this->last_name;
-    }
-    public function setNameAttribute(){
-        $this->attributes['name']= $this->first_name .' '.$this->last_name;
-    }
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);

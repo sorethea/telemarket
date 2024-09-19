@@ -104,6 +104,9 @@ class MessageResource extends Resource implements HasShieldPermissions
                             Forms\Components\RichEditor::make('text')
                                 ->required(),
                         ])
+                        ->action(function (array $data){
+                            dd($this->getRecord());
+                        })
                         ->modalSubmitActionLabel(trans('market.telegram.send')),
                     Tables\Actions\Action::make("forward")
                         ->icon('heroicon-o-arrow-uturn-right')

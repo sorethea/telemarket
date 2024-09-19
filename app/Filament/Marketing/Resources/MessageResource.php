@@ -88,6 +88,7 @@ class MessageResource extends Resource implements HasShieldPermissions
             ->filters([
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 //Tables\Actions\EditAction::make(),
                 \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('media')
                     ->visible(fn($record):bool=>$record->is_media)

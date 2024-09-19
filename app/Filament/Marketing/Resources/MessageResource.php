@@ -40,7 +40,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     ->label(trans('market.message.text')),
                 Forms\Components\FileUpload::make("file")
                     ->disk("public")
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table

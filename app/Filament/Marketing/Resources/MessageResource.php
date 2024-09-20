@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\True_;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 class MessageResource extends Resource implements HasShieldPermissions
@@ -103,7 +104,9 @@ class MessageResource extends Resource implements HasShieldPermissions
                         ->icon('heroicon-o-arrow-uturn-left')
                         ->form([
                             Forms\Components\MarkdownEditor::make('text')
-                                ->required(),
+                                ->required(fn($get)=>empty($get("file"))),
+                            Forms\Components\FileUpload::make('file')
+                                ->required(fn($get)=>empty($get("text")))
                         ])
                         ->action(function (array $data,$record){
                             $telegram = Telegram::bot(auth()->user()->bot);

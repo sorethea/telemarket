@@ -147,17 +147,20 @@ class MessageResource extends Resource implements HasShieldPermissions
                                                 'chat_id'=>$record->customer_id,
                                                 'photo'=>$file,
                                             ]);
+                                            break;
                                         case 'mp4':
                                             $telegram->sendVideo([
                                                 'chat_id'=>$record->customer_id,
                                                 'video'=>$file,
                                             ]);
+                                            break;
                                         case 'ogg':
                                         case 'oga':
                                             $telegram->sendVoice([
                                                 'chat_id'=>$record->customer_id,
                                                 'voice'=>$file,
                                             ]);
+                                            break;
                                         default:
                                             $telegram->sendDocument([
                                                 'chat_id'=>$record->customer_id,

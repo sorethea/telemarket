@@ -107,6 +107,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                             Forms\Components\MarkdownEditor::make('text')
                                 ->required(fn($get)=>empty($get("file"))),
                             Forms\Components\FileUpload::make('file')
+                                ->multiple()
                                 ->disk('public')
                                 ->directory(fn($record)=>$record->customer_id.'/sent')
                                 ->required(fn($get)=>empty($get("text")))
@@ -120,19 +121,32 @@ class MessageResource extends Resource implements HasShieldPermissions
                                     'text'=>$data['text']
                                 ]);
                             }
-                            if(!empty($fileName=$data["file"])){
-                                $fileNameArray = explode(".",$fileName);
-                                $extension = end($fileNameArray);
-                                $file = InputFile::create('storage/'.$fileName);
-                                switch ($extension){
-                                    case 'jpg':
-                                    case 'png':
-                                    case 'gif':
-                                        $telegram->sendPhoto([
-                                            'chat_id'=>$record->customer_id,
-                                            'photo'=>$file,
-                                        ]);
+                            if(!empty($fileNames=$data["file"])){
+                                foreach ($fileNames as $fileName){
+                                    $fileNameArray = explode(".",$fileName);
+                                    $extension = end($fileNameArray);
+                                    $file = InputFile::create('storage/'.$fileName);
+                                    switch ($extension){
+                                        case 'jpg':
+                                        case 'png':
+                                        case 'gif':
+                                            $telegram->sendPhoto([
+                                                'chat_id'=>$record->customer_id,
+                                                'photo'=>$file,
+                                            ]);
+                                        case 'mp4':
+                                            $telegram->sendVideo([
+                                                'chat_id'=>$record->customer_id,
+                                                'video'=>$file,
+                                            ]);
+                                        case 'ggo':
+                                            $telegram->sendVoice([
+                                                'chat_id'=>$record->customer_id,
+                                                'voice'=>$file,
+                                            ]);
+                                    }
                                 }
+
 
                             }
 

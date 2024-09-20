@@ -108,7 +108,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ->required(fn($get)=>empty($get("file"))),
                             Forms\Components\FileUpload::make('file')
                                 ->disk('public')
-                                ->directory(fn($record)=>$record->customer_id)
+                                ->directory(fn($record)=>$record->customer_id.'/sent')
                                 ->required(fn($get)=>empty($get("text")))
                         ])
                         ->action(function (array $data,$record){

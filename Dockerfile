@@ -44,7 +44,7 @@ RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
 RUN echo 'memory_limit=512M' > /usr/local/etc/php/conf.d/memory-limit.ini; \
-    echo 'upload_max_filesize=5M' > /usr/local/etc/php/conf.d/upload-max-filesize.ini;
+    echo 'upload_max_filesize=10M' > /usr/local/etc/php/conf.d/upload-max-filesize.ini;
 
 # Copy existing application directory contents
 #COPY ./ /var/www

@@ -1,1 +1,1 @@
-<x-filament:x-filament::button>Voice Record</x-filament:x-filament::button>
+<button class="trix-button">Vice Recorder</button>

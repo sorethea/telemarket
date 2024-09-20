@@ -106,6 +106,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                             Forms\Components\MarkdownEditor::make('text')
                                 ->required(fn($get)=>empty($get("file"))),
                             Forms\Components\FileUpload::make('file')
+                                ->disk('public')
+                                ->directory(fn($record)=>$record->customer_id)
                                 ->required(fn($get)=>empty($get("text")))
                         ])
                         ->action(function (array $data,$record){
@@ -118,7 +120,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ]);
                             }
                             if(!empty($fileName=$data["file"])){
-                               $file=Storage::get($fileName);
+                               $file=Storage::get($record->customer_id."/".$fileName);
                                dd($file);
 //                                $telegram->sendMessage([
 //                                    'chat_id'=>$record->customer_id,

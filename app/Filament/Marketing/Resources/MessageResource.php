@@ -119,7 +119,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ]);
                             }
                             if(!empty($fileName=$data["file"])){
-                                $mime = Storage::mimeType($fileName);
+                                $mime = Storage::mimeType(Storage::path($fileName));
                                 $url = Storage::url($fileName);
                                 dd($mime);
 //                                $telegram->sendPhoto([

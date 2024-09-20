@@ -108,6 +108,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ->required(fn($get)=>empty($get("file"))),
                             Forms\Components\FileUpload::make('file')
                                 ->disk('public')
+                                ->directory(fn($record)=>$record->customer_id)
                                 ->required(fn($get)=>empty($get("text")))
                         ])
                         ->action(function (array $data,$record){
@@ -122,9 +123,6 @@ class MessageResource extends Resource implements HasShieldPermissions
                             if(!empty($fileName=$data["file"])){
                                 $fileNameArray = explode(".",$fileName);
                                 $extension = end($fileNameArray);
-//                                $savedFileName = Str::random(36).".".$extension;
-//                                Storage::put($savedFileName,$fileName);
-//                                $url = Storage::url($savedFileName);
                                 $file = InputFile::create('storage/'.$fileName);
                                 switch ($extension){
                                     case 'jpg':

@@ -1,1 +1,1 @@
-<button class="trix-button">Vice Recorder</button>
+<button>Vice Recorder</button>

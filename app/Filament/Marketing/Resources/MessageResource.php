@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\True_;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Telegram\Bot\FileUpload\InputFile;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 class MessageResource extends Resource implements HasShieldPermissions
@@ -122,13 +123,14 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 $fileNameArray = explode(".",$fileName);
                                 $extension = end($fileNameArray);
                                 $url = Storage::url($fileName);
+                                $file = InputFile::create($url);
                                 switch ($extension){
                                     case 'jpg':
                                     case 'png':
                                     case 'gif':
                                         $telegram->sendPhoto([
                                             'chat_id'=>$record->customer_id,
-                                            'photo'=>$url,
+                                            'photo'=>$file,
                                         ]);
                                 }
 

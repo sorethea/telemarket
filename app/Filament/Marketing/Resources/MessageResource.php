@@ -110,16 +110,16 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ->multiple()
                                 ->disk('public')
                                 ->acceptedFileTypes([
-                                    'gpg',
-                                    'npg',
-                                    'gif',
-                                    'ogg',
-                                    'oga',
-                                    'mp4',
-                                    'mpeg',
-                                    'pdf',
-                                    'zip',
-                                    'txt'
+                                    'image/jpg',
+                                    'image/npg',
+                                    'image/gif',
+                                    'audio/ogg',
+                                    'audio/oga',
+                                    'video/mpeg',
+                                    'video/mp4',
+                                    'application/pdf',
+                                    'application/zip',
+                                    'text/plain'
                                 ])
                                 ->maxSize(5170)
                                 ->directory(fn($record)=>$record->customer_id.'/sent')

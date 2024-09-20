@@ -109,18 +109,18 @@ class MessageResource extends Resource implements HasShieldPermissions
                             Forms\Components\FileUpload::make('file')
                                 ->multiple()
                                 ->disk('public')
-//                                ->acceptedFileTypes([
-//                                    'image/jpg',
-//                                    'image/npg',
-//                                    'image/gif',
-//                                    'audio/ogg',
-//                                    'audio/oga',
-//                                    'video/mpeg',
-//                                    'video/mp4',
-//                                    'application/pdf',
-//                                    'application/zip',
-//                                    'text/plain'
-//                                ])
+                                ->acceptedFileTypes([
+                                    'image/jpg',
+                                    'image/npg',
+                                    'image/gif',
+                                    'audio/ogg',
+                                    'audio/oga',
+                                    'video/mpeg',
+                                    'video/mp4',
+                                    'application/pdf',
+                                    'application/zip',
+                                    'text/plain'
+                                ])
                                 ->maxSize(10240)
                                 ->directory(fn($record)=>$record->customer_id.'/sent')
                                 ->required(fn($get)=>empty($get("text")))

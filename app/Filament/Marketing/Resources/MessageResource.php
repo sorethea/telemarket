@@ -110,11 +110,21 @@ class MessageResource extends Resource implements HasShieldPermissions
                         ])
                         ->action(function (array $data,$record){
                             $telegram = Telegram::bot(auth()->user()->bot);
-                            $telegram->sendMessage([
-                                'chat_id'=>$record->customer_id,
-                                'parse_mode'=>'markdown',
-                                'text'=>$data['text']
-                            ]);
+                            if(!empty($text=$data['text'])){
+                                $telegram->sendMessage([
+                                    'chat_id'=>$record->customer_id,
+                                    'parse_mode'=>'markdown',
+                                    'text'=>$data['text']
+                                ]);
+                            }
+                            if(!empty($file=$data["file"])){
+                               dd($file);
+//                                $telegram->sendMessage([
+//                                    'chat_id'=>$record->customer_id,
+//                                    'text'=>$data['text']
+//                                ]);
+                            }
+
                         })
                         ->modalSubmitActionLabel(trans('market.telegram.send')),
                     Tables\Actions\Action::make("forward")

@@ -30,12 +30,6 @@ return [
          ],
 
     ],
-    'uploads' => [
-        'disk' => 'public',
-        'path' => 'uploads',
-        'max_size' => 10240, // Set the maximum size in kilobytes (5 MB in this example)
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk

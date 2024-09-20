@@ -125,7 +125,7 @@ class MessageResource extends Resource implements HasShieldPermissions
 //                                $savedFileName = Str::random(36).".".$extension;
 //                                Storage::put($savedFileName,$fileName);
 //                                $url = Storage::url($savedFileName);
-                                $file = InputFile::create($fileName);
+                                $file = InputFile::create('storage/'.$fileName);
                                 switch ($extension){
                                     case 'jpg':
                                     case 'png':

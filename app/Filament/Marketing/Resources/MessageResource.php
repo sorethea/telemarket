@@ -145,6 +145,11 @@ class MessageResource extends Resource implements HasShieldPermissions
                                                 'chat_id'=>$record->customer_id,
                                                 'voice'=>$file,
                                             ]);
+                                        default:
+                                            $telegram->sendDocument([
+                                                'chat_id'=>$record->customer_id,
+                                                'document'=>$file,
+                                            ]);
                                     }
                                 }
 

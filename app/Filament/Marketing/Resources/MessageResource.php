@@ -121,7 +121,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                                     'application/zip',
                                     'text/plain'
                                 ])
-                                ->maxSize(5170)
+                                ->maxSize(10240)
                                 ->directory(fn($record)=>$record->customer_id.'/sent')
                                 ->required(fn($get)=>empty($get("text")))
                         ])

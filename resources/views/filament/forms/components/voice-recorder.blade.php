@@ -1,3 +1,3 @@
 <div>
-    <x-filament::button name="vice" label="Voice Record" />
+    <x-filament::button >Voice Recorder</x-filament::button>
 </div>

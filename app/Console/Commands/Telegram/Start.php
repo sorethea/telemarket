@@ -29,7 +29,8 @@ class Start extends Command
         $botWebhookUrl = config('telegram.bots.'.$bot.'.webhook_url');
         $telegram->setWebhook(['url'=>$botWebhookUrl]);
         $chatId = $this->getUpdate()->getChat()->getId();
-        $startCommandObj = \App\Models\Command::query()->where('name','start')->where('bot',$bot)->first();
+        //$startCommandObj = \App\Models\Command::query()->where('name','start')->where('bot',$bot)->first();
+        $text = trans('command.start', ['bot' => config('telegram.bots.'.config('telegram.default').".name")]);
         if(!empty($photos = $startCommandObj->photos)){
             foreach ($photos as $photo){
                 $this->replyWithPhoto([
@@ -43,18 +44,16 @@ class Start extends Command
             ->row([
                 Keyboard::button([
                     'text'=>'Register',
-                    'url'=>'https://tele.hieatapps.com/register?tid='.$chatId,
+                    'url'=>url('/register?tid='.$chatId),
                 ])
             ])
             ->setResizeKeyboard(true)
             ->setOneTimeKeyboard(true);
-        if(!empty($startCommandObj->text)){
-            $this->replyWithMessage([
-                'text' => $startCommandObj->text,
-                //'reply_markup'=>File::get('storage/'.$startCommandObj->reply_markup),
-                'reply_markup'=>$replyMarkup,
-            ]);
-        }
+        $this->replyWithMessage([
+            'text' => $text,
+            //'reply_markup'=>File::get('storage/'.$startCommandObj->reply_markup),
+            'reply_markup'=>$replyMarkup,
+        ]);
 
     }
 }

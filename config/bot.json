@@ -1,0 +1,6 @@
+{
+    "theA":{
+        "token": "7528102206:AAE85TOA57mNaBPPZDdQbjQoCgp7AzqrtQM",
+        "webhook": "https://tele.onekhmer.com/api/{token}/webhook"
+    }
+}

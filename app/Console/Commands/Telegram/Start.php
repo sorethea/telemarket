@@ -28,9 +28,10 @@ class Start extends Command
         $botName = config('telegram.bots.'.$bot.'.name');
         $botWebhookUrl = config('telegram.bots.'.$bot.'.webhook_url');
         $telegram->setWebhook(['url'=>$botWebhookUrl]);
+
         $chatId = $this->getUpdate()->getChat()->getId();
         //$startCommandObj = \App\Models\Command::query()->where('name','start')->where('bot',$bot)->first();
-        $text = trans('command.start', ['bot' => config('telegram.bots.'.config('telegram.default').".name")]);
+        $text = trans('command.start', ['bot' => $botName]);
         if(!empty($photos = $startCommandObj->photos)){
             foreach ($photos as $photo){
                 $this->replyWithPhoto([

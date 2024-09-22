@@ -11,7 +11,8 @@ Route::get('/user', function (Request $request) {
 Route::post('bot/webhook', function (){
     $data =[];
     foreach (config('telegram.bots') as $key => $bot){
-        $telegram =Telegram::bot($key)->setWebhook(['url' => 'https://tele.onekhmer.com/api/{token}/webhook?bot='.$key]);
+        $telegram =Telegram::bot($key);
+        $telegram->setWebhook(['url' => 'https://tele.onekhmer.com/api/{token}/webhook?bot='.$key]);
         $data[]=$telegram->getWebhookUpdate();
     }
     return $data;

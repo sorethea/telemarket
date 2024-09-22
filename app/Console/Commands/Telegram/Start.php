@@ -32,13 +32,13 @@ class Start extends Command
         $chatId = $this->getUpdate()->getChat()->getId();
         //$startCommandObj = \App\Models\Command::query()->where('name','start')->where('bot',$bot)->first();
         $text = trans('command.start', ['bot' => $botName]);
-        if(!empty($photos = $startCommandObj->photos)){
-            foreach ($photos as $photo){
-                $this->replyWithPhoto([
-                    "photo"=>InputFile::create('storage/'.$photo),
-                ]);
-            }
-        }
+//        if(!empty($photos = $startCommandObj->photos)){
+//            foreach ($photos as $photo){
+//                $this->replyWithPhoto([
+//                    "photo"=>InputFile::create('storage/'.$photo),
+//                ]);
+//            }
+//        }
 
         $replyMarkup = Keyboard::make()
             ->inline()

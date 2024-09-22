@@ -28,7 +28,7 @@ class Start extends Command
         $botName = config('telegram.bots.'.$bot.'.name');
         $botWebhookUrl = config('telegram.bots.'.$bot.'.webhook_url');
         $telegram->setWebhook(['url'=>$botWebhookUrl]);
-
+        $telegram->getWebhookUpdate([true]);
         $chatId = $this->getUpdate()->getChat()->getId();
         //$startCommandObj = \App\Models\Command::query()->where('name','start')->where('bot',$bot)->first();
         $text = trans('command.start', ['bot' => $botName]);

@@ -13,9 +13,11 @@ Route::post('bot/webhook', function (){
     foreach (config('telegram.bots') as $key => $bot){
         $telegram =Telegram::bot($key);
         $telegram->setWebhook(['url' => 'https://tele.onekhmer.com/api/{token}/webhook?bot='.$key]);
-        $data[]=$telegram->getUpdates([true]);
+        $telegram->deleteWebhook();
+        //$data[]=$telegram->getUpdates([true]);
     }
-    return $data;
+
+    //return $data;
 });
 Route::post('/{token}/webhook', [\App\Http\Controllers\Api\TelegramAPIController::class,'webhook']);
 Route::post('/telegram/send', [\App\Http\Controllers\Api\TelegramAPIController::class,'send']);

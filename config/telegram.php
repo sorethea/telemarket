@@ -31,19 +31,19 @@ return [
     |             ]
     */
     'bots' => [
-//        'ichiban' => [
-//            'token' => env('TELEGRAM_BOT_TOKEN', '7534825533:AAE8VM3zZUKbtKnSiGZ9WBiIs5r6WndjQs8'),
-//            'certificate_path' => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
-//            'webhook_url' => env('TELEGRAM_WEBHOOK_URL', 'https://tele.hieatapps.com/api/{token}/webhook?bot=ichiban'),
-//            'name'=>'𝗜𝗰𝗵𝗶𝗯𝗮𝗻 𝗕𝘂𝗳𝗳𝗲𝘁',
-//            /*
-//             * @see https://core.telegram.org/bots/api#update
-//             */
-//            'allowed_updates' => null,
-//            'commands' => [
-//                //Acme\Project\Commands\MyTelegramBot\BotCommand::class
-//            ],
-//        ],
+        'onekhmer' => [
+            'token' => env('TELEGRAM_BOT_TOKEN', '7590436329:AAHMzU6z_hTR5CfSJQ7ryMKT1hvuWTWDolA'),
+            'certificate_path' => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
+            'webhook_url' => env('TELEGRAM_WEBHOOK_URL', 'https://tele.onekhmer.com/api/{token}/webhook?bot=onekhmer'),
+            'name'=>'One Khmer',
+            /*
+             * @see https://core.telegram.org/bots/api#update
+             */
+            'allowed_updates' => null,
+            'commands' => [
+                //Acme\Project\Commands\MyTelegramBot\BotCommand::class
+            ],
+        ],
         'thea' => [
             'name'=>'theA',
             'token' => env('TELEGRAM_BOT_TOKEN', '7528102206:AAE85TOA57mNaBPPZDdQbjQoCgp7AzqrtQM'),
@@ -73,7 +73,7 @@ return [
     | your default bot for regular use.
     |
     */
-    'default' => 'thea',
+    'default' => 'onekhmer',
 
     /*
     |--------------------------------------------------------------------------

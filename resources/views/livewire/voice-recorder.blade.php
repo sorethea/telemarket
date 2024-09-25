@@ -1,6 +1,6 @@
 <div>
     <h1>Voice Recorder</h1>
-    <button onclick="voiceRecord()" class="trix-button">Record</button>
+    <button onclick="alert('voice record')" class="trix-button">Record</button>
 </div>
 @script
 <script>

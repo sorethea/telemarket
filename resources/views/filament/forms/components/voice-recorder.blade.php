@@ -1,16 +1,13 @@
 <div>
-    <x-filament::button id="startRecording" icon="heroicon-o-microphone" tooltip="Voice Recorder"></x-filament::button>
+    <x-filament::button wire:click.prevent="startRecording" icon="heroicon-o-microphone" tooltip="Voice Recorder"></x-filament::button>
 
 
     <script>
-
         let mediaRecorder;
 
         let audioChunks = [];
-
-        document.getElementById('startRecording').addEventListener('click', () => {
-            alert("button click");
-
+        function startRecording(){
+            alert("start recording");
             navigator.mediaDevices.getUserMedia({ audio: true })
 
                 .then(stream => {
@@ -45,7 +42,9 @@
 
                 });
 
-        });
+        }
+
+
 
         document.getElementById('stopRecording').addEventListener('click', () => {
 

@@ -126,7 +126,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ->required(fn($get)=>empty($get("text"))),
                             Forms\Components\ViewField::make('voice')
                                 ->view('filament.forms.components.voice-recorder'),
-                            VoiceRecorder::class,
+                            \App\Forms\Components\VoiceRecorder::make("voice")
+                                ->label("Voice Recorder")
                         ])
                         ->action(function (array $data,$record){
                             $telegram = Telegram::bot(auth()->user()->bot);

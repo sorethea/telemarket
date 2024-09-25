@@ -3,6 +3,7 @@
 namespace App\Filament\Marketing\Resources\MessageResource\Pages;
 
 use App\Filament\Marketing\Resources\MessageResource;
+use Filament\Actions\Concerns\InteractsWithRecord;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -11,7 +12,7 @@ use Filament\Resources\Pages\Page;
 
 class ReplyMessage extends Page
 {
-    use InteractsWithForms;
+    use InteractsWithForms, InteractsWithRecord;
     protected static string $resource = MessageResource::class;
 
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';

@@ -103,9 +103,9 @@ class MessageResource extends Resource implements HasShieldPermissions
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
-                    Tables\Actions\Action::make("reply")
-                        ->icon('heroicon-o-arrow-uturn-left')
-                        ->url(fn($record)=>"/messages/{$record->id}/reply"),
+//                    Tables\Actions\Action::make("reply")
+//                        ->icon('heroicon-o-arrow-uturn-left')
+//                        ->url(fn($record)=>"/messages/{$record->id}/reply"),
 
                     Tables\Actions\Action::make("reply")
                         ->icon('heroicon-o-arrow-uturn-left')

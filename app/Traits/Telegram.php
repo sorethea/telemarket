@@ -24,7 +24,7 @@ trait Telegram
                                 $photoArray = explode(".",$photo);
                                 $extension = end($photoArray);
                                 try {
-                                    if(Storage::fileExists($photo)){
+                                    if(Storage::fileExists('storage/'.$photo)){
                                         $photoFile = InputFile::create('storage/'.$photo,$photo);
                                         switch ($extension){
                                             case 'jpg':
@@ -52,8 +52,6 @@ trait Telegram
                                                     'voice'=>$photoFile,
                                                 ]);
                                     }
-
-
                                     }
                                 }catch (\Exception $exception){
                                     error($exception->getMessage());

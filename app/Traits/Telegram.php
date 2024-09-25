@@ -20,12 +20,11 @@ trait Telegram
                 if(!empty($photos) || !empty($content)){
                     if(!empty($photos)){
                         foreach ($photos as $photo){
-                            if(!empty($photo)){
+                            if(file_exists('storage/'.$photo)){
                                 $photoArray = explode(".",$photo);
                                 $extension = end($photoArray);
                                 try {
-                                    logger('storage/'.$photo);
-                                    if(file_exists('storage/'.$photo)){
+
                                         $photoFile = InputFile::create('storage/'.$photo,$photo);
                                         switch ($extension){
                                             case 'jpg':
@@ -52,7 +51,6 @@ trait Telegram
                                                     'chat_id'=>$chatId,
                                                     'voice'=>$photoFile,
                                                 ]);
-                                    }
                                     }
                                 }catch (\Exception $exception){
                                     error($exception->getMessage());

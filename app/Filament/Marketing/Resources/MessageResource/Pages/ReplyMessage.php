@@ -49,7 +49,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
     protected function getActions(): array
     {
         return [
-            \Filament\Forms\Components\Actions\Action::make("reply")
+            Action::make("reply")
                 ->icon('heroicon-o-arrow-uturn-left'),
         ];
     }

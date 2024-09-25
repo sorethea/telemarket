@@ -18,7 +18,7 @@ trait Telegram
                 if(!empty($photos) || !empty($content)){
                     if(!empty($photos)){
                         foreach ($photos as $photo){
-                            $photoArray = explode(".",$photoArray);
+                            $photoArray = explode(".",$photo);
                             $extension = end($photoArray);
                             $photoFile = InputFile::create('storage/'.$photo);
                             switch ($extension){

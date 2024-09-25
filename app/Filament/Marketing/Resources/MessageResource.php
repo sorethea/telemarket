@@ -10,6 +10,7 @@ use App\Models\Message;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -223,6 +224,13 @@ class MessageResource extends Resource implements HasShieldPermissions
 //            'create' => Pages\CreateMessage::route('/create'),
             //'edit' => Pages\EditMessage::route('/{record}/edit'),
         ];
+    }
+
+    public function record(){
+        return Notification::make()
+            ->title("Voice record")
+            ->body("This is voice record")
+            ->info();
     }
 
     public static function getPermissionPrefixes(): array

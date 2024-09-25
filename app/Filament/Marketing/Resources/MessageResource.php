@@ -124,8 +124,6 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ])
                                 ->directory(fn($record)=>$record->customer_id.'/sent')
                                 ->required(fn($get)=>empty($get("text"))),
-                            Forms\Components\ViewField::make('voice')
-                                ->view('filament.forms.components.voice-recorder'),
                             \App\Forms\Components\VoiceRecorder::make("voice")
                                 ->label("Voice Recorder")
                                 ->required(),

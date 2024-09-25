@@ -50,6 +50,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
     {
         return [
             Action::make("reply")
+                ->submit($this->getForm(''))
                 ->icon('heroicon-o-arrow-uturn-left'),
         ];
     }

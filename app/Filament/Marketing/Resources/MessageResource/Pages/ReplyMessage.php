@@ -44,8 +44,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
                 ])
                 ->directory(fn($record)=>$record->customer_id.'/sent')
                 ->required(fn($get)=>empty($get("text"))),
-                \Filament\Forms\Components\Actions\Action::make('reply')
-                    ->icon('heroicon-o--arrow-uturn-left'),
         ]);
     }
+
 }

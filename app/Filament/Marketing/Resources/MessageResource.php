@@ -129,7 +129,7 @@ class MessageResource extends Resource implements HasShieldPermissions
 //                                ->required(),
                             Forms\Components\ViewField::make('voice-record')
                                 ->label("Voice Record")
-                                ->view('component.voice-recorder')
+                                ->view('components.voice-recorder')
                         ])
                         ->action(function (array $data,$record){
                             $telegram = Telegram::bot(auth()->user()->bot);

@@ -18,36 +18,39 @@ trait Telegram
                 if(!empty($photos) || !empty($content)){
                     if(!empty($photos)){
                         foreach ($photos as $photo){
-                            $photoArray = explode(".",$photo);
-                            $extension = end($photoArray);
-                            $photoFile = InputFile::create('storage/'.$photo);
-                            switch ($extension){
-                                case 'jpg':
-                                case 'npg':
-                                case 'gif':
-                                    $telegramBot->sendPhoto([
-                                        'chat_id'=>$chatId,
-                                        'photo'=>$photoFile,
-                                    ]);
-                                case 'mp4':
-                                case 'mpeg':
-                                    $telegramBot->sendPhoto([
-                                        'chat_id'=>$chatId,
-                                        'video'=>$photoFile,
-                                    ]);
-                                case 'ogg':
-                                case 'oga':
-                                    $telegramBot->sendPhoto([
-                                        'chat_id'=>$chatId,
-                                        'voice'=>$photoFile,
-                                    ]);
-                                default:
-                                    $telegramBot->sendPhoto([
-                                        'chat_id'=>$chatId,
-                                        'voice'=>$photoFile,
-                                    ]);
+                            if(!empty($photo)){
+                                $photoArray = explode(".",$photo);
+                                $extension = end($photoArray);
+                                $photoFile = InputFile::create('storage/'.$photo);
+                                switch ($extension){
+                                    case 'jpg':
+                                    case 'npg':
+                                    case 'gif':
+                                        $telegramBot->sendPhoto([
+                                            'chat_id'=>$chatId,
+                                            'photo'=>$photoFile,
+                                        ]);
+                                    case 'mp4':
+                                    case 'mpeg':
+                                        $telegramBot->sendPhoto([
+                                            'chat_id'=>$chatId,
+                                            'video'=>$photoFile,
+                                        ]);
+                                    case 'ogg':
+                                    case 'oga':
+                                        $telegramBot->sendPhoto([
+                                            'chat_id'=>$chatId,
+                                            'voice'=>$photoFile,
+                                        ]);
+                                    default:
+                                        $telegramBot->sendPhoto([
+                                            'chat_id'=>$chatId,
+                                            'voice'=>$photoFile,
+                                        ]);
 
+                                }
                             }
+
 
                         }
                     }

@@ -9,6 +9,7 @@
         let audioChunks = [];
 
         document.getElementById('startRecording').addEventListener('click', () => {
+            alert("button click");
 
             navigator.mediaDevices.getUserMedia({ audio: true })
 

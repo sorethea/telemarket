@@ -21,10 +21,10 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';
 
-    public $mountedActionForm;
     public function form(Form $form): Form
     {
-        return $form->schema([
+        return $form
+            ->schema([
             MarkdownEditor::make('text')
                 ->required(fn($get)=>empty($get("file"))),
             FileUpload::make('file')
@@ -44,14 +44,8 @@ class ReplyMessage extends Page implements HasForms, HasActions
                 ])
                 ->directory(fn($record)=>$record->customer_id.'/sent')
                 ->required(fn($get)=>empty($get("text"))),
+                \Filament\Forms\Components\Actions\Action::make('reply')
+                    ->icon('heroicon-o--arrow-uturn-left'),
         ]);
-    }
-
-    protected function getFormActions(): array
-    {
-        return [
-            Action::make('Reply')
-                ->color('primary'),
-        ];
     }
 }

@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class VoiceRecorder extends Component
 {
+
     public function render(): View
     {
         return view('livewire.voice-recorder');

@@ -9,7 +9,8 @@ class VoiceRecorder extends Field
 {
     protected string $view = 'forms.components.voice-recorder';
 
-    public function voiceRecord(){
+    public function voiceRecord(): void
+    {
         dispatch('vice-record');
     }
 }

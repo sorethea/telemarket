@@ -1,5 +1,5 @@
 <div>
-    <x-filament::button wire:click.prevent="startRecording" icon="heroicon-o-microphone" tooltip="Voice Recorder"></x-filament::button>
+    <x-filament::button onclick="startRecording()" icon="heroicon-o-microphone" tooltip="Voice Recorder"></x-filament::button>
 
 
     <script>

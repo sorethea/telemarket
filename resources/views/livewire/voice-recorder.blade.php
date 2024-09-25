@@ -1,6 +1,6 @@
 <div>
     <h1>Voice Recorder</h1>
-    <x-filament::button icon="heroicon-o-microphone" wire:click="js:alert('voice record')"/>
+    <x-filament::button icon="heroicon-o-microphone" wire:click="js:voiceRecord();"/>
 </div>
 @script
 <script>

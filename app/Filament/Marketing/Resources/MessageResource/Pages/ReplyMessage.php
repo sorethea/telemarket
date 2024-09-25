@@ -3,6 +3,7 @@
 namespace App\Filament\Marketing\Resources\MessageResource\Pages;
 
 use App\Filament\Marketing\Resources\MessageResource;
+use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\FileUpload;
@@ -11,6 +12,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\Page;
+use Filament\Support\Enums\Alignment;
 
 class ReplyMessage extends Page implements HasForms, HasActions
 {
@@ -43,5 +45,13 @@ class ReplyMessage extends Page implements HasForms, HasActions
                 ->directory(fn($record)=>$record->customer_id.'/sent')
                 ->required(fn($get)=>empty($get("text"))),
         ]);
+    }
+
+    protected function getFormActions(): array
+    {
+        return [
+            Action::make('Reply')
+                ->color('primary'),
+        ];
     }
 }

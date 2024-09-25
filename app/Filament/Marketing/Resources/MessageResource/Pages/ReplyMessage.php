@@ -19,6 +19,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';
 
+    public $mountedActionForm;
     public function form(Form $form): Form
     {
         return $form->schema([

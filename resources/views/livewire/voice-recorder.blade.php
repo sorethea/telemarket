@@ -1,4 +1,4 @@
 <div>
     <h1>Voice Recorder</h1>
-    <input type="button" name="Record"/>
+    <x-filament::button icon="heroicon-o-microphone"/>
 </div>

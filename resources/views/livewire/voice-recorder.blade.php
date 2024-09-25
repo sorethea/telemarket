@@ -3,9 +3,9 @@
     <x-filament::button icon="heroicon-o-microphone" wire:click="voiceRecord"/>
 </div>
 @script
-<script>
-    function voiceRecord() {
-        alert("Voice Record!")
-    }
-</script>
+    <script>
+        function voiceRecord() {
+            alert("Voice Record!")
+        }
+    </script>
 @endscript

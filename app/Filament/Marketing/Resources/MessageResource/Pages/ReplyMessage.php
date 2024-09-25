@@ -12,7 +12,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\Page;
-use Filament\Support\Enums\Alignment;
+
 
 class ReplyMessage extends Page implements HasForms, HasActions
 {
@@ -46,5 +46,11 @@ class ReplyMessage extends Page implements HasForms, HasActions
                 ->required(fn($get)=>empty($get("text"))),
         ]);
     }
-
+    protected function getActions(): array
+    {
+        return [
+            \Filament\Forms\Components\Actions\Action::make("reply")
+                ->icon('heroicon-o-arrow-uturn-left'),
+        ];
+    }
 }

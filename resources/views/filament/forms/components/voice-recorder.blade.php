@@ -1,5 +1,5 @@
 <div>
-    <x-filament::button onclick="alert('start recording!')" icon="heroicon-o-microphone" tooltip="Voice Recorder"></x-filament::button>
+    <x-filament::button  icon="heroicon-o-microphone" tooltip="Voice Recorder"></x-filament::button>
 
 
     <script>

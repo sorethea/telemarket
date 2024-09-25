@@ -4,6 +4,7 @@ namespace App\Filament\Marketing\Resources;
 
 use App\Filament\Marketing\Resources\MessageResource\Pages;
 use App\Filament\Marketing\Resources\MessageResource\RelationManagers;
+use App\Livewire\VoiceRecorder;
 use App\Models\Customer;
 use App\Models\Message;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
@@ -124,7 +125,8 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ->directory(fn($record)=>$record->customer_id.'/sent')
                                 ->required(fn($get)=>empty($get("text"))),
                             Forms\Components\ViewField::make('voice')
-                                ->view('filament.forms.components.voice-recorder')
+                                ->view('filament.forms.components.voice-recorder'),
+                            VoiceRecorder::class,
                         ])
                         ->action(function (array $data,$record){
                             $telegram = Telegram::bot(auth()->user()->bot);

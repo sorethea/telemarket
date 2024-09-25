@@ -24,8 +24,8 @@ trait Telegram
                                 $photoArray = explode(".",$photo);
                                 $extension = end($photoArray);
                                 try {
-                                    if(Storage::fileExists('www/public/storage/'.$photo)){
-                                        $photoFile = InputFile::create('storage/'.$photo,$photo);
+                                    if(Storage::fileExists(storage_path($photo))){
+                                        $photoFile = InputFile::create(storage_path($photo),$photo);
                                         switch ($extension){
                                             case 'jpg':
                                             case 'npg':

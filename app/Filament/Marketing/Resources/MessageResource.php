@@ -226,12 +226,7 @@ class MessageResource extends Resource implements HasShieldPermissions
         ];
     }
 
-    public function record(){
-        return Notification::make()
-            ->title("Voice record")
-            ->body("This is voice record")
-            ->info();
-    }
+
 
     public static function getPermissionPrefixes(): array
     {

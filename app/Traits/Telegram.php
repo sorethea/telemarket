@@ -22,7 +22,7 @@ trait Telegram
                                 $photoArray = explode(".",$photo);
                                 $extension = end($photoArray);
                                 try {
-                                    $photoFile = InputFile::create('storage/'.$photo);
+                                    $photoFile = InputFile::create('storage/'.$photo,$photo);
                                     switch ($extension){
                                         case 'jpg':
                                         case 'npg':

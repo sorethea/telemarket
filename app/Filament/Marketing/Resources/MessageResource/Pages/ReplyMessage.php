@@ -18,9 +18,9 @@ class ReplyMessage extends Page implements HasForms
 
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';
 
-    protected function getFormSchema(): array
+    public function form(Form $form): Form
     {
-        return [
+        return $form->schema([
             MarkdownEditor::make('text')
                 ->required(fn($get)=>empty($get("file"))),
             FileUpload::make('file')
@@ -40,6 +40,6 @@ class ReplyMessage extends Page implements HasForms
                 ])
                 ->directory(fn($record)=>$record->customer_id.'/sent')
                 ->required(fn($get)=>empty($get("text"))),
-        ];
+        ]);
     }
 }

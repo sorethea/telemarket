@@ -2,7 +2,9 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\Storage;
 use Telegram\Bot\FileUpload\InputFile;
+use function Laravel\Prompts\error;
 
 trait Telegram
 {
@@ -22,36 +24,39 @@ trait Telegram
                                 $photoArray = explode(".",$photo);
                                 $extension = end($photoArray);
                                 try {
-                                    $photoFile = InputFile::create('storage/'.$photo,$photo);
-                                    switch ($extension){
-                                        case 'jpg':
-                                        case 'npg':
-                                        case 'gif':
-                                            $telegramBot->sendPhoto([
-                                                'chat_id'=>$chatId,
-                                                'photo'=>$photoFile,
-                                            ]);
-                                        case 'mp4':
-                                        case 'mpeg':
-                                            $telegramBot->sendPhoto([
-                                                'chat_id'=>$chatId,
-                                                'video'=>$photoFile,
-                                            ]);
-                                        case 'ogg':
-                                        case 'oga':
-                                            $telegramBot->sendPhoto([
-                                                'chat_id'=>$chatId,
-                                                'voice'=>$photoFile,
-                                            ]);
-                                        default:
-                                            $telegramBot->sendPhoto([
-                                                'chat_id'=>$chatId,
-                                                'voice'=>$photoFile,
-                                            ]);
+                                    if(Storage::fileExists($photo)){
+                                        $photoFile = InputFile::create('storage/'.$photo,$photo);
+                                        switch ($extension){
+                                            case 'jpg':
+                                            case 'npg':
+                                            case 'gif':
+                                                $telegramBot->sendPhoto([
+                                                    'chat_id'=>$chatId,
+                                                    'photo'=>$photoFile,
+                                                ]);
+                                            case 'mp4':
+                                            case 'mpeg':
+                                                $telegramBot->sendPhoto([
+                                                    'chat_id'=>$chatId,
+                                                    'video'=>$photoFile,
+                                                ]);
+                                            case 'ogg':
+                                            case 'oga':
+                                                $telegramBot->sendPhoto([
+                                                    'chat_id'=>$chatId,
+                                                    'voice'=>$photoFile,
+                                                ]);
+                                            default:
+                                                $telegramBot->sendPhoto([
+                                                    'chat_id'=>$chatId,
+                                                    'voice'=>$photoFile,
+                                                ]);
+                                    }
+
 
                                     }
                                 }catch (\Exception $exception){
-                                    logger($exception->getMessage());
+                                    error($exception->getMessage());
                                 }
 
                             }

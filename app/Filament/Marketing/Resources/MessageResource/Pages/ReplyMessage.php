@@ -12,7 +12,7 @@ use Filament\Resources\Pages\Page;
 
 class ReplyMessage extends Page
 {
-    use InteractsWithForms, InteractsWithRecord;
+    use InteractsWithForms;
     protected static string $resource = MessageResource::class;
 
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';

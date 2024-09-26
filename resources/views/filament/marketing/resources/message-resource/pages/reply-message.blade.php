@@ -37,23 +37,19 @@
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
                 mediaRecorder = new MediaRecorder(stream);
-                    start(mediaRecorder)
+                start(mediaRecorder);
+                window.addEventListener('voiceRecorderStop',(mediaRecorder)=>{
+                    stop(mediaRecorder);
+                })
             });
     });
 
-    window.addEventListener('voiceRecorderStop',()=>{
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(stream => {
-                mediaRecorder = new MediaRecorder(stream);
-                stop(mediaRecorder)
-            });
-    })
+
 
     function start(mediaRecorder) {
         mediaRecorder.start();
         mediaRecorder.addEventListener('dataavailable', event => {
             audioChunks.push(event.data);
-
         });
 
     }
@@ -68,7 +64,6 @@
             const audio = document.getElementById('audioPlayback');
 
             audio.src = audioUrl;
-            alert(audioUrl);
 
         });
         mediaRecorder.stop();

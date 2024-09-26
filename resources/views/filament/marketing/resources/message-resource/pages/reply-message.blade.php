@@ -1,7 +1,7 @@
 <x-filament-panels::page>
 <x-filament-panels::form>
     {{$this->form}}
-    <x-filament-forms::field-wrapper class="inline-block">
+    <x-filament-forms::field-wrapper class="inline">
         <x-filament::button  icon="heroicon-o-microphone" class="w-max inline" wire:click.prevent="voiceRecord"/>
         <x-filament::button  icon="heroicon-o-play" class="w-max inline" wire:click.prevent="voicePlay"/>
     </x-filament-forms::field-wrapper>

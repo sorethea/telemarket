@@ -5,9 +5,9 @@
         <x-filament-forms::field-wrapper.label>Voice Recorder</x-filament-forms::field-wrapper.label>
         <div class="inline-flex gap-2">
 
-            <x-filament::button  icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
-            <x-filament::button  icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop"/>
-            <x-filament::button  icon="heroicon-o-play" class="w-max" wire:click.prevent="voicePlay"/>
+            <x-filament::button color="primary" icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
+            <x-filament::button color="danger" icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop"/>
+            <x-filament::button color="success" icon="heroicon-o-play" class="w-max" wire:click.prevent="voicePlay"/>
         </div>
     </x-filament-forms::field-wrapper>
 

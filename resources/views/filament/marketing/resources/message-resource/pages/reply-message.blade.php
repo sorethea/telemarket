@@ -10,12 +10,7 @@
             @if($showStop)
                     <x-filament::button id="stopRecording" tooltip="{{trans('market.message.stop')}}" color="danger" icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop"/>
             @endif
-            @if($showPlay)
-                    <audio id="audioPlayback" controls></audio>
-
-                    <x-filament::button id="goToUploads" color="success" tooltip="{{trans('market.message.play')}}" icon="heroicon-o-play" class="w-max" {{--wire:click.prevent="voicePlay"--}}/>
-            @endif
-
+                <audio id="audioPlayback" controls></audio>
 
 
         </div>

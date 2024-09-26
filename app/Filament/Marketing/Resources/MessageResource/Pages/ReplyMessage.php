@@ -66,6 +66,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
             ->title("Vice Record")
             ->body("Record voice and send through telegram.")
             ->send();
+        $this->showStop = true;
     }
     public function voicePlay(): void
     {
@@ -76,6 +77,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
     }
     public function voiceStop(): void
     {
+        $this->showPlay = true;
         Notification::make('voice-record')
             ->title("Vice Record")
             ->body("Record voice and send through telegram.")

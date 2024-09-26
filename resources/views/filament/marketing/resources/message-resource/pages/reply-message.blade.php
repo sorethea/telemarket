@@ -41,14 +41,12 @@
             .then(stream => {
                 mediaRecorder = new MediaRecorder(stream);
                     start(mediaRecorder)
-                window.addEventListener('voiceRecorderStop',()=>{
-                    stop(mediaRecorder)
-                })
             });
     });
 
-
-
+    window.addEventListener('voiceRecorderStop',()=>{
+        start(mediaRecorder)
+    })
 
     function start(mediaRecorder) {
         mediaRecorder.start();

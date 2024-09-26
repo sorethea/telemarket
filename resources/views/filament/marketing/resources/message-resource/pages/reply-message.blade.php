@@ -8,6 +8,9 @@
                 <x-filament::button tooltip="{{trans('market.message.record')}}" color="primary" icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
             @endif
             @if($showStop)
+                    <audio controls>
+                        <source src="" >
+                    </audio>
                     <x-filament::button tooltip="{{trans('market.message.stop')}}" color="danger" icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop"/>
             @endif
             @if($showPlay)
@@ -16,9 +19,7 @@
             @endif
 
         </div>
-        <audio controls>
 
-        </audio>
     </x-filament-forms::field-wrapper>
 
 
@@ -50,25 +51,25 @@
                 //
                 // document.getElementById('stopRecording').disabled = false;
                 //
-                // mediaRecorder.addEventListener('dataavailable', event => {
-                //
-                //     audioChunks.push(event.data);
-                //
-                // });
+                mediaRecorder.addEventListener('dataavailable', event => {
 
-                // mediaRecorder.addEventListener('stop', () => {
-                //
-                //     const audioBlob = new Blob(audioChunks);
-                //
-                //     const audioUrl = URL.createObjectURL(audioBlob);
-                //
-                //     const audio = document.getElementById('audioPlayback');
-                //
-                //     audio.src = audioUrl;
-                //
-                //     uploadAudio(audioBlob);
-                //
-                // });
+                    audioChunks.push(event.data);
+
+                });
+
+                mediaRecorder.addEventListener('stop', () => {
+
+                    const audioBlob = new Blob(audioChunks);
+
+                    const audioUrl = URL.createObjectURL(audioBlob);
+
+                    const audio = document.getElementById('audioPlayback');
+
+                    audio.src = audioUrl;
+
+                    uploadAudio(audioBlob);
+
+                });
 
             });
     }

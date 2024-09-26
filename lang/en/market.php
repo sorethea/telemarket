@@ -71,5 +71,6 @@ return [
         "video"=>"Video",
         "reply_to"=>"Reply to",
         "created_at"=>"Created At",
+        "reply"=>"Reply",
     ]
 ];

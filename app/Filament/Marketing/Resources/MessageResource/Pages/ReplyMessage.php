@@ -54,7 +54,8 @@ class ReplyMessage extends Page implements HasForms, HasActions
                 ->icon('heroicon-o-arrow-uturn-left'),
         ];
     }
-    public function voiceRecord(){
+    public function voiceRecord(): void
+    {
         Notification::make('voice-record')
             ->title("Vice Record")
             ->body("Record voice and send through telegram.")

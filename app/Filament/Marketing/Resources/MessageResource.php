@@ -106,7 +106,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                     Tables\Actions\Action::make("reply")
                         ->icon('heroicon-o-arrow-uturn-left')
                         ->url(fn($record)=>"/messages/{$record->id}/reply"),
-        ]),
+
 
 //                    Tables\Actions\Action::make("reply")
 //                        ->icon('heroicon-o-arrow-uturn-left')
@@ -196,7 +196,7 @@ class MessageResource extends Resource implements HasShieldPermissions
                                 ->multiple(),
                         ])
                         ->modalSubmitActionLabel(trans('market.telegram.send')),
-//                ]),
+               ]),
 
 //                Tables\Actions\EditAction::make(),
 //                \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('media')

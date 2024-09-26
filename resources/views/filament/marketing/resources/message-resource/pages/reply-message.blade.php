@@ -1,8 +1,11 @@
 <x-filament-panels::page>
 <x-filament-panels::form>
     {{$this->form}}
-    <x-filament::button  icon="heroicon-o-microphone" class="w-max inline-flex" wire:click.prevent="voiceRecord"/>
-    <x-filament::button  icon="heroicon-o-play" class="w-max inline-flex" wire:click.prevent="voicePlay"/>
+    <div class="inline-flex gap-3">
+        <x-filament::button  icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
+        <x-filament::button  icon="heroicon-o-play" class="w-max" wire:click.prevent="voicePlay"/>
+    </div>
+
     <x-filament-panels::form.actions
         alignment="right"
         :actions="$this->getFormActions()"

@@ -4,19 +4,28 @@
     <x-filament-forms::field-wrapper>
         <x-filament-forms::field-wrapper.label>{{trans('market.message.voice_record')}}</x-filament-forms::field-wrapper.label>
         <div class="inline-flex gap-2">
-            @if($showRecord)
-                <x-filament::button tooltip="{{trans('market.message.record')}}" id="startRecording" color="primary" icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
-            @endif
-            @if($showStop)
-                    <audio controls>
-                        <source src="" >
-                    </audio>
-                    <x-filament::button id="stopRecording" tooltip="{{trans('market.message.stop')}}" color="danger" icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop"/>
-            @endif
-            @if($showPlay)
+{{--            @if($showRecord)--}}
+{{--                <x-filament::button tooltip="{{trans('market.message.record')}}" id="startRecording" color="primary" icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>--}}
+{{--            @endif--}}
+{{--            @if($showStop)--}}
+{{--                    <audio controls>--}}
+{{--                        <source src="" >--}}
+{{--                    </audio>--}}
+{{--                    <x-filament::button id="stopRecording" tooltip="{{trans('market.message.stop')}}" color="danger" icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop"/>--}}
+{{--            @endif--}}
+{{--            @if($showPlay)--}}
 
-                    <x-filament::button color="success" tooltip="{{trans('market.message.play')}}" icon="heroicon-o-play" class="w-max" wire:click.prevent="voicePlay"/>
-            @endif
+{{--                    <x-filament::button color="success" tooltip="{{trans('market.message.play')}}" icon="heroicon-o-play" class="w-max" wire:click.prevent="voicePlay"/>--}}
+{{--            @endif--}}
+            <h1>Record and Upload Audio</h1>
+
+            <button id="startRecording">Start Recording</button>
+
+            <button id="stopRecording" disabled>Stop Recording</button>
+
+            <button id="goToUploads">View Uploaded Files</button>
+
+            <audio id="audioPlayback" controls></audio>
 
         </div>
 
@@ -41,15 +50,7 @@
 
                     mediaRecorder = new MediaRecorder(stream);
 
-                    mediaRecorder.start();
-
-
-                    mediaRecorder.addEventListener('dataavailable', event => {
-
-                        audioChunks.push(event.data);
-
-                    });
-
+                    start(mediaRecorder)
                     mediaRecorder.addEventListener('stop', () => {
 
                         const audioBlob = new Blob(audioChunks);
@@ -66,6 +67,18 @@
                 });
     });
 
+
+    function start(mediaRecorder) {
+        mediaRecorder.start();
+
+
+        mediaRecorder.addEventListener('dataavailable', event => {
+
+            audioChunks.push(event.data);
+
+        });
+
+    }
 
 </script>
 @endscript

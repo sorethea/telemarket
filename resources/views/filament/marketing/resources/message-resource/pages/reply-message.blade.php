@@ -35,19 +35,18 @@
 
     let audioChunks = [];
 
+    window.addEventListener('voiceRecordStart',()=>{
 
-    navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(stream => {
-            mediaRecorder = new MediaRecorder(stream);
-            window.addEventListener('voiceRecordStart',()=>{
-                start(mediaRecorder)
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+                    start(mediaRecorder)
+                window.addEventListener('voiceRecorderStop',()=>{
+                    stop(mediaRecorder)
+                })
             });
+    });
 
-            window.addEventListener('voiceRecorderStop',()=>{
-                stop(mediaRecorder)
-            })
-
-        });
 
 
 

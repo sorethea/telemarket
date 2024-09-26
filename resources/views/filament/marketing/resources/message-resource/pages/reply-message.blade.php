@@ -3,7 +3,7 @@
     {{$this->form}}
     <x-filament-panels::form.actions
         alignment="right"
-        :actions="$this->getActions()"
+        :actions="$this->getFormActions()"
     />
 </x-filament-panels::form>
 </x-filament-panels::page>

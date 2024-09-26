@@ -68,6 +68,7 @@
             const audio = document.getElementById('audioPlayback');
 
             audio.src = audioUrl;
+            alert(audioUrl);
 
         });
         mediaRecorder.stop();

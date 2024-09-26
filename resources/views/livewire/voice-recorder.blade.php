@@ -4,6 +4,9 @@
 </div>
 @script
     <script>
+        window.addEventListener('VoiceRecord',(event)=>{
+            voiceRecord();
+        })
         function voiceRecord() {
             alert("Voice Record!")
         }

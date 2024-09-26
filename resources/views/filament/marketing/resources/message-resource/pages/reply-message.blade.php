@@ -24,3 +24,10 @@
     />
 </x-filament-panels::form>
 </x-filament-panels::page>
+@script
+<script>
+    function voiceRecord(event){
+        alert(event.message);
+    }
+</script>
+@endscript

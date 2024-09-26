@@ -16,4 +16,8 @@ class ListMessages extends ListRecords
             //Actions\CreateAction::make(),
         ];
     }
+
+    public function voiceRecord(){
+
+    }
 }

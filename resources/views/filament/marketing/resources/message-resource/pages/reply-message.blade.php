@@ -2,7 +2,7 @@
 <x-filament-panels::form>
     {{$this->form}}
     <x-filament-forms::field-wrapper>
-        <x-filament-forms::field-wrapper.label>@lang('market.message.voice_record')</x-filament-forms::field-wrapper.label>
+        <x-filament-forms::field-wrapper.label>{{trans('market.message.voice_record')}}</x-filament-forms::field-wrapper.label>
         <div class="inline-flex gap-2">
             @if($showRecord)
                 <x-filament::button tooltip="{{trans('market.message.record')}}" color="primary" icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
@@ -27,7 +27,7 @@
 @script
 <script>
     window.addEventListener('voiceRecord',(event)=>{
-        voice_record(event.detail.message);
+        voice_record(event['__livewire']);
     });
     function voice_record(event){
         alert(JSON.stringify(event));

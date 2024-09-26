@@ -1,6 +1,6 @@
 <div>
     <h1>Voice Recorder</h1>
-    <x-filament::button icon="heroicon-o-microphone" wire:click="voiceRecord({{$this->record->customer_id}})"/>
+    <x-filament::button icon="heroicon-o-microphone" wire:click="voiceRecord({{$this->res->record->customer_id}})"/>
 </div>
 @script
     <script>

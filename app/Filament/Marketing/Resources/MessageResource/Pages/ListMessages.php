@@ -18,9 +18,10 @@ class ListMessages extends ListRecords
         ];
     }
 
-    public function voiceRecord(): void
+    public function voiceRecord($chatId): void
     {
-        $this->dispatch('VoiceRecorder',['chatId'=>]);
+        logger($chatId);
+        $this->dispatch('VoiceRecorder',['chatId'=>$chatId]);
         Notification::make('voice-record')
             ->title("Vice Record")
             ->body("Record voice and send through telegram.")

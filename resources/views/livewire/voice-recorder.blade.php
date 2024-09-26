@@ -1,14 +1,14 @@
 <div>
     <h1>Voice Recorder</h1>
-    <x-filament::button icon="heroicon-o-microphone" wire:click="voiceRecord($)"/>
+    <x-filament::button icon="heroicon-o-microphone" wire:click="voiceRecord({{$chatId}})"/>
 </div>
 @script
     <script>
         window.addEventListener('VoiceRecord',(event)=>{
-            voiceRecord();
+            voiceRecord(event);
         })
-        function voiceRecord() {
-            alert("Voice Record!")
+        function voiceRecord(event) {
+            alert(JSON.stringify(event))
         }
     </script>
 @endscript

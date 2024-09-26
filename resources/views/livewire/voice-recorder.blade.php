@@ -5,7 +5,7 @@
 @script
     <script>
             window.addEventListener('VoiceRecord',(event)=>{
-            voiceRecord(event['__livewire']['params'][0]['chatId']);
+            voiceRecord(event);
         });
             function voiceRecord(event){
             alert(JSON.stringify(event));

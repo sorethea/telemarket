@@ -4,10 +4,16 @@
     <x-filament-forms::field-wrapper>
         <x-filament-forms::field-wrapper.label>Voice Recorder</x-filament-forms::field-wrapper.label>
         <div class="inline-flex gap-2">
+            @if($showRecord)
+                <x-filament::button color="primary" icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
+            @endif
+            @if($showStop)
+                    <x-filament::button color="danger" icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop"/>
+            @endif
+            @if($showPlay)
+                    <x-filament::button color="success" icon="heroicon-o-play" class="w-max" wire:click.prevent="voicePlay"/>
+            @endif
 
-            <x-filament::button color="primary" wire:hidden="showRecord" icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
-            <x-filament::button color="danger" icon="heroicon-o-stop" wire:hidden="showStop" class="w-max" wire:click.prevent="voiceStop"/>
-            <x-filament::button color="success" icon="heroicon-o-play" wire:hidden="showPlay" class="w-max" wire:click.prevent="voicePlay"/>
         </div>
     </x-filament-forms::field-wrapper>
 

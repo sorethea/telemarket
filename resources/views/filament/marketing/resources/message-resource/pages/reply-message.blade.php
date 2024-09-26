@@ -32,11 +32,8 @@
 @script
 <script>
     let mediaRecorder;
-
     let audioChunks = [];
-
     window.addEventListener('voiceRecordStart',()=>{
-
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
                 mediaRecorder = new MediaRecorder(stream);
@@ -45,7 +42,11 @@
     });
 
     window.addEventListener('voiceRecorderStop',()=>{
-        start(mediaRecorder)
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+                stop(mediaRecorder)
+            });
     })
 
     function start(mediaRecorder) {

@@ -46,11 +46,10 @@ class ReplyMessage extends Page implements HasForms, HasActions
                 ->required(fn($get)=>empty($get("text"))),
         ]);
     }
-    protected function getFormActions(): array
+    protected function getInteractsWithActionsForms(): array
     {
         return [
             Action::make("reply")
-                ->submit($this->getForm(''))
                 ->icon('heroicon-o-arrow-uturn-left'),
         ];
     }

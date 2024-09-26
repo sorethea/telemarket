@@ -38,14 +38,14 @@
             .then(stream => {
                 mediaRecorder = new MediaRecorder(stream);
                 start(mediaRecorder);
-
+                window.addEventListener('voiceRecordStop',()=>{
+                    stop(mediaRecorder);
+                    alert("Voice record is stopped.")
+                });
             });
     });
 
-    window.addEventListener('voiceRecordStop',()=>{
-        stop(mediaRecorder);
-        alert("Voice record is stopped.")
-    });
+
 
     function start(mediaRecorder) {
         mediaRecorder.start();

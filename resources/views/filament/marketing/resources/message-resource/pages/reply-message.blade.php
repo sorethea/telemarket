@@ -40,7 +40,6 @@
                 start(mediaRecorder);
                 window.addEventListener('voiceRecordStop',()=>{
                     stop(mediaRecorder);
-                    alert("Voice record is stopped.")
                 });
             });
     });
@@ -65,6 +64,7 @@
             const audio = document.getElementById('audioPlayback');
 
             audio.src = audioUrl;
+            alert(audioUrl)
 
         });
         mediaRecorder.stop();

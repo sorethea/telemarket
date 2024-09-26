@@ -30,7 +30,7 @@
         voice_record(ev.params);
     });
     function voice_record(event){
-        alert(event.message);
+        alert(JSON.stringify(event));
     }
 </script>
 @endscript

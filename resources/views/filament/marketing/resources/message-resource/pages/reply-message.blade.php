@@ -34,6 +34,7 @@
                 window.addEventListener('voiceRecordStop',()=>{
                     stop(mediaRecorder);
                     mediaRecorder.stop();
+                    $wire.dispatch('sendVoice');
                 });
             });
     });

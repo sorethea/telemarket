@@ -72,5 +72,9 @@ return [
         "reply_to"=>"Reply to",
         "created_at"=>"Created At",
         "reply"=>"Reply",
+        "record"=>"Record",
+        "voice_record"=>"Voice Record",
+        "play"=>"Play",
+        "stop"=>"Stop",
     ]
 ];

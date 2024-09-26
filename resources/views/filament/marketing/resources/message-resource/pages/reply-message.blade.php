@@ -2,7 +2,7 @@
 <x-filament-panels::form>
     {{$this->form}}
     <x-filament-forms::field-wrapper>
-        <x-filament-forms::field-wrapper.label label="Voice Recorder"/>
+        <x-filament-forms::field-wrapper.label>Voice Recorder</x-filament-forms::field-wrapper.label>
         <div class="inline-flex gap-2">
 
             <x-filament::button  icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>

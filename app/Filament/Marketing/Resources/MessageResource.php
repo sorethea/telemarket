@@ -197,16 +197,16 @@ class MessageResource extends Resource implements HasShieldPermissions
                         ->modalSubmitActionLabel(trans('market.telegram.send')),
                 ]),
 
-                Tables\Actions\EditAction::make(),
-                \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('media')
-                    ->visible(fn($record):bool=>$record->is_media)
-                    ->media(fn($record)=>Storage::url($record->file))
-                    ->icon('heroicon-o-eye'),
-                Tables\Actions\Action::make("download")
-                    ->visible(fn($record):bool=>$record->is_download)
-                    ->url(fn($record):string=>Storage::url($record->file))
-                    ->openUrlInNewTab()
-                    ->icon('heroicon-o-arrow-down-tray'),
+//                Tables\Actions\EditAction::make(),
+//                \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('media')
+//                    ->visible(fn($record):bool=>$record->is_media)
+//                    ->media(fn($record)=>Storage::url($record->file))
+//                    ->icon('heroicon-o-eye'),
+//                Tables\Actions\Action::make("download")
+//                    ->visible(fn($record):bool=>$record->is_download)
+//                    ->url(fn($record):string=>Storage::url($record->file))
+//                    ->openUrlInNewTab()
+//                    ->icon('heroicon-o-arrow-down-tray'),
             ])
             ->bulkActions([
 //                Tables\Actions\BulkActionGroup::make([

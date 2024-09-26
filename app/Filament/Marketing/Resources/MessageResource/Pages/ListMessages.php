@@ -4,6 +4,7 @@ namespace App\Filament\Marketing\Resources\MessageResource\Pages;
 
 use App\Filament\Marketing\Resources\MessageResource;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
 
 class ListMessages extends ListRecords
@@ -17,7 +18,11 @@ class ListMessages extends ListRecords
         ];
     }
 
-    public function voiceRecord(){
-
+    public function voiceRecord(): void
+    {
+        Notification::make('voice-record')
+            ->title("Vice Record")
+            ->body("Record voice and send through telegram.")
+            ->send();
     }
 }

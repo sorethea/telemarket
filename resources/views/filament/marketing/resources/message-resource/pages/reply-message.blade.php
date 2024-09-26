@@ -2,6 +2,7 @@
 <x-filament-panels::form>
     {{$this->form}}
     <x-filament-panels::form.actions
+        alignment="right"
         :actions="$this->getActions()"
     />
 </x-filament-panels::form>

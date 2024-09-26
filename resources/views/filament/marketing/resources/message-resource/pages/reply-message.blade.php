@@ -72,6 +72,7 @@
             audio.src = audioUrl;
 
         });
+        mediaRecorder.stop();
     }
 
 </script>

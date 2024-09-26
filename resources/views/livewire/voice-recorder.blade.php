@@ -4,11 +4,11 @@
 </div>
 @script
     <script>
-        window.addEventListener('VoiceRecord',(event)=>{
-            voiceRecord(event);
-        })
-        function voiceRecord(event) {
-            alert(JSON.stringify(event))
+            window.addEventListener('VoiceRecord',(event)=>{
+            voiceRecord(event['__livewire']['params'][0]['chatId']);
+        });
+            function voiceRecord(event){
+            alert(JSON.stringify(event));
         }
     </script>
 @endscript

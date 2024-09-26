@@ -14,7 +14,6 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
 
-
 class ReplyMessage extends Page implements HasForms, HasActions
 {
     use InteractsWithForms, InteractsWithActions;

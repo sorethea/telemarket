@@ -27,10 +27,10 @@
 @script
 <script>
     window.addEventListener('voiceRecord',(ev)=>{
-        voice_record(ev);
+        voice_record(ev.params);
     });
     function voice_record(event){
-        alert(event.params["message"]);
+        alert(event.message);
     }
 </script>
 @endscript

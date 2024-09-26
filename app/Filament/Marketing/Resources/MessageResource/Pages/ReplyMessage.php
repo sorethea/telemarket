@@ -20,6 +20,11 @@ class ReplyMessage extends Page implements HasForms, HasActions
     use InteractsWithForms, InteractsWithActions;
     protected static string $resource = MessageResource::class;
 
+
+    public bool $showStop = false;
+    public bool $showPlay = false;
+    public bool $showRecord = true;
+
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';
 
     public function form(Form $form): Form

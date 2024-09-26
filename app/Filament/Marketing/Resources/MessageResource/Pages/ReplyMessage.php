@@ -61,7 +61,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
     public function voiceRecord(): void
     {
-        $this->dispatch('voiceRecord',['message'=>"This is a dispatch."]);
+        $this->dispatch('voiceRecordStart',['message'=>"This is a dispatch."]);
 //        Notification::make('voice-record')
 //            ->title("Vice Record")
 //            ->body("Record voice and send through telegram.")
@@ -75,12 +75,13 @@ class ReplyMessage extends Page implements HasForms, HasActions
 //            ->body("Record voice and send through telegram.")
 //            ->send();
 //    }
-//    public function voiceStop(): void
-//    {
-//        $this->showPlay = true;
+    public function voiceStop(): void
+    {
+        $this->showPlay = true;
+        $this->dispatch('voiceRecordStop');
 //        Notification::make('voice-record')
 //            ->title("Vice Record")
 //            ->body("Record voice and send through telegram.")
 //            ->send();
-//    }
+    }
 }

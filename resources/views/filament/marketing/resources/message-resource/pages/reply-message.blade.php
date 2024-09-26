@@ -8,7 +8,7 @@
                 <x-filament::button id="startRecording" tooltip="{{trans('market.message.record')}}"  color="primary" icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
             @endif
             @if($showStop)
-                    <x-filament::button id="stopRecording" tooltip="{{trans('market.message.stop')}}" color="danger" icon="heroicon-o-stop" class="w-max" {{--wire:click.prevent="voiceStop"--}}/>
+                    <x-filament::button id="stopRecording" tooltip="{{trans('market.message.stop')}}" color="danger" icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop"/>
             @endif
             @if($showPlay)
                     <audio id="audioPlayback" controls></audio>
@@ -34,41 +34,44 @@
     let mediaRecorder;
 
     let audioChunks = [];
-    window.addEventListener('voiceRecord',()=>{
-
-            navigator.mediaDevices.getUserMedia({ audio: true })
-                .then(stream => {
-
-                    mediaRecorder = new MediaRecorder(stream);
-
-                    start(mediaRecorder)
-                    mediaRecorder.addEventListener('stop', () => {
-
-                        const audioBlob = new Blob(audioChunks);
-
-                        const audioUrl = URL.createObjectURL(audioBlob);
-
-                        const audio = document.getElementById('audioPlayback');
-
-                        audio.src = audioUrl;
 
 
-                    });
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+            mediaRecorder = new MediaRecorder(stream);
+            window.addEventListener('voiceRecordStart',()=>{
+                start(mediaRecorder)
+            });
 
-                });
-    });
+            window.addEventListener('voiceRecorderStop',()=>{
+                stop(mediaRecorder)
+            })
+
+        });
+
 
 
     function start(mediaRecorder) {
         mediaRecorder.start();
-
-
         mediaRecorder.addEventListener('dataavailable', event => {
-
             audioChunks.push(event.data);
 
         });
 
+    }
+
+    function stop(mediaRecorder){
+        mediaRecorder.addEventListener('stop', () => {
+
+            const audioBlob = new Blob(audioChunks);
+
+            const audioUrl = URL.createObjectURL(audioBlob);
+
+            const audio = document.getElementById('audioPlayback');
+
+            audio.src = audioUrl;
+
+        });
     }
 
 </script>

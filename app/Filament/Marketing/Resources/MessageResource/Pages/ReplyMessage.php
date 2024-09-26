@@ -46,7 +46,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
                 ->required(fn($get)=>empty($get("text"))),
         ]);
     }
-    public function getFromActions(): array
+    public function getFormActions(): array
     {
         return [
             Action::make("reply")

@@ -11,6 +11,7 @@ use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
 
 
@@ -52,5 +53,11 @@ class ReplyMessage extends Page implements HasForms, HasActions
             Action::make("reply")
                 ->icon('heroicon-o-arrow-uturn-left'),
         ];
+    }
+    public function voiceRecord(){
+        Notification::make('voice-record')
+            ->title("Vice Record")
+            ->body("Record voice and send through telegram.")
+            ->send();
     }
 }

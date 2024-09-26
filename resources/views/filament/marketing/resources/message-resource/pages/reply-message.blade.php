@@ -27,7 +27,7 @@
 @script
 <script>
     window.addEventListener('voiceRecord',(event)=>{
-        voice_record(event['__livewire']);
+        voice_record(event['__livewire']['params']['message']);
     });
     function voice_record(event){
         alert(JSON.stringify(event));

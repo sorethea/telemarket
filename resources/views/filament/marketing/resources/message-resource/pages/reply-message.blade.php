@@ -1,7 +1,7 @@
 <x-filament-panels::page>
 <x-filament-panels::form>
     {{$this->form}}
-    <x-filament::button :full-width="false" icon="heroicon-o-microphone"  wire:click.prevent="voiceRecord"/>
+    <x-filament::button size="auto" icon="heroicon-o-microphone"  wire:click.prevent="voiceRecord"/>
 
     <x-filament-panels::form.actions
         alignment="right"

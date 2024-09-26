@@ -33,6 +33,7 @@
                 start(mediaRecorder);
                 window.addEventListener('voiceRecordStop',()=>{
                     stop(mediaRecorder);
+                    mediaRecorder.stop();
                 });
             });
     });
@@ -57,10 +58,8 @@
             const audio = document.getElementById('audioPlayback');
 
             audio.src = audioUrl;
-            window.dispatchEvent('hello');
 
         });
-        mediaRecorder.stop();
     }
 
 </script>

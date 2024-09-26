@@ -69,4 +69,11 @@ class ReplyMessage extends Page implements HasForms, HasActions
             ->body("Record voice and send through telegram.")
             ->send();
     }
+    public function voiceStop(): void
+    {
+        Notification::make('voice-record')
+            ->title("Vice Record")
+            ->body("Record voice and send through telegram.")
+            ->send();
+    }
 }

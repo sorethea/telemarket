@@ -43,7 +43,7 @@
             });
     });
 
-    window.addEventListener('voiceRecorderStop',(mediaRecorder)=>{
+    window.addEventListener('voiceRecordStop',(mediaRecorder)=>{
         //stop(mediaRecorder);
         alert("Voice record is stopped.")
     });

@@ -31,24 +31,18 @@
 </x-filament-panels::page>
 @script
 <script>
+    let mediaRecorder;
+
+    let audioChunks = [];
     window.addEventListener('voiceRecord',()=>{
-        let mediaRecorder;
-
-        let audioChunks = [];
-
-        document.getElementById('startRecording').addEventListener('click', () => {
 
             navigator.mediaDevices.getUserMedia({ audio: true })
-
                 .then(stream => {
 
                     mediaRecorder = new MediaRecorder(stream);
 
                     mediaRecorder.start();
 
-                    document.getElementById('startRecording').disabled = true;
-
-                    document.getElementById('stopRecording').disabled = false;
 
                     mediaRecorder.addEventListener('dataavailable', event => {
 
@@ -66,63 +60,10 @@
 
                         audio.src = audioUrl;
 
-                        uploadAudio(audioBlob);
 
                     });
 
                 });
-
-        });
-
-        document.getElementById('stopRecording').addEventListener('click', () => {
-
-            mediaRecorder.stop();
-
-            document.getElementById('startRecording').disabled = false;
-
-            document.getElementById('stopRecording').disabled = true;
-
-        });
-
-        document.getElementById('goToUploads').addEventListener('click', () => {
-
-            window.location.href = '/audio/list';
-
-        });
-
-        function uploadAudio(audioBlob) {
-
-            const formData = new FormData();
-
-            formData.append('audio', audioBlob, 'voice-recording.webm');
-
-            fetch('/api/upload-audio', {
-
-                method: 'POST',
-
-                body: formData,
-
-                headers: {
-
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-
-                },
-
-            })
-
-                .then(response => response.json())
-
-                .then(data => {
-
-                    console.log('Audio uploaded successfully:', data);
-
-                    window.location.href = '/audio/list';
-
-                })
-
-                .catch(error => console.error('Error uploading audio:', error));
-
-        }
     });
 
 

@@ -26,8 +26,8 @@
 </x-filament-panels::page>
 @script
 <script>
-    window.addEventListener('voiceRecord',(message)=>{
-        voice_record(message);
+    window.addEventListener('voiceRecord',(event)=>{
+        voice_record(event.detail.message);
     });
     function voice_record(event){
         alert(JSON.stringify(event));

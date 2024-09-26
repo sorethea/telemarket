@@ -135,7 +135,7 @@ class MessageResource extends Resource implements HasShieldPermissions
 //                                ->required(),
                             Forms\Components\ViewField::make('voice-record')
                                 ->label("Voice Record")
-                                ->viewData(data: ['chatId'=>$table->getRecordKey()])
+                                ->viewData(data: ['chatId'=>$table->getRecordKey(static::$model)])
                                 ->view('livewire.voice-recorder')
                         ])
                         ->action(function (array $data,$record){

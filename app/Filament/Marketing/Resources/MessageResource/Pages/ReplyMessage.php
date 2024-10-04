@@ -84,4 +84,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
             ->body("Record voice and send through telegram.")
             ->send();
     }
+    public function savevoice($file): void{
+        logger($file);
+    }
 }

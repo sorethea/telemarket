@@ -13,10 +13,11 @@
                 <audio wire:model="audio" id="audioPlayback" controls></audio>
         </div>
     </x-filament-forms::field-wrapper>
-    <x-filament-panels::form.actions
-        alignment="right"
-        :actions="$this->getFormActions()"
-    />
+{{--    <x-filament-panels::form.actions--}}
+{{--        alignment="right"--}}
+{{--        :actions="$this->getFormActions()"--}}
+{{--    />--}}
+    <x-filament-forms::actions/>
 </x-filament-panels::form>
 </x-filament-panels::page>
 @script
@@ -53,6 +54,8 @@
             const audio = document.getElementById('audioPlayback');
 
             audio.src = audioUrl;
+
+
 
         });
     }

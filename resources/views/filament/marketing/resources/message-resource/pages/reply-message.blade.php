@@ -56,7 +56,7 @@
             audio.src = audioUrl;
 
             $wire.audioFile = audioBlob;
-            $wire.audio = audio;
+            $wire.audio = audioUrl;
 
             //const formData = new FormData();
 

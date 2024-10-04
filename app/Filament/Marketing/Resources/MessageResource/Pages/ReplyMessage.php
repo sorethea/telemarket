@@ -15,6 +15,7 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\NoReturn;
 
 class ReplyMessage extends Page implements HasForms, HasActions
 {
@@ -89,11 +90,13 @@ class ReplyMessage extends Page implements HasForms, HasActions
             ->title("Vice Record")
             ->body("Record voice and send through telegram.")
             ->send();
+        $this->saveVoice();
 
     }
     public function saveVoice(): void{
         $fileName = Str::random(32).".wav";
         Storage::put($fileName,file_get_contents($this->audio));
+        $this->audioFile = Storage::url($fileName);
         dd($fileName);
     }
 }

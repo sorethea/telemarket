@@ -25,31 +25,31 @@ trait Telegram
                                 $extension = end($photoArray);
                                 try {
 
-                                        $photoFile = InputFile::create('storage/'.$photo,$photo);
+                                        $file = InputFile::create('storage/'.$photo,$photo);
                                         switch ($extension){
                                             case 'jpg':
                                             case 'npg':
                                             case 'gif':
                                                 $telegramBot->sendPhoto([
                                                     'chat_id'=>$chatId,
-                                                    'photo'=>$photoFile,
+                                                    'photo'=>$file,
                                                 ]);
                                             case 'mp4':
                                             case 'mpeg':
                                                 $telegramBot->sendPhoto([
                                                     'chat_id'=>$chatId,
-                                                    'video'=>$photoFile,
+                                                    'video'=>$file,
                                                 ]);
                                             case 'ogg':
                                             case 'oga':
-                                                $telegramBot->sendPhoto([
+                                                $telegramBot->sendVoice([
                                                     'chat_id'=>$chatId,
-                                                    'voice'=>$photoFile,
+                                                    'voice'=>$file,
                                                 ]);
                                             default:
                                                 $telegramBot->sendPhoto([
                                                     'chat_id'=>$chatId,
-                                                    'voice'=>$photoFile,
+                                                    'voice'=>$file,
                                                 ]);
                                     }
                                 }catch (\Exception $exception){

@@ -3,7 +3,7 @@
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Telegram\Bot\Laravel\Facades\Telegram;
+use Telegram\Bot\FileUpload\InputFile;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,5 +19,11 @@ Route::post('/telegram/send-photo', [\App\Http\Controllers\Api\TelegramAPIContro
 
 Route::post('/voice',function (Request $request){
     $path = $request->file('audio')->store('audio','public');
-    logger($path);
+    $bot=auth()->user()->bot??config('telegram.default');
+    $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
+    $file = InputFile::create($path);
+    $telegram->sendVoice([
+        'chat_id'=>$chatId,
+        'voice'=>$file,
+    ]);
 });

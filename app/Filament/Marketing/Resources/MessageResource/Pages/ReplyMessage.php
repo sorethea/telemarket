@@ -56,11 +56,11 @@ class ReplyMessage extends Page implements HasForms, HasActions
                 ])
                 ->directory(fn($record)=>$record->customer_id.'/sent')
                 ->required(fn($get)=>empty($get("text") && $get("voice"))),
-            FileUpload::make('voice')
-                ->disk('public')
-                ->directory(fn($record)=>$record->customer_id.'/sent')
-                ->label("Voice")
-                ->required(fn($get)=>empty($get("text") && $get("file"))),
+//            FileUpload::make('voice')
+//                ->disk('public')
+//                ->directory(fn($record)=>$record->customer_id.'/sent')
+//                ->label("Voice")
+//                ->required(fn($get)=>empty($get("text") && $get("file"))),
         ]);
     }
     public function getFormActions(): array

@@ -55,9 +55,6 @@ class ReplyMessage extends Page implements HasForms, HasActions
     {
         return [
             Action::make("reply")
-                ->action(function (){
-                    dd(request()->get("audio-file"));
-                })
                 ->icon('heroicon-o-arrow-uturn-left'),
         ];
     }
@@ -82,10 +79,12 @@ class ReplyMessage extends Page implements HasForms, HasActions
     {
         $this->showPlay = true;
         $this->dispatch('voiceRecordStop',['message'=>"This is a dispatch."]);
+
         Notification::make('voice-record')
             ->title("Vice Record")
             ->body("Record voice and send through telegram.")
             ->send();
+        dd(request()->get("audio-file"));
     }
     public function saveVoice(): void{
 

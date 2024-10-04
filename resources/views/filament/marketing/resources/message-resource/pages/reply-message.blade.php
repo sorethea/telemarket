@@ -55,7 +55,7 @@
 
             audio.src = audioUrl;
 
-            $wire.audioFile = audioUrl;
+            @this.audioFile = audioUrl;
 
         });
     }

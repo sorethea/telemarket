@@ -8,6 +8,7 @@ use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Telegram\Bot\Objects\Audio;
 use function Laravel\Prompts\error;
 
 trait MessageTrait
@@ -135,4 +136,11 @@ trait MessageTrait
             error($exception->getMessage());
         }
     }
+
+//    public function saveVoiceRecord($voiceUrl){
+//        $file= file_get_contents($voiceUrl);
+//
+//        Storage::put($file->,);
+//        $audio = new AudioFile();
+//    }
 }

@@ -26,4 +26,8 @@ class ListMessages extends ListRecords
             ->body("Record voice and send through telegram.")
             ->send();
     }
+
+    public function saveVoice($voiceURL): void{
+
+    }
 }

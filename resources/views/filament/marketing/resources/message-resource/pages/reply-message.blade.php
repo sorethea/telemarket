@@ -12,10 +12,7 @@
             @endif
                 <audio id="audioPlayback" controls></audio>
         </div>
-
     </x-filament-forms::field-wrapper>
-
-
     <x-filament-panels::form.actions
         alignment="right"
         :actions="$this->getFormActions()"
@@ -39,8 +36,6 @@
             });
     });
 
-
-
     function start(mediaRecorder) {
         mediaRecorder.start();
         mediaRecorder.addEventListener('dataavailable', event => {
@@ -60,6 +55,7 @@
 
             audio.src = audioUrl;
 
+            console.log(audio.src);
         });
     }
 

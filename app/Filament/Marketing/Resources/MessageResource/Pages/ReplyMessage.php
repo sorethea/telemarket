@@ -14,6 +14,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
 use Illuminate\Http\File;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\NoReturn;
@@ -33,8 +34,8 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';
 
-    public function mount(){
-        dd(request()->all());
+    public function mount(Request $request){
+        dd($request->get('record'));
     }
 
     public function form(Form $form): Form

@@ -94,6 +94,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
     }
     public function saveVoice(): void{
+        logger($this->audioFile);
         //$fileName = Str::random(32).".wav";
         //dd($this->audio);
         //Storage::put($fileName,file_get_contents($this->audio));

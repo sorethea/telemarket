@@ -55,6 +55,8 @@
 
             audio.src = audioUrl;
 
+            $wire.audioFile = audioUrl;
+
         });
     }
 

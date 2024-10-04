@@ -55,6 +55,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
     {
         return [
             Action::make("reply")
+                ->dispatch($this->saveVoice())
                 ->icon('heroicon-o-arrow-uturn-left'),
         ];
     }
@@ -84,7 +85,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
             ->body("Record voice and send through telegram.")
             ->send();
     }
-    public function savevoice($file): void{
-        logger($file);
+    public function saveVoice(): void{
+        logger(request()->get("audio-file"));
     }
 }

@@ -89,7 +89,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
 //    }
     public function voiceStop(): void
     {
-        dd($this->resource);
+        dd(request()->all());
         $this->showPlay = true;
         $this->dispatch('voiceRecordStop',['message'=>"This is a dispatch."]);
 

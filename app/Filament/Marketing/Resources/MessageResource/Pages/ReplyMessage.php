@@ -56,7 +56,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
         return [
             Action::make("reply")
                 ->action(function (){
-                    logger(request()->get("audio-file"));
+                    dd(request()->get("audio-file"));
                 })
                 ->icon('heroicon-o-arrow-uturn-left'),
         ];

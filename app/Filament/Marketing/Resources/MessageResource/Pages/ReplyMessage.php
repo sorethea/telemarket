@@ -94,7 +94,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
 
     }
-    public function saveVoice($url): void{
+    public function saveVoice(): void{
         try{
             dd($url);
         }catch (\Exception $exception){

@@ -24,6 +24,8 @@ class ReplyMessage extends Page implements HasForms, HasActions
     public bool $showPlay = false;
     public bool $showRecord = true;
 
+    public string $audio = '';
+
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';
 
     public function form(Form $form): Form
@@ -84,7 +86,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
             ->title("Vice Record")
             ->body("Record voice and send through telegram.")
             ->send();
-        dd(request()->all());
+        dd($this->audio);
     }
     public function saveVoice(): void{
 

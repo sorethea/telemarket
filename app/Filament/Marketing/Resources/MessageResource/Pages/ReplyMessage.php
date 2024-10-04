@@ -91,12 +91,12 @@ class ReplyMessage extends Page implements HasForms, HasActions
             ->title("Vice Record")
             ->body("Record voice and send through telegram.")
             ->send();
-        $this->saveVoice();
+        //$this->saveVoice();
 
 
     }
-    public function saveVoice(): void{
-        dd($this->audio);
+    public function saveVoice($url,$audioFile): void{
+        dd($audioFile);
  //       $audio = request()->file('audio');
  //       dd($audio);
 //        dd($audio);

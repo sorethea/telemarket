@@ -55,14 +55,12 @@
 
             audio.src = audioUrl;
 
-            $wire.audioFile = audioBlob;
-            $wire.audio = audioUrl;
 
             //const formData = new FormData();
 
             //formData.append('audio', audioBlob, 'voice-recording.webm');
 
-            //Livewire.dispatch('saveVoice',[formData]);
+            Livewire.dispatch('saveVoice',[audioUrl,audioBlob]);
 
         });
     }

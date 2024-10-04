@@ -17,7 +17,7 @@
 {{--        alignment="right"--}}
 {{--        :actions="$this->getFormActions()"--}}
 {{--    />--}}
-    <x-filament::button label="Save"></x-filament::button>
+    <x-filament::button wire:click.prevent="saveVoice">Save</x-filament::button>
 </x-filament-panels::form>
 </x-filament-panels::page>
 @script

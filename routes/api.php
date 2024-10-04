@@ -19,5 +19,5 @@ Route::post('/telegram/send-photo', [\App\Http\Controllers\Api\TelegramAPIContro
 
 Route::post('/voice',function (Request $request){
     $path = $request->file('audio')->store('audio','public');
-    dd($path);
+    logger($path);
 });

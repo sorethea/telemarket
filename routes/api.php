@@ -18,11 +18,12 @@ Route::post('/telegram/send', [\App\Http\Controllers\Api\TelegramAPIController::
 Route::post('/telegram/send-photo', [\App\Http\Controllers\Api\TelegramAPIController::class,'sendPhoto']);
 
 Route::post('/voice',function (Request $request){
-    $path = $request->file('audio')->store('audio','public');
+    $paths = $request->file('audio')->store('audio','public');
     $bot=auth()->user()->bot??config('telegram.default');
     $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
-    $file = InputFile::create($path);
-    logger($path);
+    \Filament\Notifications\Notification::make('voice')
+        ->body($paths)
+        ->send();
 //    $telegram->sendVoice([
 //        'chat_id'=>1819705661,
 //        'voice'=>$file,

@@ -14,7 +14,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
 use Illuminate\Support\Facades\Storage;
-use Psy\Util\Str;
+use Illuminate\Support\Str;
 
 class ReplyMessage extends Page implements HasForms, HasActions
 {
@@ -92,8 +92,9 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
     }
     public function saveVoice(): void{
-        $fileName = \Illuminate\Support\Str::random(32).".wav";
+        $fileName = Str::random(32).".wav";
         Storage::put($fileName,file_get_contents($this->audio));
-        $this->audioFile = $fileName;
+        $this->audioFile = url($fileName);
+        logger(Storage::url($fileName));
     }
 }

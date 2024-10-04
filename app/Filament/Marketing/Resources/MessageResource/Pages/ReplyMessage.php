@@ -38,7 +38,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
         return $form
             ->schema([
             MarkdownEditor::make('text')
-                ->required(fn($get)=>empty($get("file"))),
+                ->required(fn($get)=>empty($get("file") && $get("voice"))),
             FileUpload::make('file')
                 ->multiple()
                 ->disk('public')
@@ -55,7 +55,12 @@ class ReplyMessage extends Page implements HasForms, HasActions
                     'text/plain'
                 ])
                 ->directory(fn($record)=>$record->customer_id.'/sent')
-                ->required(fn($get)=>empty($get("text"))),
+                ->required(fn($get)=>empty($get("text") && $get("voice"))),
+            FileUpload::make('voice')
+                ->disk('public')
+                ->directory(fn($record)=>$record->customer_id.'/sent')
+                ->label("Voice")
+                ->required(fn($get)=>empty($get("text") && $get("file"))),
         ]);
     }
     public function getFormActions(): array

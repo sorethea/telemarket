@@ -33,6 +33,10 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';
 
+    public function mount(){
+        dd(request()->all());
+    }
+
     public function form(Form $form): Form
     {
         return $form
@@ -89,7 +93,6 @@ class ReplyMessage extends Page implements HasForms, HasActions
 //    }
     public function voiceStop(): void
     {
-        dd(request()->all());
         $this->showPlay = true;
         $this->dispatch('voiceRecordStop',['message'=>"This is a dispatch."]);
 

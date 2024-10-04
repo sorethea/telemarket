@@ -79,9 +79,9 @@ class ReplyMessage extends Page implements HasForms, HasActions
     {
         $this->showPlay = true;
         $this->dispatch('voiceRecordStop',['message'=>"This is a dispatch."]);
-//        Notification::make('voice-record')
-//            ->title("Vice Record")
-//            ->body("Record voice and send through telegram.")
-//            ->send();
+        Notification::make('voice-record')
+            ->title("Vice Record")
+            ->body("Record voice and send through telegram.")
+            ->send();
     }
 }

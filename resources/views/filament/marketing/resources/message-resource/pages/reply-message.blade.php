@@ -31,7 +31,6 @@
                 window.addEventListener('voiceRecordStop',()=>{
                     stop(mediaRecorder);
                     mediaRecorder.stop();
-                    $wire.dispatch('sendVoice');
                 });
             });
     });
@@ -54,8 +53,7 @@
             const audio = document.getElementById('audioPlayback');
 
             audio.src = audioUrl;
-
-            $wire.on('saveVoiceRecord',{"audio":audio})
+            this.dispatch('voiceRecordSave');
         });
     }
 

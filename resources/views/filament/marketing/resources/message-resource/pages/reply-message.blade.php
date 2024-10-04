@@ -55,7 +55,7 @@
 
             audio.src = audioUrl;
 
-            $wire.audio= audioUrl;
+            sessionStorage.setItem("audioURL",audioUrl);
 
         });
     }

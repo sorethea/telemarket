@@ -22,6 +22,7 @@
 </x-filament-panels::page>
 @script
 <script>
+
     let mediaRecorder;
     let audioChunks = [];
     window.addEventListener('voiceRecordStart',()=>{

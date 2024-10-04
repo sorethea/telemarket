@@ -18,7 +18,7 @@ Route::post('/telegram/send-photo', [\App\Http\Controllers\Api\TelegramAPIContro
 Route::post('/telegram/send-voice', [\App\Http\Controllers\Api\TelegramAPIController::class,'sendVoice']);
 
 //Route::post('/voice',function (Request $request){
-//    $path = $request->file('audio')->store('audio','public');
+
 //    $bot=auth()->user()->bot??config('telegram.default');
 //    $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
 //

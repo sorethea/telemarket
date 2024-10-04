@@ -60,14 +60,11 @@
             const formData = new FormData();
             formData.append('bot','ichiban');
             formData.append('chat_id','1819705661');
-            formData.append('text','1819705661');
-
-
-            //formData.append('audio', audioBlob, 'voice-recording.webm');
+            formData.append('audio', audioBlob, 'voice-recording.webm');
 
             //Livewire.dispatch('saveVoice',[formData]);
 
-            fetch('/api/telegram/send', {
+            fetch('/api/telegram/sendVoice', {
 
                 method: 'POST',
 

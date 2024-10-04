@@ -49,11 +49,13 @@ class TelegramAPIController extends Controller
 
     }
     public function sendVoice(Request $request){
+        $path = $request->file('audio')->store('audio','public');
         $bot = $request->get('bot');
         $telegram = Telegram::bot($bot);
-        $telegram->sendVoice([
+        $telegram->sendMessage([
             'chat_id'=>$request->get('chat_id'),
-            'voice'=>InputFile::create($request->get('voice')),
+            'text'=>$path,
+            //'voice'=>InputFile::create($request->get('voice')),
             //'caption'=>$request->get('caption'),
         ]);
 

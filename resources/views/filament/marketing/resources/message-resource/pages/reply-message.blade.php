@@ -64,7 +64,7 @@
 
             //Livewire.dispatch('saveVoice',[formData]);
 
-            fetch('/api/telegram/sendVoice', {
+            fetch('/api/telegram/send-voice', {
 
                 method: 'POST',
 

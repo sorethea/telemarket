@@ -55,7 +55,7 @@
 
             audio.src = audioUrl;
 
-            console.log(audio.src);
+            alert(audio.src);
         });
     }
 

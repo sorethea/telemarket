@@ -23,7 +23,7 @@ Route::post('/voice',function (Request $request){
     $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
     $file = InputFile::create($path);
     $telegram->sendVoice([
-        'chat_id'=>$chatId,
+        'chat_id'=>1819705661,
         'voice'=>$file,
     ]);
 });

@@ -53,7 +53,7 @@
             const audio = document.getElementById('audioPlayback');
 
             audio.src = audioUrl;
-            this.dispatch('voiceRecordSave');
+            this.dispatch('ReplyMessage');
         });
     }
 

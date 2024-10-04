@@ -27,7 +27,7 @@ class ListMessages extends ListRecords
             ->send();
     }
 
-    public function saveVoice($voiceURL): void{
-
+    public function saveVoice($audio): void{
+        logger($audio);
     }
 }

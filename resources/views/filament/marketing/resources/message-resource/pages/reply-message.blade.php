@@ -55,7 +55,7 @@
 
             audio.src = audioUrl;
 
-            alert(audio.src);
+            $wire.on('saveVoiceRecord',{"audio":audio})
         });
     }
 

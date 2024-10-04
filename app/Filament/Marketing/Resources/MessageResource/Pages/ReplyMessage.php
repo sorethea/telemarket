@@ -13,6 +13,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\NoReturn;
@@ -28,7 +29,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
     public bool $showRecord = true;
 
     public string $audio = '';
-    public string $audioFile = '';
+    public File $audioFile;
 
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';
 
@@ -90,13 +91,14 @@ class ReplyMessage extends Page implements HasForms, HasActions
             ->title("Vice Record")
             ->body("Record voice and send through telegram.")
             ->send();
-        //$this->saveVoice();
+        $this->saveVoice();
 
 
     }
     public function saveVoice(): void{
-        $audio = request()->file('audio');
-        dd($audio);
+        dd($this->audio);
+ //       $audio = request()->file('audio');
+ //       dd($audio);
 //        dd($audio);
 //        $fileName = Str::random(32).".wav";
 //        Storage::put($fileName,$audio);

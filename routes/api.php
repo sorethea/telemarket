@@ -22,7 +22,7 @@ Route::post('/voice',function (Request $request){
     $bot=auth()->user()->bot??config('telegram.default');
     $telegram = \Telegram\Bot\Laravel\Facades\Telegram::bot($bot);
     $file = InputFile::create($path);
-    dd(1819705661);
+    logger($path);
 //    $telegram->sendVoice([
 //        'chat_id'=>1819705661,
 //        'voice'=>$file,

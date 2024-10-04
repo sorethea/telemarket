@@ -89,6 +89,6 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
     }
     public function saveVoice(): void{
-        dd($this);
+        dd($this->audio);
     }
 }

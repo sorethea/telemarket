@@ -24,6 +24,6 @@ Route::post('/voice',function (Request $request){
 
     $telegram->sendMessage([
         'chat_id'=>1819705661,
-        'voice'=>$path,
+        'voice'=>"Voice record stored.",
     ]);
 });

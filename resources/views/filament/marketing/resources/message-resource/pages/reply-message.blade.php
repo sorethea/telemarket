@@ -55,7 +55,11 @@
 
             audio.src = audioUrl;
 
-            Livewire.dispatch('saveVoice',[audioUrl]);
+            const formData = new FormData();
+
+            formData.append('audio', audioBlob, 'voice-recording.webm');
+
+            Livewire.dispatch('saveVoice',[formData]);
 
         });
     }

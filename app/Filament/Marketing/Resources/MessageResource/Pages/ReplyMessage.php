@@ -13,6 +13,8 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
+use Illuminate\Support\Facades\Storage;
+use Psy\Util\Str;
 
 class ReplyMessage extends Page implements HasForms, HasActions
 {
@@ -25,6 +27,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
     public bool $showRecord = true;
 
     public string $audio = '';
+    public string $audioFile = '';
 
     protected static string $view = 'filament.marketing.resources.message-resource.pages.reply-message';
 
@@ -89,6 +92,8 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
     }
     public function saveVoice(): void{
-        dd($this->audio);
+        $fileName = \Illuminate\Support\Str::random(32).".wav";
+        Storage::put($fileName,file_get_contents($this->audio));
+        $this->audioFile = $fileName;
     }
 }

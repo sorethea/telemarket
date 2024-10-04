@@ -20,7 +20,6 @@ class ListMessages extends ListRecords
 
     public function voiceRecord(): void
     {
-        dd($this->getId());
         $this->dispatch('voiceRecorder');
         Notification::make('voice-record')
             ->title("Vice Record")

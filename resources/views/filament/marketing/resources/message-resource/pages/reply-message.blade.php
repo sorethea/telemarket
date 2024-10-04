@@ -10,7 +10,7 @@
             @if($showStop)
                     <x-filament::button id="stopRecording" tooltip="{{trans('market.message.stop')}}" color="danger" icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop" />
             @endif
-                <audio wire:model="audioFile" id="audioPlayback" controls></audio>
+                <audio id="audioPlayback" controls></audio>
         </div>
     </x-filament-forms::field-wrapper>
     <x-filament-panels::form.actions
@@ -55,7 +55,7 @@
 
             audio.src = audioUrl;
 
-            @this.audioFile = audioUrl;
+            $wire.audio= audioUrl;
 
         });
     }

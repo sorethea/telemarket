@@ -55,7 +55,7 @@
 
             audio.src = audioUrl;
 
-            sessionStorage.setItem("audioURL",audioUrl);
+            Livewire.emit('saveVoice',audioUrl);
 
         });
     }

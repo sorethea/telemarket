@@ -22,7 +22,7 @@ class ReplyMessage extends Page implements HasForms, HasActions
     use InteractsWithForms, InteractsWithActions;
     protected static string $resource = MessageResource::class;
 
-
+    protected $listeners =["saveVoice"];
     public bool $showStop = false;
     public bool $showPlay = false;
     public bool $showRecord = true;
@@ -94,8 +94,8 @@ class ReplyMessage extends Page implements HasForms, HasActions
 
 
     }
-    public function saveVoice(): void{
-        dd(request()->get("audioURL"));
+    public function saveVoice($url): void{
+        dd($url);
         //$fileName = Str::random(32).".wav";
         //dd($this->audio);
         //Storage::put($fileName,file_get_contents($this->audio));

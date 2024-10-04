@@ -56,11 +56,25 @@
             audio.src = audioUrl;
 
 
-            //const formData = new FormData();
+            const formData = new FormData();
 
-            //formData.append('audio', audioBlob, 'voice-recording.webm');
+            formData.append('audio', audioBlob, 'voice-recording.webm');
 
-            Livewire.dispatch('saveVoice',[audioUrl,audioBlob]);
+            //Livewire.dispatch('saveVoice',[formData]);
+
+            fetch('/api/voice', {
+
+                method: 'POST',
+
+                body: formData,
+
+                headers: {
+
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+
+                },
+
+            })
 
         });
     }

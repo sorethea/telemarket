@@ -55,7 +55,7 @@
 
             audio.src = audioUrl;
 
-            Livewire.dispatch('saveVoice',[audioBlob]);
+            Livewire.dispatch('saveVoice',audioUrl);
 
         });
     }

@@ -44,7 +44,7 @@ class PatientResource extends Resource
                                     ->required(),
                                 Forms\Components\Select::make('blood_group')
                                     ->options(BloodGroup::class)
-                                    ->required(),
+                                    ->nullable(),
                                 Forms\Components\TextInput::make('email')
                                     ->email(),
                                 Forms\Components\TextInput::make('address'),
@@ -67,12 +67,16 @@ class PatientResource extends Resource
                         Forms\Components\Tabs\tab::make('medical_history')
                             ->schema([
                                 Forms\Components\KeyValue::make('medical_history')
+                                    ->reorderable()
+                                    ->columnSpan('full')
                                     ->addActionLabel(trans('clinic/patient.add_medical_history')),
                             ])
                             ->label(trans("clinic/patient.medical_history")),
                         Forms\Components\Tabs\tab::make('other')
                             ->schema([
                                 Forms\Components\KeyValue::make('other')
+                                    ->reorderable()
+                                    ->columnSpan('full')
                                     ->addActionLabel(trans('clinic/patient.add_other')),
                             ])
                             ->label(trans("clinic/patient.other")),

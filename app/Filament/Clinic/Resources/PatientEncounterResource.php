@@ -19,6 +19,11 @@ class PatientEncounterResource extends Resource
 
     protected static ?string $navigationIcon = 'healthicons-o-stethoscope';
 
+    public static function getNavigationLabel(): string
+    {
+        return trans("clinic/patient.patient_encounter");
+    }
+
     public static function form(Form $form): Form
     {
         return $form

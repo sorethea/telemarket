@@ -24,12 +24,15 @@ class PatientResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make("general")->schema([
-                    Forms\Components\TextInput::make('phone_number')
-                        ->tel()
-                        ->required(),
+
                     Forms\Components\TextInput::make('first_name')
                         ->required(),
                     Forms\Components\TextInput::make('last_name')
+                        ->required(),
+                    Forms\Components\TextInput::make('phone_number')
+                        ->tel()
+                        ->required(),
+                    Forms\Components\DatePicker::make('date_of_birth')
                         ->required(),
                     Forms\Components\TextInput::make('gender')
                         ->required(),
@@ -40,8 +43,8 @@ class PatientResource extends Resource
                     Forms\Components\TextInput::make('address'),
                     Forms\Components\TextInput::make('city'),
                     Forms\Components\TextInput::make('country'),
-                    Forms\Components\DatePicker::make('date_of_birth')
-                        ->required(),
+
+
                 ])->columns(2),
 
                 Forms\Components\Textarea::make('personal_history')

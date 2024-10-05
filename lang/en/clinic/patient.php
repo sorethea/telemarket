@@ -6,6 +6,7 @@ return [
     "medical_history"=>"Medical History",
     "add_medical_history"=>"Add Medical History",
     "other"=>"Other",
+    "add_other"=>"Add Other",
     "male"=>"Male",
     "female"=>"Female",
     "a+"=>"A+",

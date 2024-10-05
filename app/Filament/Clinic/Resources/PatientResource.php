@@ -56,12 +56,20 @@ class PatientResource extends Resource
                         Forms\Components\Tabs\tab::make('personal_history')
                             ->schema([
                                 Forms\Components\KeyValue::make('personal_history')
-                                    ->addActionLabel(trans('clinic/patient.personal_history'))
+                                    ->addActionLabel(trans('clinic/patient.add_personal_history')),
                             ])
                             ->label(trans("clinic/patient.personal_history")),
                         Forms\Components\Tabs\tab::make('medical_history')
+                            ->schema([
+                                Forms\Components\KeyValue::make('medical_history')
+                                    ->addActionLabel(trans('clinic/patient.add_medical_history')),
+                            ])
                             ->label(trans("clinic/patient.medical_history")),
                         Forms\Components\Tabs\tab::make('other')
+                            ->schema([
+                                Forms\Components\KeyValue::make('other')
+                                    ->addActionLabel(trans('clinic/patient.add_other')),
+                            ])
                             ->label(trans("clinic/patient.other")),
                     ])->activeTab(1),
 

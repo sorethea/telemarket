@@ -42,7 +42,7 @@ class PatientResource extends Resource
                     Forms\Components\TextInput::make('country'),
                     Forms\Components\DatePicker::make('date_of_birth')
                         ->required(),
-                ]),
+                ])->columns(2),
 
                 Forms\Components\Textarea::make('personal_history')
                     ->columnSpanFull(),

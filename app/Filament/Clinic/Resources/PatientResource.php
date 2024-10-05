@@ -57,7 +57,7 @@ class PatientResource extends Resource
                                 Forms\Components\KeyValue::make('personal_history')
                                     ->addActionLabel(trans('clinic/patient.add_personal_history'))
                                     ->default([
-                                        'Marital Status'=>'',
+                                        'Marital Status'=>'Single, Married, Divorce, Partner',
                                     ]),
                             ])
                             ->label(trans("clinic/patient.personal_history")),

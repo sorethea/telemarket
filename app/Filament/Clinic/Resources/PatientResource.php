@@ -44,8 +44,7 @@ class PatientResource extends Resource
                     Forms\Components\TextInput::make('city'),
                     Forms\Components\TextInput::make('country'),
 
-
-                ])->columns(2),
+                ])->tap()->columns(2),
 
                 Forms\Components\Textarea::make('personal_history')
                     ->columnSpanFull(),

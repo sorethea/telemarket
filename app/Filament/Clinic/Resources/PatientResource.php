@@ -23,35 +23,37 @@ class PatientResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make("general")->schema([
+                Forms\Components\Tabs::make("Patient")
+                    ->tabs([
+                        Forms\Components\Tabs::make("General")
+                            ->schema([
 
-                    Forms\Components\TextInput::make('first_name')
-                        ->required(),
-                    Forms\Components\TextInput::make('last_name')
-                        ->required(),
-                    Forms\Components\TextInput::make('phone_number')
-                        ->tel()
-                        ->required(),
-                    Forms\Components\DatePicker::make('date_of_birth')
-                        ->required(),
-                    Forms\Components\TextInput::make('gender')
-                        ->required(),
-                    Forms\Components\TextInput::make('blood_group')
-                        ->required(),
-                    Forms\Components\TextInput::make('email')
-                        ->email(),
-                    Forms\Components\TextInput::make('address'),
-                    Forms\Components\TextInput::make('city'),
-                    Forms\Components\TextInput::make('country'),
+                                Forms\Components\TextInput::make('first_name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('last_name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('phone_number')
+                                    ->tel()
+                                    ->required(),
+                                Forms\Components\DatePicker::make('date_of_birth')
+                                    ->required(),
+                                Forms\Components\TextInput::make('gender')
+                                    ->required(),
+                                Forms\Components\TextInput::make('blood_group')
+                                    ->required(),
+                                Forms\Components\TextInput::make('email')
+                                    ->email(),
+                                Forms\Components\TextInput::make('address'),
+                                Forms\Components\TextInput::make('city'),
+                                Forms\Components\TextInput::make('country'),
 
-                ])->tap()->columns(2),
+                            ])->columns(2),
+                        Forms\Components\tabs::make('personal_history'),
+                        Forms\Components\tabs::make('medical_history'),
+                        Forms\Components\tabs::make('other'),
+                    ]),
 
-                Forms\Components\Textarea::make('personal_history')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('medical_history')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('other')
-                    ->columnSpanFull(),
+
             ]);
     }
 

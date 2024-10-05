@@ -7,13 +7,12 @@ use App\Filament\Clinic\Resources\PatientResource\RelationManagers;
 use App\Models\Patient;
 use App\Options\BloodGroup;
 use App\Options\Gender;
+use App\Options\MaritalStatus;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PatientResource extends Resource
 {
@@ -56,7 +55,10 @@ class PatientResource extends Resource
                         Forms\Components\Tabs\tab::make('personal_history')
                             ->schema([
                                 Forms\Components\KeyValue::make('personal_history')
-                                    ->addActionLabel(trans('clinic/patient.add_personal_history')),
+                                    ->addActionLabel(trans('clinic/patient.add_personal_history'))
+                                    ->default([
+                                        'marital_status'=>MaritalStatus::class,
+                                    ]),
                             ])
                             ->label(trans("clinic/patient.personal_history")),
                         Forms\Components\Tabs\tab::make('medical_history')

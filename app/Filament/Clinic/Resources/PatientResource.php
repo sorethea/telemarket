@@ -23,9 +23,9 @@ class PatientResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Tabs::make("Patient")
+                Forms\Components\Tabs::make("patient")
                     ->tabs([
-                        Forms\Components\Tabs\Tab::make("General")
+                        Forms\Components\Tabs\Tab::make("general")
                             ->schema([
 
                                 Forms\Components\TextInput::make('first_name')
@@ -51,10 +51,10 @@ class PatientResource extends Resource
                         Forms\Components\Tabs\tab::make('personal_history'),
                         Forms\Components\Tabs\tab::make('medical_history'),
                         Forms\Components\Tabs\tab::make('other'),
-                    ]),
+                    ])->activeTab(1),
 
 
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table

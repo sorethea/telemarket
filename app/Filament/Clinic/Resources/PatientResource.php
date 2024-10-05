@@ -26,6 +26,7 @@ class PatientResource extends Resource
                 Forms\Components\Tabs::make("patient")
                     ->tabs([
                         Forms\Components\Tabs\Tab::make("general")
+                            ->label(trans("clinic/patient.general"))
                             ->schema([
 
                                 Forms\Components\TextInput::make('first_name')
@@ -48,9 +49,12 @@ class PatientResource extends Resource
                                 Forms\Components\TextInput::make('country'),
 
                             ])->columns(2),
-                        Forms\Components\Tabs\tab::make('personal_history'),
-                        Forms\Components\Tabs\tab::make('medical_history'),
-                        Forms\Components\Tabs\tab::make('other'),
+                        Forms\Components\Tabs\tab::make('personal_history')
+                            ->label(trans("clinic/patient.personal_history")),
+                        Forms\Components\Tabs\tab::make('medical_history')
+                            ->label(trans("clinic/patient.medical_history")),
+                        Forms\Components\Tabs\tab::make('other')
+                            ->label(trans("clinic/patient.other")),
                     ])->activeTab(1),
 
 

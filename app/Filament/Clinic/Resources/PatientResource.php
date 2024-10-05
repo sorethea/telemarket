@@ -23,24 +23,27 @@ class PatientResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('phone_number')
-                    ->tel()
-                    ->required(),
-                Forms\Components\TextInput::make('first_name')
-                    ->required(),
-                Forms\Components\TextInput::make('last_name')
-                    ->required(),
-                Forms\Components\TextInput::make('gender')
-                    ->required(),
-                Forms\Components\TextInput::make('blood_group')
-                    ->required(),
-                Forms\Components\TextInput::make('email')
-                    ->email(),
-                Forms\Components\TextInput::make('address'),
-                Forms\Components\TextInput::make('city'),
-                Forms\Components\TextInput::make('country'),
-                Forms\Components\DatePicker::make('date_of_birth')
-                    ->required(),
+                Forms\Components\Section::make("general")->schema([
+                    Forms\Components\TextInput::make('phone_number')
+                        ->tel()
+                        ->required(),
+                    Forms\Components\TextInput::make('first_name')
+                        ->required(),
+                    Forms\Components\TextInput::make('last_name')
+                        ->required(),
+                    Forms\Components\TextInput::make('gender')
+                        ->required(),
+                    Forms\Components\TextInput::make('blood_group')
+                        ->required(),
+                    Forms\Components\TextInput::make('email')
+                        ->email(),
+                    Forms\Components\TextInput::make('address'),
+                    Forms\Components\TextInput::make('city'),
+                    Forms\Components\TextInput::make('country'),
+                    Forms\Components\DatePicker::make('date_of_birth')
+                        ->required(),
+                ]),
+
                 Forms\Components\Textarea::make('personal_history')
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('medical_history')

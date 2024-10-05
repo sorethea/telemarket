@@ -56,6 +56,8 @@ class PatientResource extends Resource
                             ->schema([
                                 Forms\Components\KeyValue::make('personal_history')
                                     ->addActionLabel(trans('clinic/patient.add_personal_history'))
+                                    ->reorderable()
+                                    ->columnSpan('full')
                                     ->default([
                                         'Marital Status'=>'Single, Married, Divorce, Partner',
                                     ]),

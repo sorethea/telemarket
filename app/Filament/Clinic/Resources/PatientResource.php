@@ -5,6 +5,7 @@ namespace App\Filament\Clinic\Resources;
 use App\Filament\Clinic\Resources\PatientResource\Pages;
 use App\Filament\Clinic\Resources\PatientResource\RelationManagers;
 use App\Models\Patient;
+use App\Options\Gender;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -38,7 +39,8 @@ class PatientResource extends Resource
                                     ->required(),
                                 Forms\Components\DatePicker::make('date_of_birth')
                                     ->required(),
-                                Forms\Components\TextInput::make('gender')
+                                Forms\Components\Select::make('gender')
+                                    ->options(Gender::class)
                                     ->required(),
                                 Forms\Components\TextInput::make('blood_group')
                                     ->required(),

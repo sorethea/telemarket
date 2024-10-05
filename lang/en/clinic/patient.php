@@ -6,4 +6,12 @@ return [
     "other"=>"Other",
     "male"=>"Male",
     "female"=>"Female",
+    "a+"=>"A+",
+    "b+"=>"B+",
+    "ab+"=>"AB+",
+    "o+"=>"O+",
+    "a-"=>"A-",
+    "b-"=>"B-",
+    "ab-"=>"AB-",
+    "o-"=>"O-",
 ];

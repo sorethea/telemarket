@@ -7,6 +7,8 @@ return [
     "add_medical_history"=>"Add Medical History",
     "other"=>"Other",
     "add_other"=>"Add Other",
+    "occupation"=>"Occupation",
+    "marital_status"=>"Marital Status",
     "single"=>"Single",
     "married"=>"Married",
     "divorced"=>"Divorced",

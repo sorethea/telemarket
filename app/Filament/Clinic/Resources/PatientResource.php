@@ -59,7 +59,8 @@ class PatientResource extends Resource
                                     ->reorderable()
                                     ->columnSpan('full')
                                     ->default([
-                                        'Marital Status'=>'Single, Married, Divorce, Partner',
+                                        trans('clinic/patient.occupation')=>'',
+                                        trans('clinic/patient.marital_status')=>'',
                                     ]),
                             ])
                             ->label(trans("clinic/patient.personal_history")),

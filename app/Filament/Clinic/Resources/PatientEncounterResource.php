@@ -10,7 +10,9 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PatientEncounterResource extends Resource
@@ -21,7 +23,12 @@ class PatientEncounterResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return trans("clinic/patient.patient_encounter");
+        return trans("clinic/patient.patient_encounters");
+    }
+
+    public static function getRecordTitle(?Model $record): string|Htmlable|null
+    {
+        return trans("clinic/patient.patient_encounters");
     }
 
     public static function form(Form $form): Form

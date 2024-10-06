@@ -26,11 +26,6 @@ class PatientEncounterResource extends Resource
         return trans("clinic/patient.patient_encounters");
     }
 
-    public static function getRecordTitle(?Model $record): string|Htmlable|null
-    {
-        return trans("clinic/patient.patient_encounters");
-    }
-
     public static function getLabel(): ?string
     {
         return trans("clinic/patient.patient_encounters");
@@ -40,19 +35,21 @@ class PatientEncounterResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('patient_id')
-                    ->relationship('patient', 'id')
-                    ->required(),
-                Forms\Components\Select::make('provider_id')
-                    ->relationship('provider', 'id')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('encounter_date')
-                    ->required(),
-                Forms\Components\Textarea::make('symptoms')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('diagnosis')
-                    ->columnSpanFull(),
+                Forms\Components\Section::make([
+                    Forms\Components\Select::make('patient_id')
+                        ->relationship('patient', 'id')
+                        ->required(),
+                    Forms\Components\Select::make('provider_id')
+                        ->relationship('provider', 'id')
+                        ->required(),
+                    Forms\Components\DateTimePicker::make('encounter_date')
+                        ->required(),
+                    Forms\Components\Textarea::make('symptoms')
+                        ->required()
+                        ->columnSpanFull(),
+                    Forms\Components\Textarea::make('diagnosis')
+                        ->columnSpanFull(),
+                ])
             ]);
     }
 

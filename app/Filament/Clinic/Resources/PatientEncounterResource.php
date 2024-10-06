@@ -31,6 +31,11 @@ class PatientEncounterResource extends Resource
         return trans("clinic/patient.patient_encounters");
     }
 
+    public static function getLabel(): ?string
+    {
+        return trans("clinic/patient.patient_encounters");
+    }
+
     public static function form(Form $form): Form
     {
         return $form

@@ -47,7 +47,7 @@ class ViewMessage extends ViewRecord
                         ->view("livewire.voice-reply")
                 ])
                 ->modalSubmitAction(function ($record){
-                    return $record==52;
+                    return $record->replyMessages->where('status','draft');
                 })
                 ->modalSubmitActionLabel('Reply')
                 ->modal(),

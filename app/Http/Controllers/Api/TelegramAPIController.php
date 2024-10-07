@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Filament\Marketing\Resources\MessageResource\Pages\ReplyMessage;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Message;
+use App\Models\ReplyMessage;
 use App\Models\User;
 use App\Traits\MessageTrait;
 use Filament\Notifications\Notification;

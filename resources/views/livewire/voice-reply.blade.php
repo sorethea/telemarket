@@ -36,9 +36,9 @@
 
     function start(mediaRecorder) {
         mediaRecorder.start();
-        // mediaRecorder.addEventListener('dataavailable', event => {
-        //     audioChunks.push(event.data);
-        // });
+        mediaRecorder.addEventListener('dataavailable', event => {
+            audioChunks.stop(event.data);
+        });
 
     }
 

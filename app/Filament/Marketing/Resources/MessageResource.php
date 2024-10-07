@@ -100,115 +100,115 @@ class MessageResource extends Resource implements HasShieldPermissions
             ->defaultSort('created_at', 'desc')
             ->filters([
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\ViewAction::make(),
-                    Tables\Actions\Action::make("reply")
-                        ->icon('heroicon-o-arrow-uturn-left')
-                        ->url(fn($record)=>"/messages/{$record->id}/reply"),
-
-
+//            ->actions([
+//                Tables\Actions\ActionGroup::make([
+//                    Tables\Actions\ViewAction::make(),
 //                    Tables\Actions\Action::make("reply")
 //                        ->icon('heroicon-o-arrow-uturn-left')
+//                        ->url(fn($record)=>"/messages/{$record->id}/reply"),
+//
+//
+////                    Tables\Actions\Action::make("reply")
+////                        ->icon('heroicon-o-arrow-uturn-left')
+////                        ->form([
+////                            Forms\Components\MarkdownEditor::make('text')
+////                                ->required(fn($get)=>empty($get("file"))),
+////                            Forms\Components\FileUpload::make('file')
+////                                ->multiple()
+////                                ->disk('public')
+////                                ->acceptedFileTypes([
+////                                    'image/jpg',
+////                                    'image/npg',
+////                                    'image/gif',
+////                                    'audio/ogg',
+////                                    'audio/oga',
+////                                    'video/mpeg',
+////                                    'video/mp4',
+////                                    'application/pdf',
+////                                    'application/zip',
+////                                    'text/plain'
+////                                ])
+////                                ->directory(fn($record)=>$record->customer_id.'/sent')
+////                                ->required(fn($get)=>empty($get("text"))),
+//////                            \App\Forms\Components\VoiceRecorder::make("voice")
+//////                                ->label("Voice Recorder")
+//////                                ->required(),
+////                            Forms\Components\ViewField::make('voice-record')
+////                                ->label("Voice Record")
+////                                ->viewData(['chatId'=>static::getRecordRouteKeyName()])
+////                                ->view('livewire.voice-recorder')
+////                        ])
+////                        ->action(function (array $data,$record){
+////                            $telegram = Telegram::bot(auth()->user()->bot);
+////                            if(!empty($text=$data['text'])){
+////                                $telegram->sendMessage([
+////                                    'chat_id'=>$record->customer_id,
+////                                    'parse_mode'=>'markdown',
+////                                    'text'=>$data['text']
+////                                ]);
+////                            }
+////                            if(!empty($fileNames=$data["file"])){
+////                                foreach ($fileNames as $fileName){
+////                                    $fileNameArray = explode(".",$fileName);
+////                                    $extension = end($fileNameArray);
+////                                    $file = InputFile::create('storage/'.$fileName);
+////                                    switch ($extension){
+////                                        case 'jpg':
+////                                        case 'png':
+////                                        case 'gif':
+////                                            $telegram->sendPhoto([
+////                                                'chat_id'=>$record->customer_id,
+////                                                'photo'=>$file,
+////                                            ]);
+////                                            break;
+////                                        case 'mp4':
+////                                            $telegram->sendVideo([
+////                                                'chat_id'=>$record->customer_id,
+////                                                'video'=>$file,
+////                                            ]);
+////                                            break;
+////                                        case 'ogg':
+////                                        case 'oga':
+////                                            $telegram->sendVoice([
+////                                                'chat_id'=>$record->customer_id,
+////                                                'voice'=>$file,
+////                                            ]);
+////                                            break;
+////                                        default:
+////                                            $telegram->sendDocument([
+////                                                'chat_id'=>$record->customer_id,
+////                                                'document'=>$file,
+////                                            ]);
+////                                    }
+////                                }
+////
+////
+////                            }
+////
+////                        })
+////                        ->modalSubmitActionLabel(trans('market.telegram.send')),
+//                    Tables\Actions\Action::make("forward")
+//                        ->icon('heroicon-o-arrow-uturn-right')
 //                        ->form([
-//                            Forms\Components\MarkdownEditor::make('text')
-//                                ->required(fn($get)=>empty($get("file"))),
-//                            Forms\Components\FileUpload::make('file')
-//                                ->multiple()
-//                                ->disk('public')
-//                                ->acceptedFileTypes([
-//                                    'image/jpg',
-//                                    'image/npg',
-//                                    'image/gif',
-//                                    'audio/ogg',
-//                                    'audio/oga',
-//                                    'video/mpeg',
-//                                    'video/mp4',
-//                                    'application/pdf',
-//                                    'application/zip',
-//                                    'text/plain'
-//                                ])
-//                                ->directory(fn($record)=>$record->customer_id.'/sent')
-//                                ->required(fn($get)=>empty($get("text"))),
-////                            \App\Forms\Components\VoiceRecorder::make("voice")
-////                                ->label("Voice Recorder")
-////                                ->required(),
-//                            Forms\Components\ViewField::make('voice-record')
-//                                ->label("Voice Record")
-//                                ->viewData(['chatId'=>static::getRecordRouteKeyName()])
-//                                ->view('livewire.voice-recorder')
+//                            Forms\Components\Select::make('customer')
+//                                ->label(trans('market.telegram.send_to'))
+//                                ->options(fn()=>Customer::where("bot",auth()->user()->bot)->where("is_forward",true)->pluck("name","id"))
+//                                ->multiple(),
 //                        ])
-//                        ->action(function (array $data,$record){
-//                            $telegram = Telegram::bot(auth()->user()->bot);
-//                            if(!empty($text=$data['text'])){
-//                                $telegram->sendMessage([
-//                                    'chat_id'=>$record->customer_id,
-//                                    'parse_mode'=>'markdown',
-//                                    'text'=>$data['text']
-//                                ]);
-//                            }
-//                            if(!empty($fileNames=$data["file"])){
-//                                foreach ($fileNames as $fileName){
-//                                    $fileNameArray = explode(".",$fileName);
-//                                    $extension = end($fileNameArray);
-//                                    $file = InputFile::create('storage/'.$fileName);
-//                                    switch ($extension){
-//                                        case 'jpg':
-//                                        case 'png':
-//                                        case 'gif':
-//                                            $telegram->sendPhoto([
-//                                                'chat_id'=>$record->customer_id,
-//                                                'photo'=>$file,
-//                                            ]);
-//                                            break;
-//                                        case 'mp4':
-//                                            $telegram->sendVideo([
-//                                                'chat_id'=>$record->customer_id,
-//                                                'video'=>$file,
-//                                            ]);
-//                                            break;
-//                                        case 'ogg':
-//                                        case 'oga':
-//                                            $telegram->sendVoice([
-//                                                'chat_id'=>$record->customer_id,
-//                                                'voice'=>$file,
-//                                            ]);
-//                                            break;
-//                                        default:
-//                                            $telegram->sendDocument([
-//                                                'chat_id'=>$record->customer_id,
-//                                                'document'=>$file,
-//                                            ]);
-//                                    }
-//                                }
-//
-//
-//                            }
-//
-//                        })
 //                        ->modalSubmitActionLabel(trans('market.telegram.send')),
-                    Tables\Actions\Action::make("forward")
-                        ->icon('heroicon-o-arrow-uturn-right')
-                        ->form([
-                            Forms\Components\Select::make('customer')
-                                ->label(trans('market.telegram.send_to'))
-                                ->options(fn()=>Customer::where("bot",auth()->user()->bot)->where("is_forward",true)->pluck("name","id"))
-                                ->multiple(),
-                        ])
-                        ->modalSubmitActionLabel(trans('market.telegram.send')),
-               ]),
-
-//                Tables\Actions\EditAction::make(),
-//                \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('media')
-//                    ->visible(fn($record):bool=>$record->is_media)
-//                    ->media(fn($record)=>Storage::url($record->file))
-//                    ->icon('heroicon-o-eye'),
-//                Tables\Actions\Action::make("download")
-//                    ->visible(fn($record):bool=>$record->is_download)
-//                    ->url(fn($record):string=>Storage::url($record->file))
-//                    ->openUrlInNewTab()
-//                    ->icon('heroicon-o-arrow-down-tray'),
-            ])
+//               ]),
+//
+////                Tables\Actions\EditAction::make(),
+////                \Hugomyb\FilamentMediaAction\Tables\Actions\MediaAction::make('media')
+////                    ->visible(fn($record):bool=>$record->is_media)
+////                    ->media(fn($record)=>Storage::url($record->file))
+////                    ->icon('heroicon-o-eye'),
+////                Tables\Actions\Action::make("download")
+////                    ->visible(fn($record):bool=>$record->is_download)
+////                    ->url(fn($record):string=>Storage::url($record->file))
+////                    ->openUrlInNewTab()
+////                    ->icon('heroicon-o-arrow-down-tray'),
+//            ])
             ->bulkActions([
 //                Tables\Actions\BulkActionGroup::make([
 //                    Tables\Actions\DeleteBulkAction::make(),
@@ -226,7 +226,7 @@ class MessageResource extends Resource implements HasShieldPermissions
     {
         return [
             'index' => Pages\ListMessages::route('/'),
-            'reply' => Pages\ReplyMessage::route('/{record}/reply'),
+            //'reply' => Pages\ReplyMessage::route('/{record}/reply'),
             'view' => Pages\ViewMessage::route('/{record}'),
 //            'create' => Pages\CreateMessage::route('/create'),
             //'edit' => Pages\EditMessage::route('/{record}/edit'),

@@ -75,7 +75,6 @@
                 },
 
             })
-            formData.delete('audio');
         });
     }
 

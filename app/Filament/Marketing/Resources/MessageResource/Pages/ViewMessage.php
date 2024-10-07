@@ -65,7 +65,7 @@ class ViewMessage extends ViewRecord
                     $replyMessage->status="sent";
                     $replyMessage->type="text";
                     $replyMessage->text=$data["text"];
-                    $this->record->replyMessages()->save($replyMessage);
+                    $this->record->customer()->replyMessages()->save($replyMessage);
                 })
                 ->modal(),
 
@@ -92,7 +92,7 @@ class ViewMessage extends ViewRecord
                         $replyMessage->status="sent";
                         $replyMessage->type="document";
                         $replyMessage->file=$file;
-                        $this->record->replyMessages()->save($replyMessage);
+                        $this->record->customer()->replyMessages()->save($replyMessage);
                     }
                 })
                 ->modal(),
@@ -106,7 +106,7 @@ class ViewMessage extends ViewRecord
                 ->tooltip(trans('market.message.voice_reply'))
                 ->modalSubmitActionLabel('Reply')
                 ->action(function ($record){
-                    $record->replyMessages->where("type","voice")->where("status","draft")->each( function ($reply) use($record){
+                    $record->customer->replyMessages->where("type","voice")->where("status","draft")->each( function ($reply) use($record){
                         $telegram = Telegram::bot($record->bot);
                         $telegram->sendVoice([
                             'chat_id'=>$record->customer_id,

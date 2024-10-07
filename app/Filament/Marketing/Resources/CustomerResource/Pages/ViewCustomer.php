@@ -48,7 +48,7 @@ class ViewCustomer extends ViewRecord
                 ->action(function ($data){
                     $telegram = Telegram::bot($this->record->bot);
                     $telegram->sendMessage([
-                        'chat_id'=>$this->record->customer_id,
+                        'chat_id'=>$this->record->id,
                         'text'=>$data["text"],
                     ]);
                     $replyMessage = new \App\Models\ReplyMessage();
@@ -75,7 +75,7 @@ class ViewCustomer extends ViewRecord
                     $files = $data["files"];
                     foreach ($files as $file){
                         $telegram->sendDocument([
-                            'chat_id'=>$this->record->customer_id,
+                            'chat_id'=>$this->record->id,
                             'document'=>InputFile::create("storage/".$file),
                         ]);
                         $replyMessage = new \App\Models\ReplyMessage();
@@ -99,7 +99,7 @@ class ViewCustomer extends ViewRecord
                     $record->replyMessages->where("type","voice")->where("status","draft")->each( function ($reply) use($record){
                         $telegram = Telegram::bot($record->bot);
                         $telegram->sendVoice([
-                            'chat_id'=>$record->customer_id,
+                            'chat_id'=>$record->id,
                             'voice'=>InputFile::create('storage/'.$reply->file),
                         ]);
                         $reply->status = "sent";

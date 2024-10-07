@@ -33,4 +33,8 @@ class Customer extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function replyMessages(): HasMany{
+        return $this->hasMany(ReplyMessage::class);
+    }
 }

@@ -53,7 +53,4 @@ class Message extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function replyMessages(): HasMany{
-        return $this->hasMany(ReplyMessage::class);
-    }
 }

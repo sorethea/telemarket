@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reply_messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('message_id');
+            $table->foreignId('customer_id');
             $table->string('status');
             $table->string('type')->nullable();
             $table->string('text')->nullable();

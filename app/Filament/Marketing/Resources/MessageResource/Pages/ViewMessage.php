@@ -59,6 +59,8 @@ class ViewMessage extends ViewRecord
                             'chat_id'=>$record->customer_id,
                             'voice'=>InputFile::create('storage/'.$reply->file),
                         ]);
+                        $reply->status = "sent";
+                        $reply->save();
                     });
                 })
                 ->modal(),

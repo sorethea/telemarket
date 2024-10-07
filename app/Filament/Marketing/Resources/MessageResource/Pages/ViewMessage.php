@@ -117,8 +117,8 @@ class ViewMessage extends ViewRecord
                         $reply->status = "sent";
                         $reply->save();
                     });
+                    return redirect(request()->header('Referer'));
                 })
-                ->resetFormData()
                 ->modal(),
 
         ];

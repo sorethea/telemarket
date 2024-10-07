@@ -22,11 +22,17 @@ class ViewCustomer extends ViewRecord
 
     public $customerId;
 
+    public function mount(int|string $record): void
+    {
+        parent::mount($record);
+        $this->customerId = $record;
+    }
+
     public function voiceRecord(): void
     {
         $this->dispatch('voiceRecordStart',['message'=>"This is a dispatch."]);
         $this->showStop = true;
-        $this->customerId = $this->record->id;
+
     }
 
     public function voiceStop(): void

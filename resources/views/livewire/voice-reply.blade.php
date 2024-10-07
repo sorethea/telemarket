@@ -30,6 +30,7 @@
                 start(mediaRecorder);
                 window.addEventListener('voiceRecordStop',()=>{
                     stop(mediaRecorder);
+                    mediaRecorder.pause();
                 });
             });
     });
@@ -37,7 +38,7 @@
     function start(mediaRecorder) {
         mediaRecorder.start();
         mediaRecorder.addEventListener('dataavailable', event => {
-            audioChunks = [];
+            //audioChunks = [];
             audioChunks.push(event.data);
         });
 
@@ -74,7 +75,7 @@
                 },
 
             })
-            mediaRecorder.pause();
+
         });
     }
 

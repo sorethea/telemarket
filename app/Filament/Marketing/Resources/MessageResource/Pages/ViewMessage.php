@@ -3,6 +3,7 @@
 namespace App\Filament\Marketing\Resources\MessageResource\Pages;
 
 use App\Filament\Marketing\Resources\MessageResource;
+use App\Livewire\VoiceReply;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\ViewRecord;
@@ -15,6 +16,7 @@ class ViewMessage extends ViewRecord
     {
         return[
             Action::make("voice")
+                ->view(VoiceReply::class)
                 ->modal(),
         ];
     }

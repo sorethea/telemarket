@@ -34,7 +34,17 @@ class MessagesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('chat_id')
             ->columns([
-                Tables\Columns\TextColumn::make('text'),
+                Tables\Columns\TextColumn::make('text')
+                    ->getStateUsing(function ($record){
+                        if(empty($record->text)){
+                            return $record->file_name??$record->file;
+                        }
+                        return $record->text;
+                    })
+                    ->limit(35)
+                    ->icon('heroicon-o-question-mark-circle')
+                    ->iconPosition('after')
+                    ->tooltip(fn($state)=>$state),
                 Tables\Columns\TextColumn::make('type'),
                 Tables\Columns\TextColumn::make('created_at')->since(),
             ])

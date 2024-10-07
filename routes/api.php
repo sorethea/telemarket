@@ -15,7 +15,7 @@ Route::get('/user', function (Request $request) {
 Route::post('/{token}/webhook', [\App\Http\Controllers\Api\TelegramAPIController::class,'webhook']);
 Route::post('/telegram/send', [\App\Http\Controllers\Api\TelegramAPIController::class,'send']);
 Route::post('/telegram/send-photo', [\App\Http\Controllers\Api\TelegramAPIController::class,'sendPhoto']);
-Route::post('/telegram/send-voice', [\App\Http\Controllers\Api\TelegramAPIController::class,'sendVoice']);
+Route::post('/telegram/save-voice', [\App\Http\Controllers\Api\TelegramAPIController::class,'saveVoice']);
 
 //Route::post('/voice',function (Request $request){
 

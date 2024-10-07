@@ -50,7 +50,7 @@ class ViewMessage extends ViewRecord
                 ])
                 ->modalSubmitActionLabel('Reply')
                 ->action(function ($record){
-                    $record->replyMessage->where("type","voice")->where("status","draft")->each( function ($reply) use($record){
+                    $record->replyMessages->where("type","voice")->where("status","draft")->each( function ($reply) use($record){
                         $telegram = Telegram::bot($record->bot);
                         $telegram->sendVoice([
                             'chat_id'=>$record->customer_id,

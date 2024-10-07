@@ -30,7 +30,7 @@
                 start(mediaRecorder);
                 window.addEventListener('voiceRecordStop',()=>{
                     stop(mediaRecorder);
-                    mediaRecorder.pause();
+                    mediaRecorder.stop();
                 });
             });
     });

@@ -57,7 +57,7 @@
 
             const formData = new FormData();
             // formData.append('bot','ichiban');
-            formData.append('message_id',{{$this->messageId}});
+            formData.append('customer_id',{{$this->customerId}});
             formData.append('audio', audioBlob, 'voice-recording.webm');
 
 

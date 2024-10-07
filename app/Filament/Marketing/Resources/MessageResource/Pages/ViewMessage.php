@@ -4,6 +4,7 @@ namespace App\Filament\Marketing\Resources\MessageResource\Pages;
 
 use App\Filament\Marketing\Resources\MessageResource;
 
+use App\Models\Message;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
@@ -21,13 +22,14 @@ class ViewMessage extends ViewRecord
     public bool $showRecord = true;
     public bool $showStop = false;
 
-    public int $messageId;
+    public int $customerId;
 
     public function mount(int|string $record): void
     {
         parent::mount($record);
+        $message =Message::find($record);
 
-        $this->messageId = $record;
+        $this->customerId = $message->customer_id;
     }
 
     public function voiceRecord(): void

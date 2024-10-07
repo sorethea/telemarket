@@ -6,6 +6,7 @@ use App\Filament\Marketing\Resources\MessageResource;
 use App\Livewire\VoiceReply;
 use Filament\Actions;
 use Filament\Actions\Action;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\ViewField;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
@@ -43,6 +44,17 @@ class ViewMessage extends ViewRecord
     protected function getHeaderActions(): array
     {
         return[
+            Action::make("text")
+                ->form([
+                    MarkdownEditor::make("text")
+                        ->label(trans("market.message.content"))
+                        ->required(),
+                ])
+                ->hiddenLabel(true)
+                ->icon('heroicon-o-chat-bubble-oval-left-ellipsis')
+                ->tooltip(trans('market.message.voice_reply'))
+                ->modalSubmitActionLabel('Reply')
+                ->modal(),
             Action::make("voice-reply")
                 ->form([
                     ViewField::make('voice-reply')
@@ -64,6 +76,7 @@ class ViewMessage extends ViewRecord
                     });
                 })
                 ->modal(),
+
         ];
     }
 }

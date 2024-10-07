@@ -58,6 +58,8 @@ return [
     "message"=>[
         "from"=>"From",
         "file"=>"File",
+        "document"=>"Document",
+        "voice"=>"Voice",
         "file_type"=>"File Type",
         "name"=>"Name",
         "first_name"=>"First Name",

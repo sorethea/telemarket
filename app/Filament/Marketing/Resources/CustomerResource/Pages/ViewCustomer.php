@@ -52,7 +52,7 @@ class ViewCustomer extends ViewRecord
                 ])
                 ->hiddenLabel(true)
                 ->icon('heroicon-o-chat-bubble-oval-left-ellipsis')
-                ->tooltip(trans('market.message.voice_reply'))
+                ->tooltip(trans('market.message.text'))
                 ->modalSubmitActionLabel('Reply')
                 ->action(function ($data){
                     $telegram = Telegram::bot($this->record->bot);
@@ -77,7 +77,7 @@ class ViewCustomer extends ViewRecord
                 ])
                 ->hiddenLabel(true)
                 ->icon('heroicon-o-paper-clip')
-                ->tooltip(trans('market.message.voice_reply'))
+                ->tooltip(trans('market.message.document'))
                 ->modalSubmitActionLabel('Reply')
                 ->action(function ($data){
                     $telegram = Telegram::bot($this->record->bot);

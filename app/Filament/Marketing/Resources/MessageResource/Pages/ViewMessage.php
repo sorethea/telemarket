@@ -55,7 +55,7 @@ class ViewMessage extends ViewRecord
                 ])
                 ->hiddenLabel(true)
                 ->icon('heroicon-o-chat-bubble-oval-left-ellipsis')
-                ->tooltip(trans('market.message.voice_reply'))
+                ->tooltip(trans('market.message.text'))
                 ->modalSubmitActionLabel('Reply')
                 ->action(function ($data){
                     $telegram = Telegram::bot($this->record->bot);
@@ -80,7 +80,7 @@ class ViewMessage extends ViewRecord
                 ])
                 ->hiddenLabel(true)
                 ->icon('heroicon-o-paper-clip')
-                ->tooltip(trans('market.message.voice_reply'))
+                ->tooltip(trans('market.message.document'))
                 ->modalSubmitActionLabel('Reply')
                 ->action(function ($data){
                     $telegram = Telegram::bot($this->record->bot);
@@ -105,7 +105,7 @@ class ViewMessage extends ViewRecord
                 ])
                 ->hiddenLabel(true)
                 ->icon('heroicon-o-microphone')
-                ->tooltip(trans('market.message.voice_reply'))
+                ->tooltip(trans('market.message.voice'))
                 ->modalSubmitActionLabel('Reply')
                 ->action(function ($record){
                     $record->customer->replyMessages->where("type","voice")->where("status","draft")->each( function ($reply) use($record){

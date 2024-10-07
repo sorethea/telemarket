@@ -20,11 +20,14 @@ class ViewMessage extends ViewRecord
     public function voiceRecord(): void
     {
         $this->dispatch('voiceRecordStart',['message'=>"This is a dispatch."]);
-        Notification::make('voice-record')
-            ->title("Vice Record")
-            ->body("Record voice and send through telegram.")
-            ->send();
         $this->showStop = true;
+    }
+
+    public function voiceStop(): void
+    {
+        $this->dispatch('voiceRecordStop',['message'=>"This is a dispatch."]);
+        $this->showStop = false;
+        $this->showRecord = false;
     }
 
     protected function getHeaderActions(): array

@@ -86,13 +86,13 @@ class CustomerResource extends Resource implements HasShieldPermissions
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+                //Tables\Actions\EditAction::make(),
+                //Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+//                Tables\Actions\BulkActionGroup::make([
+//                    Tables\Actions\DeleteBulkAction::make(),
+//                ]),
             ]);
     }
 
@@ -107,8 +107,8 @@ class CustomerResource extends Resource implements HasShieldPermissions
     {
         return [
             'index' => Pages\ListCustomers::route('/'),
-            'create' => Pages\CreateCustomer::route('/create'),
-            'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            //'create' => Pages\CreateCustomer::route('/create'),
+            //'edit' => Pages\EditCustomer::route('/{record}/edit'),
             'view' => Pages\ViewCustomer::route('/{record}'),
         ];
     }

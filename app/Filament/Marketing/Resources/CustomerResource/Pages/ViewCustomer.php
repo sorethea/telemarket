@@ -20,10 +20,13 @@ class ViewCustomer extends ViewRecord
     public $showRecord;
     public $showStop;
 
+    public $customerId;
+
     public function voiceRecord(): void
     {
         $this->dispatch('voiceRecordStart',['message'=>"This is a dispatch."]);
         $this->showStop = true;
+        $this->customerId = $this->record->id;
     }
 
     public function voiceStop(): void

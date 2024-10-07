@@ -7,6 +7,7 @@ use App\Livewire\VoiceReply;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Forms\Components\ViewField;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 
 class ViewMessage extends ViewRecord
@@ -15,6 +16,16 @@ class ViewMessage extends ViewRecord
 
     public bool $showRecord = true;
     public bool $showStop = false;
+
+    public function voiceRecord(): void
+    {
+        $this->dispatch('voiceRecordStart',['message'=>"This is a dispatch."]);
+        Notification::make('voice-record')
+            ->title("Vice Record")
+            ->body("Record voice and send through telegram.")
+            ->send();
+        $this->showStop = true;
+    }
 
     protected function getHeaderActions(): array
     {

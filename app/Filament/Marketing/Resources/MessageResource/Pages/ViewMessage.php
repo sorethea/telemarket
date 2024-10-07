@@ -64,7 +64,7 @@ class ViewMessage extends ViewRecord
                     $replyMessage->status="sent";
                     $replyMessage->type="text";
                     $replyMessage->text=$data["text"];
-                    $this->record->replyMessage()->save($replyMessage);
+                    $this->record->replyMessages()->save($replyMessage);
                 })
                 ->modal(),
             Action::make("voice-reply")

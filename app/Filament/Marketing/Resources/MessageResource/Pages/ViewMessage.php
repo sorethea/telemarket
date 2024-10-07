@@ -48,6 +48,7 @@ class ViewMessage extends ViewRecord
                     ViewField::make('voice-reply')
                         ->view("livewire.voice-reply")
                 ])
+                ->hiddenLabel(true)
                 ->icon('heroicon-o-microphone')
                 ->tooltip(trans('market.message.voice_reply'))
                 ->modalSubmitActionLabel('Reply')

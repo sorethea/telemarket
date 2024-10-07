@@ -6,6 +6,7 @@ use App\Filament\Marketing\Resources\MessageResource;
 use App\Livewire\VoiceReply;
 use Filament\Actions;
 use Filament\Actions\Action;
+use Filament\Forms\Components\ViewField;
 use Filament\Resources\Pages\ViewRecord;
 
 class ViewMessage extends ViewRecord
@@ -16,6 +17,9 @@ class ViewMessage extends ViewRecord
     {
         return[
             Action::make("voice")
+                ->form([
+                    ViewField::make('livewire.voice-reply')
+                ])
                 ->modal(),
         ];
     }

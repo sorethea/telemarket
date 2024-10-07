@@ -118,6 +118,7 @@ class ViewMessage extends ViewRecord
                         $reply->save();
                     });
                 })
+                ->resetFormData()
                 ->modal(),
 
         ];

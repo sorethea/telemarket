@@ -26,7 +26,6 @@
     window.addEventListener('voiceRecordStart',()=>{
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
-                audioChunks = [];
                 mediaRecorder = new MediaRecorder(stream);
                 start(mediaRecorder);
                 window.addEventListener('voiceRecordStop',()=>{
@@ -76,7 +75,7 @@
                 },
 
             })
-
+            formData.delete('audio');
         });
     }
 

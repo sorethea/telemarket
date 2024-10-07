@@ -17,8 +17,8 @@ class ViewCustomer extends ViewRecord
 {
     protected static string $resource = CustomerResource::class;
 
-    public $showRecord;
-    public $showStop;
+    public $showRecord = true;
+    public $showStop = false;
 
     public $customerId;
 

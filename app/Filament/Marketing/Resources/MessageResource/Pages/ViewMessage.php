@@ -46,7 +46,9 @@ class ViewMessage extends ViewRecord
                     ViewField::make('voice-reply')
                         ->view("livewire.voice-reply")
                 ])
-                ->modalSubmitAction(false)
+                ->modalSubmitAction(function ($record){
+                    return $record==52;
+                })
                 ->modalSubmitActionLabel('Reply')
                 ->modal(),
         ];

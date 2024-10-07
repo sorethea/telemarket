@@ -51,7 +51,7 @@ class TelegramAPIController extends Controller
     }
     public function saveVoice(Request $request){
         $path = $request->file('audio')->store('audio','public');
-        $messageId = $request->get('messageId');
+        $messageId = $request->get('message_id');
         $replyMessage = new ReplyMessage();
         $replyMessage->message_id = $messageId;
         $replyMessage->status = "draft";

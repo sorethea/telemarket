@@ -14,7 +14,10 @@ class ViewMessage extends ViewRecord
     protected function getHeaderActions(): array
     {
         return[
-            Action::make("voice_reply"),
+            Actions\ActionGroup::make([
+                Action::make("voice_reply"),
+            ]),
+
         ];
     }
 }

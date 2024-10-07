@@ -22,8 +22,8 @@ class ViewMessage extends ViewRecord
     public function mount(int|string $record): void
     {
         parent::mount($record);
-
-        $this->messageId = $record->id;
+        logger($record);
+        //$this->messageId = $record->id;
     }
 
     public function voiceRecord(): void

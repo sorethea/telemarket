@@ -83,7 +83,7 @@ class ViewMessage extends ViewRecord
                 ->action(function ($data){
                     $telegram = Telegram::bot($this->record->bot);
                     $files = $data["files"];
-                    $files->each(function ($file) use ($telegram){
+                    foreach ($files as $file){
                         $telegram->sendDocument([
                             'chat_id'=>$this->record->customer_id,
                             'document'=>InputFile::create("storage/".$file),
@@ -93,7 +93,7 @@ class ViewMessage extends ViewRecord
                         $replyMessage->type="document";
                         $replyMessage->file=$file;
                         $this->record->replyMessages()->save($replyMessage);
-                    });
+                    }
                 })
                 ->modal(),
             Action::make("voice-reply")

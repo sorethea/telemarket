@@ -3,7 +3,7 @@
 namespace App\Filament\Marketing\Resources\MessageResource\Pages;
 
 use App\Filament\Marketing\Resources\MessageResource;
-use App\Livewire\VoiceReply;
+
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Forms\Components\MarkdownEditor;
@@ -60,6 +60,11 @@ class ViewMessage extends ViewRecord
                         'chat_id'=>$this->record->customer_id,
                         'text'=>$data["text"],
                     ]);
+                    $replyMessage = new \App\Models\ReplyMessage();
+                    $replyMessage->status="sent";
+                    $replyMessage->type="text";
+                    $replyMessage->text=$data["text"];
+                    $this->record->replyMessage()->save($replyMessage);
                 })
                 ->modal(),
             Action::make("voice-reply")

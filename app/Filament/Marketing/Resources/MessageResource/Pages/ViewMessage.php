@@ -27,7 +27,6 @@ class ViewMessage extends ViewRecord
     {
         $this->dispatch('voiceRecordStop',['message'=>"This is a dispatch."]);
         $this->showStop = false;
-        $this->showRecord = false;
     }
 
     protected function getHeaderActions(): array

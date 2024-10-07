@@ -44,7 +44,7 @@ class ViewMessage extends ViewRecord
     protected function getHeaderActions(): array
     {
         return[
-            Action::make("text")
+            Action::make("text-reply")
                 ->form([
                     MarkdownEditor::make("text")
                         ->label(trans("market.message.content"))
@@ -54,6 +54,13 @@ class ViewMessage extends ViewRecord
                 ->icon('heroicon-o-chat-bubble-oval-left-ellipsis')
                 ->tooltip(trans('market.message.voice_reply'))
                 ->modalSubmitActionLabel('Reply')
+                ->action(function ($data){
+                    $telegram = Telegram::bot($this->record->bot);
+                    $telegram->sendMessage([
+                        'chat_id'=>$this->record->customer_id,
+                        'text'=>$data["text"],
+                    ]);
+                })
                 ->modal(),
             Action::make("voice-reply")
                 ->form([

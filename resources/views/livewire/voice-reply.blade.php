@@ -74,7 +74,7 @@
                 },
 
             })
-            mediaRecorder.stop();
+            mediaRecorder.pause();
         });
     }
 

@@ -21,8 +21,9 @@ class ViewMessage extends ViewRecord
         return[
             Action::make("voice")
                 ->form([
-                    ViewField::make('voice')
+                    ViewField::make('voice-reply')
                         ->view("livewire.voice-reply")
+                        ->getLivewire(VoiceReply::class)
                 ])
                 ->modal(),
         ];

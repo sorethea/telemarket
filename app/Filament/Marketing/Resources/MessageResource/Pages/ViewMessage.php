@@ -67,7 +67,7 @@ class ViewMessage extends ViewRecord
                     $replyMessage->status="sent";
                     $replyMessage->type="text";
                     $replyMessage->text=$data["text"];
-                    $this->record->customer->replyMessages->save($replyMessage);
+                    $this->record->customer->replyMessages()->save($replyMessage);
                 })
                 ->modal(),
 
@@ -94,7 +94,7 @@ class ViewMessage extends ViewRecord
                         $replyMessage->status="sent";
                         $replyMessage->type="document";
                         $replyMessage->file=$file;
-                        $this->record->customer->replyMessages->save($replyMessage);
+                        $this->record->customer->replyMessages()->save($replyMessage);
                     }
                 })
                 ->modal(),

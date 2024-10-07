@@ -6,6 +6,7 @@ use App\Filament\Marketing\Resources\MessageResource;
 
 use Filament\Actions;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\ViewField;
 use Filament\Notifications\Notification;
@@ -65,6 +66,34 @@ class ViewMessage extends ViewRecord
                     $replyMessage->type="text";
                     $replyMessage->text=$data["text"];
                     $this->record->replyMessages()->save($replyMessage);
+                })
+                ->modal(),
+
+            Action::make("file-reply")
+                ->form([
+                    FileUpload::make("files")
+                        ->multiple()
+                        ->label(trans("market.message.file"))
+                        ->required(),
+                ])
+                ->hiddenLabel(true)
+                ->icon('heroicon-o-paper-clip')
+                ->tooltip(trans('market.message.voice_reply'))
+                ->modalSubmitActionLabel('Reply')
+                ->action(function ($data){
+                    $telegram = Telegram::bot($this->record->bot);
+                    $files = $data["files"];
+                    $files->each(function ($file) use ($telegram){
+                        $telegram->sendDocument([
+                            'chat_id'=>$this->record->customer_id,
+                            'document'=>InputFile::create("storage/".$file),
+                        ]);
+                        $replyMessage = new \App\Models\ReplyMessage();
+                        $replyMessage->status="sent";
+                        $replyMessage->type="document";
+                        $replyMessage->file=$file;
+                        $this->record->replyMessages()->save($replyMessage);
+                    });
                 })
                 ->modal(),
             Action::make("voice-reply")

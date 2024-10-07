@@ -16,7 +16,6 @@ class ViewMessage extends ViewRecord
     {
         return[
             Action::make("voice")
-                ->view("livewire.voice-reply")
                 ->modal(),
         ];
     }

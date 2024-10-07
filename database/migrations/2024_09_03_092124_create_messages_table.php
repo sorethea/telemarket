@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('customer_id');
-            $table->foreignId('reference_id')->nullable();
             $table->string('customer_name');
             $table->string('type');
             $table->string('bot');

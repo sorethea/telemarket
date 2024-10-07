@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Filament\Marketing\Resources\MessageResource\Pages\ReplyMessage;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Message;
@@ -48,15 +49,14 @@ class TelegramAPIController extends Controller
         ]);
 
     }
-    public function sendVoice(Request $request){
+    public function saveVoice(Request $request){
         $path = $request->file('audio')->store('audio','public');
-        $bot = $request->get('bot');
-        $telegram = Telegram::bot($bot);
-        $telegram->sendVoice([
-            'chat_id'=>$request->get('chat_id'),
-            'voice'=>InputFile::create("storage/".$path),
-            //'caption'=>$request->get('caption'),
-        ]);
-
+        $messageId = $request->get('messageId');
+        $replyMessage = new ReplyMessage();
+        $replyMessage->message_id = $messageId;
+        $replyMessage->status = "draft";
+        $replyMessage->file = $path;
+        $replyMessage->type = "voice";
+        $replyMessage->save();
     }
 }

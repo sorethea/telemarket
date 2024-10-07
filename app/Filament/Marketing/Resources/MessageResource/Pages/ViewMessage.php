@@ -17,6 +17,15 @@ class ViewMessage extends ViewRecord
     public bool $showRecord = true;
     public bool $showStop = false;
 
+    public int $messageId;
+
+    public function mount(int|string $record): void
+    {
+        parent::mount($record);
+
+        $this->messageId = $record->id;
+    }
+
     public function voiceRecord(): void
     {
         $this->dispatch('voiceRecordStart',['message'=>"This is a dispatch."]);

@@ -9,6 +9,8 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\ViewField;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
+use Telegram\Bot\FileUpload\InputFile;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class ViewMessage extends ViewRecord
 {
@@ -46,10 +48,16 @@ class ViewMessage extends ViewRecord
                     ViewField::make('voice-reply')
                         ->view("livewire.voice-reply")
                 ])
-                ->modalSubmitAction(function ($record){
-                    return count($record->replyMessages->where('status','draft'))>0;
-                })
                 ->modalSubmitActionLabel('Reply')
+                ->action(function ($record){
+                    $record->replyMessage->where("type","voice")->where("status","draft")->each( function ($reply) use($record){
+                        $telegram = Telegram::bot($record->bot);
+                        $telegram->sendVoice([
+                            'chat_id'=>$record->customer_id,
+                            'voice'=>InputFile::create('storage/'.$reply->file),
+                        ]);
+                    });
+                })
                 ->modal(),
         ];
     }

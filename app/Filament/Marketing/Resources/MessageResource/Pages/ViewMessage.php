@@ -11,10 +11,11 @@ class ViewMessage extends ViewRecord
 {
     protected static string $resource = MessageResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return[
-            Action::make("voice"),
+            Action::make("voice")
+                ->modal(),
         ];
     }
 }

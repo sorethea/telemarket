@@ -74,6 +74,7 @@ return [
         "reply"=>"Reply",
         "record"=>"Record",
         "voice_record"=>"Voice Record",
+        "voice_reply"=>"Voice Reply",
         "play"=>"Play",
         "stop"=>"Stop",
     ]

@@ -48,6 +48,8 @@ class ViewMessage extends ViewRecord
                     ViewField::make('voice-reply')
                         ->view("livewire.voice-reply")
                 ])
+                ->icon('heroicon-o-microphone')
+                ->tooltip(trans('market.message.voice_reply'))
                 ->modalSubmitActionLabel('Reply')
                 ->action(function ($record){
                     $record->replyMessages->where("type","voice")->where("status","draft")->each( function ($reply) use($record){

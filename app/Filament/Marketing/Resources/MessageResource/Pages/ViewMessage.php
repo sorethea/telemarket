@@ -19,11 +19,10 @@ class ViewMessage extends ViewRecord
     protected function getHeaderActions(): array
     {
         return[
-            Action::make("voice")
+            Action::make("voice-reply")
                 ->form([
                     ViewField::make('voice-reply')
                         ->view("livewire.voice-reply")
-                        ->getLivewire(VoiceReply::class)
                 ])
                 ->modal(),
         ];

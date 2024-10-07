@@ -38,7 +38,7 @@ class ViewMessage extends ViewRecord
                         ->view("livewire.voice-reply")
                 ])
                 ->modal()
-                ->getModalSubmitActionLabel('Reply'),
+                ->modalSubmitActionLabel('Reply'),
         ];
     }
 }

@@ -3,10 +3,10 @@
         <x-filament-forms::field-wrapper>
             <x-filament-forms::field-wrapper.label>{{trans('market.message.voice_record')}}</x-filament-forms::field-wrapper.label>
             <div class="inline-flex gap-2">
-                @if($showRecord)
+                @if($this->showRecord)
                     <x-filament::button id="startRecording" tooltip="{{trans('market.message.record')}}"  color="primary" icon="heroicon-o-microphone" class="w-max" wire:click.prevent="voiceRecord"/>
                 @endif
-                @if($showStop)
+                @if($this->showStop)
                     <x-filament::button id="stopRecording" tooltip="{{trans('market.message.stop')}}" color="danger" icon="heroicon-o-stop" class="w-max" wire:click.prevent="voiceStop" />
                 @endif
                 <audio id="audioPlayback" controls></audio>

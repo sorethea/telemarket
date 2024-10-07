@@ -13,6 +13,8 @@ class ViewMessage extends ViewRecord
 {
     protected static string $resource = MessageResource::class;
 
+    public bool $showRecord = true;
+    public bool $showStop = false;
 
     protected function getHeaderActions(): array
     {

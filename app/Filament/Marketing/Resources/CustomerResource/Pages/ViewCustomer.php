@@ -108,6 +108,7 @@ class ViewCustomer extends ViewRecord
                         $reply->status = "sent";
                         $reply->save();
                     });
+                    return redirect(request()->header('Referer'));
                 })
                 ->modal(),
 

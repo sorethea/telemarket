@@ -46,15 +46,17 @@ class MessagesRelationManager extends RelationManager
                     ->sortable(),
                 Tables\Columns\TextColumn::make("text")
                     ->label(trans('market.message.content'))
-//                    ->getStateUsing(function ($record){
-//                        if(empty($record->text)){
-//                            if($record->message_type=="voice"){
-//                                return "<audio src='{$record->file}'>";
-//                            }
-//                            return $record->file_name??$record->file;
-//                        }
-//                        return $record->text;
-//                    })
+                    ->getStateUsing(function ($record){
+                        if(empty($record->text)){
+                            if($record->message_type=="audio"){
+                                return $record->audio;
+                            }elseif($record->message_type="location"){
+                                return $record->location;
+                            }
+                            return $record->file_name??$record->file;
+                        }
+                        return $record->text;
+                    })
                     ->icon('heroicon-o-question-mark-circle')
                     ->iconPosition('after')
                     ->tooltip(fn($state)=>$state),

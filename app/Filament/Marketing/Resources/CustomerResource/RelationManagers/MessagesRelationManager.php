@@ -9,6 +9,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
 class MessagesRelationManager extends RelationManager
@@ -46,21 +47,29 @@ class MessagesRelationManager extends RelationManager
                     ->sortable(),
                 Tables\Columns\TextColumn::make("text")
                     ->label(trans('market.message.content'))
-                    ->getStateUsing(function ($record){
-                        if(empty($record->text)){
+//                    ->getStateUsing(function ($record){
+//                        if(empty($record->text)){
+//                            if($record->message_type=="audio"){
+//                                return $record->audio->title;
+//                            }elseif($record->message_type="location"){
+//                                return json_encode($record->location);
+//                            }
+//                            return $record->file_name??$record->file;
+//                        }
+//                        return $record->text;
+//                    }),
+                        ->formatStateUsing(function($record){
                             if($record->message_type=="audio"){
-                                return $record->audio->title;
-                            }elseif($record->message_type="location"){
-                                return json_encode($record->location);
+                                $html ="<audio src='{$record->file}' />";
+                                return new HtmlString($html);
+                            }else{
+                                return $record->text;
                             }
-                            return $record->file_name??$record->file;
-                        }
-                        return $record->text;
-                    }),
-                    //->toHtml(),
-                    //->icon('heroicon-o-question-mark-circle')
-                    //->iconPosition('after')
-                    //->tooltip(fn($state)=>$state),
+                    })
+
+                    ->icon('heroicon-o-question-mark-circle')
+                    ->iconPosition('after')
+                    ->tooltip(fn($state)=>$state),
 //                Tables\Columns\ImageColumn::make('file'),
 //                Tables\Columns\ImageColumn::make('file_type'),
 //                Tables\Columns\TextColumn::make('type'),

@@ -9,6 +9,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class MessagesRelationManager extends RelationManager
 {
@@ -34,6 +35,11 @@ class MessagesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('chat_id')
             ->columns([
+                Tables\Columns\TextColumn::make("message_type")
+                    ->label(trans('general.type'))
+                    ->formatStateUsing(fn($state)=>Str::ucfirst($state))
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('text')
                     ->getStateUsing(function ($record){
                         if(empty($record->text)){
@@ -46,9 +52,9 @@ class MessagesRelationManager extends RelationManager
                     ->icon('heroicon-o-question-mark-circle')
                     ->iconPosition('after')
                     ->tooltip(fn($state)=>$state),
-                Tables\Columns\ImageColumn::make('file'),
-                Tables\Columns\ImageColumn::make('file_type'),
-                Tables\Columns\TextColumn::make('type'),
+//                Tables\Columns\ImageColumn::make('file'),
+//                Tables\Columns\ImageColumn::make('file_type'),
+//                Tables\Columns\TextColumn::make('type'),
                 Tables\Columns\TextColumn::make('created_at')->since(),
             ])
             ->filters([

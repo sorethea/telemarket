@@ -87,9 +87,9 @@ class MessageResource extends Resource implements HasShieldPermissions
 //                    ->icon('heroicon-o-question-mark-circle')
 //                    ->iconPosition('after')
 //                    ->tooltip(fn($state)=>$state),
-                Tables\Columns\TextColumn::make('status')
-                    ->label(trans('market.telegram.status.title'))
-                    ->badge(),
+//                Tables\Columns\TextColumn::make('status')
+//                    ->label(trans('market.telegram.status.title'))
+//                    ->badge(),
                 Tables\Columns\TextColumn::make("created_at")
                     ->toggleable()
                     ->label(trans('general.created_at'))

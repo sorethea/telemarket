@@ -13,6 +13,6 @@ return[
     "updated_at"=>"Updated At",
     "bot"=>"Bot",
     "text"=>"Text",
-    "type"=>"type",
+    "type"=>"Type",
     "id"=>"ID",
 ];

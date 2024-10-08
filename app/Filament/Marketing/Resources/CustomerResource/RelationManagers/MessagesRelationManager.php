@@ -19,9 +19,9 @@ class MessagesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('chat_id')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\MarkdownEditor::make('text'),
+                Forms\Components\FileUpload::make("file"),
+                Forms\Components\TextInput::make("message_type"),
             ]);
     }
 
@@ -40,14 +40,14 @@ class MessagesRelationManager extends RelationManager
                     ->formatStateUsing(fn($state)=>Str::ucfirst($state))
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('text')
+                Tables\Columns\TextColumn::make("text")
+                    ->label(trans('market.message.content'))
                     ->getStateUsing(function ($record){
                         if(empty($record->text)){
                             return $record->file_name??$record->file;
                         }
                         return $record->text;
                     })
-                    ->hidden(fn($state)=>empty($state))
                     ->limit(35)
                     ->icon('heroicon-o-question-mark-circle')
                     ->iconPosition('after')

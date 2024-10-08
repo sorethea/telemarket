@@ -36,6 +36,12 @@ trait Telegram
                                                     'photo'=>$file,
                                                 ]);
                                                 $type = "photo";
+                                                ReplyMessage::create([
+                                                    "customer_id"=>$chatId,
+                                                    "file"=>$photo,
+                                                    "status"=>"sent",
+                                                    "type"=>$type,
+                                                ]);
                                             case 'mp4':
                                             case 'mpeg':
                                                 $telegramBot->sendPhoto([
@@ -43,6 +49,12 @@ trait Telegram
                                                     'video'=>$file,
                                                 ]);
                                                 $type = "video";
+                                                ReplyMessage::create([
+                                                    "customer_id"=>$chatId,
+                                                    "file"=>$photo,
+                                                    "status"=>"sent",
+                                                    "type"=>$type,
+                                                ]);
                                             case 'ogg':
                                             case 'oga':
                                                 $telegramBot->sendVoice([
@@ -50,19 +62,26 @@ trait Telegram
                                                     'voice'=>$file,
                                                 ]);
                                                 $type = "voice";
+                                                ReplyMessage::create([
+                                                    "customer_id"=>$chatId,
+                                                    "file"=>$photo,
+                                                    "status"=>"sent",
+                                                    "type"=>$type,
+                                                ]);
                                             default:
                                                 $telegramBot->sendDocument([
                                                     'chat_id'=>$chatId,
                                                     'document'=>$file,
                                                 ]);
                                                 $type = "document";
+                                                ReplyMessage::create([
+                                                    "customer_id"=>$chatId,
+                                                    "file"=>$photo,
+                                                    "status"=>"sent",
+                                                    "type"=>$type,
+                                                ]);
                                     }
-                                    ReplyMessage::create([
-                                        "customer_id"=>$chatId,
-                                        "file"=>$photo,
-                                        "status"=>"sent",
-                                        "type"=>$type,
-                                    ]);
+
                                 }catch (\Exception $exception){
                                     error($exception->getMessage());
                                 }

@@ -41,6 +41,7 @@ class MessagesRelationManager extends RelationManager
                         }
                         return $record->text;
                     })
+                    ->hidden(fn($state)=>empty($state))
                     ->limit(35)
                     ->icon('heroicon-o-question-mark-circle')
                     ->iconPosition('after')

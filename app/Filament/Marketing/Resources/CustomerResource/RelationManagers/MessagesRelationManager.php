@@ -56,8 +56,8 @@ class MessagesRelationManager extends RelationManager
                             return $record->file_name??$record->file;
                         }
                         return $record->text;
-                    })
-                    ->toHtml(),
+                    }),
+                    //->toHtml(),
                     //->icon('heroicon-o-question-mark-circle')
                     //->iconPosition('after')
                     //->tooltip(fn($state)=>$state),

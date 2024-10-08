@@ -59,14 +59,13 @@ class MessagesRelationManager extends RelationManager
 //                        return $record->text;
 //                    }),
                         ->formatStateUsing(function($record){
-//                            if($record->message_type=="audio"){
-//                                //$html ="<audio src='{$record->file}' />";
-//                                $html ="<h1>Audio</h1>";
-//
-//                            }else{
-//                                return $record->text;
-//                            }
-                            return new HtmlString($record->message_type);
+                            if($record->message_type=="voice"){
+                                $html ="<audio src='{$record->file}' />";
+                                return new HtmlString($html);
+                            }else{
+                                return $record->text;
+                            }
+
                     })
 
                     ->icon('heroicon-o-question-mark-circle')

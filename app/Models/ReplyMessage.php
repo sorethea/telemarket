@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ReplyMessage extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        "customer_id",
+        "text",
+        "file",
+        "status",
+        "type",
+    ];
 }

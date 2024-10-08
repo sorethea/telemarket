@@ -19,8 +19,10 @@ class MessagesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\MarkdownEditor::make('text'),
-                Forms\Components\FileUpload::make("file"),
+                Forms\Components\MarkdownEditor::make('text')
+                    ->hidden(fn($state)=>empty($state)),
+                Forms\Components\FileUpload::make("file")
+                    ->hidden(fn($state)=>empty($state)),
                 Forms\Components\TextInput::make("message_type"),
             ]);
     }

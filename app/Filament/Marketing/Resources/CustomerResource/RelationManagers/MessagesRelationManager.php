@@ -48,10 +48,14 @@ class MessagesRelationManager extends RelationManager
                     ->label(trans('market.message.content'))
                     ->getStateUsing(function ($record){
                         if(empty($record->text)){
+                            if($record->message_type=="voice"){
+                                return "<audio src='{$record->file}'>";
+                            }
                             return $record->file_name??$record->file;
                         }
                         return $record->text;
                     })
+                    ->toHtml()
                     ->limit(35)
                     ->icon('heroicon-o-question-mark-circle')
                     ->iconPosition('after')

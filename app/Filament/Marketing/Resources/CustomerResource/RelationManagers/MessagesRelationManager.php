@@ -49,14 +49,15 @@ class MessagesRelationManager extends RelationManager
                     ->getStateUsing(function ($record){
                         if(empty($record->text)){
                             if($record->message_type=="audio"){
-                                return $record->audio;
+                                return $record->audio->title;
                             }elseif($record->message_type="location"){
-                                return $record->location;
+                                return json_encode($record->location);
                             }
                             return $record->file_name??$record->file;
                         }
                         return $record->text;
                     })
+                    ->toHtml()
                     ->icon('heroicon-o-question-mark-circle')
                     ->iconPosition('after')
                     ->tooltip(fn($state)=>$state),

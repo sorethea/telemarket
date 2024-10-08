@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\ReplyMessage;
 use Illuminate\Support\Facades\Storage;
 use Telegram\Bot\FileUpload\InputFile;
 use function Laravel\Prompts\error;
@@ -34,24 +35,34 @@ trait Telegram
                                                     'chat_id'=>$chatId,
                                                     'photo'=>$file,
                                                 ]);
+                                                $type = "photo";
                                             case 'mp4':
                                             case 'mpeg':
                                                 $telegramBot->sendPhoto([
                                                     'chat_id'=>$chatId,
                                                     'video'=>$file,
                                                 ]);
+                                                $type = "video";
                                             case 'ogg':
                                             case 'oga':
                                                 $telegramBot->sendVoice([
                                                     'chat_id'=>$chatId,
                                                     'voice'=>$file,
                                                 ]);
+                                                $type = "voice";
                                             default:
-                                                $telegramBot->sendPhoto([
+                                                $telegramBot->sendDocument([
                                                     'chat_id'=>$chatId,
-                                                    'voice'=>$file,
+                                                    'document'=>$file,
                                                 ]);
+                                                $type = "document";
                                     }
+                                    ReplyMessage::create([
+                                        "customer_id"=>$chatId,
+                                        "file"=>$photo,
+                                        "status"=>"sent",
+                                        "type"=>$type,
+                                    ]);
                                 }catch (\Exception $exception){
                                     error($exception->getMessage());
                                 }
@@ -65,6 +76,12 @@ trait Telegram
                         $telegramBot->sendMessage([
                             'chat_id'=>$chatId,
                             'text'=>$content,
+                        ]);
+                        ReplyMessage::create([
+                            "customer_id"=>$chatId,
+                            "text"=>$content,
+                            "status"=>"sent",
+                            "type"=>"text",
                         ]);
                     }
                     $telegram->sent_count +=1;

@@ -45,6 +45,8 @@ class MessagesRelationManager extends RelationManager
                     ->icon('heroicon-o-question-mark-circle')
                     ->iconPosition('after')
                     ->tooltip(fn($state)=>$state),
+                Tables\Columns\ImageColumn::make('file'),
+                Tables\Columns\ImageColumn::make('file_type'),
                 Tables\Columns\TextColumn::make('type'),
                 Tables\Columns\TextColumn::make('created_at')->since(),
             ])

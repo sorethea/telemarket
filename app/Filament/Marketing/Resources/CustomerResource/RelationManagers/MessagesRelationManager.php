@@ -60,7 +60,7 @@ class MessagesRelationManager extends RelationManager
 //                    }),
                         ->formatStateUsing(function($record){
                             if($record->message_type=="voice"){
-                                $html ="<audio src='{$record->file}' />";
+                                $html ="<audio src='storage/{$record->file}' controls />";
                                 return new HtmlString($html);
                             }else{
                                 return $record->text;

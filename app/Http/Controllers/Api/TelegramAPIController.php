@@ -67,7 +67,7 @@ class TelegramAPIController extends Controller
         $ffmpeg = FFMpeg::create(array(
             'temporary_directory' => '/var/ffmpeg-tmp'
         ));
-        $file = "/var/www/storage/app/public".$path;
+        $file = "/var/www/storage/app/public/".$path;
         \logger($file);
         if(file_exists($file)){
             $audioFile = $ffmpeg->open($file);
@@ -75,7 +75,7 @@ class TelegramAPIController extends Controller
             $formatVorbis = new Vorbis();
             $formatVorbis->on('progress',$this->showTranscodeProgress());
             $audioFileName = Str::random(16).".ogg";
-            $audioFile->save($formatVorbis,"/var/www/storage/app/public".$audioFileName);
+            $audioFile->save($formatVorbis,"/var/www/storage/app/public/".$audioFileName);
             $customerId = $request->get('customer_id');
             $replyMessage = new ReplyMessage();
             $replyMessage->customer_id = $customerId;

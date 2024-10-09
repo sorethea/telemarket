@@ -11,6 +11,7 @@ use App\Traits\MessageTrait;
 use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Telegram\Bot\FileUpload\InputFile;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
@@ -50,7 +51,7 @@ class TelegramAPIController extends Controller
 
     }
     public function saveVoice(Request $request){
-        $path = $request->file('audio')->store('audio','public');
+        $path = $request->file('audio')->store('audio/'.Str::random(36).".ogg",'public');
         $customerId = $request->get('customer_id');
         $replyMessage = new ReplyMessage();
         $replyMessage->customer_id = $customerId;

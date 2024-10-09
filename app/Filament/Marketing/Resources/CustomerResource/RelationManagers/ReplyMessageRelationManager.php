@@ -35,7 +35,7 @@ class ReplyMessageRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('text')
                     ->label(trans("market.message.content"))
                     ->searchable(),
-                Tables\Columns\TextColumn::make("file"),
+                //Tables\Columns\TextColumn::make("file"),
                 Tables\Columns\TextColumn::make("created_at")->since(),
 
             ])

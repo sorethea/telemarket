@@ -51,7 +51,6 @@
     function start(mediaRecorder) {
         mediaRecorder.start();
         mediaRecorder.addEventListener('dataavailable', event => {
-            audioChunks = [];
             audioChunks.push(event.data);
         });
 

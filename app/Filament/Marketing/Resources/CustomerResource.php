@@ -101,8 +101,8 @@ class CustomerResource extends Resource implements HasShieldPermissions
     {
         return [
 
-            "Received Messages"=>RelationManagers\MessagesRelationManager::class,
-            "Sent Messages"=>RelationManagers\ReplyMessageRelationManager::class,
+            RelationManagers\MessagesRelationManager::class,
+            RelationManagers\ReplyMessageRelationManager::class,
 
         ];
     }

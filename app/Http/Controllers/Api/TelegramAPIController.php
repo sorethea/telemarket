@@ -68,6 +68,7 @@ class TelegramAPIController extends Controller
             'temporary_directory' => '/var/ffmpeg-tmp'
         ));
         $file = storage_path($path);
+        dd($file);
         if(file_exists($file)){
             $audioFile = $ffmpeg->open($file);
             //$audioFile = $ffmpeg->open($request->file('audio'));

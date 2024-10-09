@@ -33,12 +33,13 @@
     // Replace MediaRecorder
     window.MediaRecorder = OpusMediaRecorder;
 
-    let mediaRecorder=new MediaRecorder(stream, {}, workerOptions);;
+    let mediaRecorder;
     let audioChunks = [];
     window.addEventListener('voiceRecordStart',()=>{
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
                 //mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder =new MediaRecorder(stream, {}, workerOptions);
                 start(mediaRecorder);
                 window.addEventListener('voiceRecordStop',()=>{
                     stop(mediaRecorder);
@@ -50,7 +51,7 @@
     function start(mediaRecorder) {
         mediaRecorder.start();
         mediaRecorder.addEventListener('dataavailable', event => {
-            //audioChunks = [];
+            audioChunks = [];
             audioChunks.push(event.data);
         });
 

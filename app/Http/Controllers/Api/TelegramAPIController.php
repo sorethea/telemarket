@@ -80,7 +80,7 @@ class TelegramAPIController extends Controller
         $replyMessage = new ReplyMessage();
         $replyMessage->customer_id = $customerId;
         $replyMessage->status = "draft";
-        $replyMessage->file = $file;
+        $replyMessage->file = $audioFile->getPathfile();
         $replyMessage->type = "voice";
         $replyMessage->save();
 

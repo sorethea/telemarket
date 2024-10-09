@@ -2,6 +2,7 @@
 
 namespace App\Filament\Marketing\Resources\CustomerResource\RelationManagers;
 
+use Filament\Actions\ViewAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -29,8 +30,11 @@ class ReplyMessageRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('text')
             ->columns([
-                Tables\Columns\TextColumn::make("type")->searchable(),
-                Tables\Columns\TextColumn::make('text')->searchable(),
+                Tables\Columns\TextColumn::make("type")
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('text')
+                    ->label(trans("market.message.content"))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make("file"),
                 Tables\Columns\TextColumn::make("created_at")->since(),
 
@@ -45,6 +49,7 @@ class ReplyMessageRelationManager extends RelationManager
             ->actions([
                 //Tables\Actions\EditAction::make(),
                 //Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

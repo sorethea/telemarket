@@ -19,9 +19,9 @@ class ReplyMessageRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('text')
-                    ->required()
+                Forms\Components\MarkdownEditor::make('text')
                     ->maxLength(255),
+                Forms\Components\FileUpload::make('file'),
             ]);
     }
 

@@ -26,7 +26,7 @@
     window.addEventListener('voiceRecordStart',()=>{
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
-                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder = new MediaRecorder(stream,{ mimeType: "audio/ogg; codecs=vorbis" });
                 start(mediaRecorder);
                 window.addEventListener('voiceRecordStop',()=>{
                     stop(mediaRecorder);

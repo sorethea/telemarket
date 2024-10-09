@@ -14,6 +14,8 @@ class ReplyMessageRelationManager extends RelationManager
 {
     protected static string $relationship = 'replyMessages';
 
+    protected static ?string $label = "Sent Messages";
+
     public function form(Form $form): Form
     {
         return $form

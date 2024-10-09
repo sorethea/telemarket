@@ -17,6 +17,8 @@ class MessagesRelationManager extends RelationManager
 {
     protected static string $relationship = 'messages';
 
+    protected static ?string $label = "Received Messages";
+
     public function form(Form $form): Form
     {
         return $form

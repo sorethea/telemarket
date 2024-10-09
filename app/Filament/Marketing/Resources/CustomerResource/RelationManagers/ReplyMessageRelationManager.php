@@ -20,10 +20,13 @@ class ReplyMessageRelationManager extends RelationManager
         return $form
             ->schema([
                 Forms\Components\MarkdownEditor::make('text')
-                    ->maxLength(255),
+                    ->label(trans("market.message.content"))
+                    ->hidden(fn($state)=>empty($state)),
                 Forms\Components\FileUpload::make("file")
                     ->label(trans("market.message.content"))
                     ->hidden(fn($state)=>empty($state)),
+                Forms\Components\TextInput::make("message_type")
+                    ->label(trans("general.type")),
             ]);
     }
 

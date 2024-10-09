@@ -21,7 +21,11 @@ class ReplyMessageRelationManager extends RelationManager
             ->schema([
                 Forms\Components\MarkdownEditor::make('text')
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('file'),
+                Forms\Components\FileUpload::make("file")
+                    ->disk('public')
+                    ->directory('audio')
+                    ->label(trans("market.message.content"))
+                    ->hidden(fn($state)=>empty($state)),
             ]);
     }
 

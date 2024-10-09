@@ -14,11 +14,6 @@ class ReplyMessageRelationManager extends RelationManager
 {
     protected static string $relationship = 'replyMessages';
 
-    public function generateTabLabel(string $key): string
-    {
-        return "Sent Messages";
-    }
-
     public function form(Form $form): Form
     {
         return $form

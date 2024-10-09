@@ -57,15 +57,15 @@ class TelegramAPIController extends Controller
     }
     public function saveVoice(Request $request){
         $path = $request->file('audio')->store('','public');
-        $audioFile = Str::random(16).'.ogg';
-        FFMpeg::create()
-            ->open($path)
-            ->save(new Ogg(),$audioFile);
+//        $audioFile = Str::random(16).'.ogg';
+//        FFMpeg::create()
+//            ->open($path)
+//            ->save(new Ogg(),$audioFile);
         $customerId = $request->get('customer_id');
         $replyMessage = new ReplyMessage();
         $replyMessage->customer_id = $customerId;
         $replyMessage->status = "draft";
-        $replyMessage->file = $audioFile;
+        $replyMessage->file = $path;
         $replyMessage->type = "voice";
         $replyMessage->save();
 

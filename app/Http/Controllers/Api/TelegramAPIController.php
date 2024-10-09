@@ -20,6 +20,7 @@ use FFMpeg\Format\Video\WebM;
 use FFMpeg\Media\MediaTypeInterface;
 use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Telegram\Bot\FileUpload\InputFile;
@@ -62,7 +63,10 @@ class TelegramAPIController extends Controller
     }
     public function saveVoice(Request $request){
         $path = $request->file('audio')->store('','public');
-        $ffmpeg = FFMpeg::create();
+        //$ffmpeg = FFMpeg::create();
+        $ffmpeg = FFMpeg::create(array(
+            'temporary_directory' => '/var/ffmpeg-tmp'
+        ));
         $audioFile = $ffmpeg->open("storage/".$path);
         //$audioFile = $ffmpeg->open($request->file('audio'));
         $formatVorbis = new Vorbis();

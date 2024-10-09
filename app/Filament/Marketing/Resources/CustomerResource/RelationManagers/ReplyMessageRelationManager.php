@@ -29,21 +29,26 @@ class ReplyMessageRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('text')
             ->columns([
-                Tables\Columns\TextColumn::make('text'),
+                Tables\Columns\TextColumn::make("type")->searchable(),
+                Tables\Columns\TextColumn::make('text')->searchable(),
+                Tables\Columns\TextColumn::make("file"),
+                Tables\Columns\TextColumn::make("created_at")->since(),
+
             ])
+            ->defaultSort('created_at','desc')
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                //Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                //Tables\Actions\EditAction::make(),
+                //Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    //Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

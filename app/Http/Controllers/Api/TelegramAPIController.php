@@ -10,10 +10,12 @@ use App\Models\User;
 use App\Traits\MessageTrait;
 use FFMpeg\FFMpeg;
 use FFMpeg\FFProbe\DataMapping\Format;
+use FFMpeg\Format\AudioInterface;
 use FFMpeg\Format\FormatInterface;
 use FFMpeg\Format\FormatInterface as FormatInterfaceAlias;
 use FFMpeg\Format\Video\Ogg;
 use FFMpeg\Format\Video\WebM;
+use FFMpeg\Media\MediaTypeInterface;
 use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,15 +60,24 @@ class TelegramAPIController extends Controller
     }
     public function saveVoice(Request $request){
         $path = $request->file('audio')->store('','public');
-        $audioFile = Str::random(16).'.ogg';
-        FFMpeg::create()
-            ->open($path)
-            ->save(new Ogg("vorbis"),$audioFile);
+        $ffmpeg = FFMpeg::create();
+        $audioFile = $ffmpeg->open($path);
+        $formatOgg = new Ogg();
+        $formatOgg->on('progress',function (MediaTypeInterface $audio,AudioInterface $format,float $percentage){
+            printf(
+                "Transcoded %s percent of %s using the %s codec.\n",
+                $percentage,
+                basename($audio->getPathfile()),
+                $format->getAudioCodec(),
+            );
+        });
+        $audioFileName = Str::random(16)."ogg";
+        $audioFile->save($formatOgg,storage_path($audioFileName));
         $customerId = $request->get('customer_id');
         $replyMessage = new ReplyMessage();
         $replyMessage->customer_id = $customerId;
         $replyMessage->status = "draft";
-        $replyMessage->file = $path;
+        $replyMessage->file = $audioFileName;
         $replyMessage->type = "voice";
         $replyMessage->save();
 

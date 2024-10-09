@@ -8,8 +8,10 @@ use App\Models\Message;
 use App\Models\ReplyMessage;
 use App\Models\User;
 use App\Traits\MessageTrait;
+use Closure;
 use FFMpeg\FFMpeg;
 use FFMpeg\FFProbe\DataMapping\Format;
+use FFMpeg\Format\Audio\Vorbis;
 use FFMpeg\Format\AudioInterface;
 use FFMpeg\Format\FormatInterface;
 use FFMpeg\Format\FormatInterface as FormatInterfaceAlias;
@@ -62,17 +64,10 @@ class TelegramAPIController extends Controller
         $path = $request->file('audio')->store('audio','public');
         $ffmpeg = FFMpeg::create();
         $audioFile = $ffmpeg->open(storage_path("app/public/".$path));
-        $formatOgg = new Ogg();
-        $formatOgg->on('progress',function (MediaTypeInterface $audio,AudioInterface $format,float $percentage){
-            printf(
-                "Transcoded %s percent of %s using the %s codec.\n",
-                $percentage,
-                basename($audio->getPathfile()),
-                $format->getAudioCodec(),
-            );
-        });
+        $formatVorbis = new Vorbis();
+        $formatVorbis->on('progress',$this->showTranscodeProgress());
         $audioFileName = Str::random(16)."ogg";
-        $audioFile->save($formatOgg,storage_path("app/public/audio/".$audioFileName));
+        $audioFile->save($formatVorbis,storage_path("app/public/audio/".$audioFileName));
         $customerId = $request->get('customer_id');
         $replyMessage = new ReplyMessage();
         $replyMessage->customer_id = $customerId;
@@ -82,4 +77,17 @@ class TelegramAPIController extends Controller
         $replyMessage->save();
 
     }
+
+    function showTranscodeProgress(): Closure
+    {
+        return function (MediaTypeInterface $audio, AudioInterface $format, float $percentage) {
+            printf(
+                "Transcoded %s percent of %s using the %s codec.\n",
+                $percentage,
+                basename($audio->getPathfile()),
+                $format->getAudioCodec(),
+            );
+        };
+    }
+
 }

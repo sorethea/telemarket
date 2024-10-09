@@ -72,7 +72,7 @@ class TelegramAPIController extends Controller
             );
         });
         $audioFileName = Str::random(16)."ogg";
-        $audioFile->save($formatOgg,storage_path($audioFileName));
+        $audioFile->save($formatOgg,storage_path("app/public/audio/".$audioFileName));
         $customerId = $request->get('customer_id');
         $replyMessage = new ReplyMessage();
         $replyMessage->customer_id = $customerId;

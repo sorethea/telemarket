@@ -68,7 +68,12 @@ class TelegramAPIController extends Controller
         $formatVorbis = new Vorbis();
         $formatVorbis->on('progress',$this->showTranscodeProgress());
         $audioFileName = Str::random(16).".ogg";
-        $audioFile->save($formatVorbis,"/var/www/storage/app/public/".$audioFileName);
+        try {
+            $audioFile->save($formatVorbis,"/var/www/storage/app/public/".$audioFileName);
+        }catch (\Exception $exception){
+            logger($exception->getMessage());
+        }
+
         $customerId = $request->get('customer_id');
         $replyMessage = new ReplyMessage();
         $replyMessage->customer_id = $customerId;

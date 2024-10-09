@@ -38,7 +38,7 @@
     window.addEventListener('voiceRecordStart',()=>{
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
-                //mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder = new MediaRecorder(stream);
                 //mediaRecorder =new MediaRecorder(stream, {}, workerOptions);
                 start(mediaRecorder);
                 window.addEventListener('voiceRecordStop',()=>{

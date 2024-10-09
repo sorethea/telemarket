@@ -30,7 +30,7 @@ class ViewCustomer extends ViewRecord
 
     public function hasCombinedRelationManagerTabsWithContent(): bool
     {
-        return true;
+        return false;
     }
 
     public function voiceRecord(): void

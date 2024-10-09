@@ -69,13 +69,12 @@ class TelegramAPIController extends Controller
         ));
         if(file_exists(storage_path($path))){
             $audioFile = $ffmpeg->open(storage_path($path));
+            //$audioFile = $ffmpeg->open($request->file('audio'));
+            $formatVorbis = new Vorbis();
+            $formatVorbis->on('progress',$this->showTranscodeProgress());
+            $audioFileName = Str::random(16).".ogg";
+            $audioFile->save($formatVorbis,storage_path($audioFileName));
         }
-
-        //$audioFile = $ffmpeg->open($request->file('audio'));
-        $formatVorbis = new Vorbis();
-        $formatVorbis->on('progress',$this->showTranscodeProgress());
-        $audioFileName = Str::random(16).".ogg";
-        $audioFile->save($formatVorbis,storage_path($audioFileName));
         $customerId = $request->get('customer_id');
         $replyMessage = new ReplyMessage();
         $replyMessage->customer_id = $customerId;

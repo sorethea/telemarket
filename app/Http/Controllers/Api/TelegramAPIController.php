@@ -9,6 +9,9 @@ use App\Models\ReplyMessage;
 use App\Models\User;
 use App\Traits\MessageTrait;
 use FFMpeg\FFMpeg;
+use FFMpeg\FFProbe\DataMapping\Format;
+use FFMpeg\Format\FormatInterface;
+use FFMpeg\Format\FormatInterface as FormatInterfaceAlias;
 use FFMpeg\Format\Video\Ogg;
 use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
@@ -55,12 +58,8 @@ class TelegramAPIController extends Controller
     public function saveVoice(Request $request){
         $path = $request->file('audio')->store('','public');
         $audioFile = Str::random(16).'.ogg';
-        FFMpeg::fromDisk("public")
-            ->open($path)
-            ->export()
-            ->toDisk('public')
-            ->inFormat(new Ogg())
-            ->save($audioFile);
+        FFMpeg::open($path)
+            ->save(new Ogg(),$audioFile);
         $customerId = $request->get('customer_id');
         $replyMessage = new ReplyMessage();
         $replyMessage->customer_id = $customerId;

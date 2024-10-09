@@ -59,7 +59,7 @@
             const formData = new FormData();
             // formData.append('bot','ichiban');
             formData.append('customer_id',{{$this->customerId}});
-            formData.append('audio', audioBlob, 'voice-recording.webm');
+            formData.append('audio', audioBlob, 'voice-recording.ogg');
 
 
             fetch('/api/telegram/save-voice', {

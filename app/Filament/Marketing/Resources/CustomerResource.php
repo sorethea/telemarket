@@ -9,6 +9,7 @@ use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\ViewRecord;
+use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -99,7 +100,7 @@ class CustomerResource extends Resource implements HasShieldPermissions
     public static function getRelations(): array
     {
         return [
-            Tables\Grouping\Group::make("Message",[
+            RelationGroup::make("Message",[
                 RelationManagers\MessagesRelationManager::class,
                 RelationManagers\ReplyMessageRelationManager::class,
             ]),

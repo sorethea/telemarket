@@ -19,19 +19,7 @@
     </x-filament-panels::form>
 </div>
 @script
-{{--<!-- load OpusMediaRecorder.umd.js. OpusMediaRecorder will be loaded. -->--}}
-{{--<script src="https://cdn.jsdelivr.net/npm/opus-media-recorder@latest/OpusMediaRecorder.umd.js"></script>--}}
-{{--<!-- load encoderWorker.umd.js. This should be after OpusMediaRecorder. -->--}}
-{{--<!-- This script tag will create OpusMediaRecorder.encoderWorker. -->--}}
-{{--<script src="https://cdn.jsdelivr.net/npm/opus-media-recorder@latest/encoderWorker.umd.js"></script>--}}
 <script>
-    // const workerOptions = {
-    //     OggOpusEncoderWasmPath: 'https://cdn.jsdelivr.net/npm/opus-media-recorder@latest/OggOpusEncoder.wasm',
-    //     WebMOpusEncoderWasmPath: 'https://cdn.jsdelivr.net/npm/opus-media-recorder@latest/WebMOpusEncoder.wasm'
-    // };
-
-    // Replace MediaRecorder
-    //window.MediaRecorder = OpusMediaRecorder;
 
     let mediaRecorder;
     let audioChunks = [];
@@ -39,7 +27,6 @@
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
                 mediaRecorder = new MediaRecorder(stream);
-                //mediaRecorder =new MediaRecorder(stream, {}, workerOptions);
                 start(mediaRecorder);
                 window.addEventListener('voiceRecordStop',()=>{
                     stop(mediaRecorder);
@@ -51,6 +38,7 @@
     function start(mediaRecorder) {
         mediaRecorder.start();
         mediaRecorder.addEventListener('dataavailable', event => {
+            //audioChunks = [];
             audioChunks.push(event.data);
         });
 
@@ -71,7 +59,7 @@
             const formData = new FormData();
             // formData.append('bot','ichiban');
             formData.append('customer_id',{{$this->customerId}});
-            formData.append('audio', audioBlob, 'voice-recording.ogg');
+            formData.append('audio', audioBlob, 'voice-recording.webm');
 
 
             fetch('/api/telegram/save-voice', {

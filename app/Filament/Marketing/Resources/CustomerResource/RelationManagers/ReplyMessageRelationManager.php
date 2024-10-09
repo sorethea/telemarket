@@ -27,7 +27,7 @@ class ReplyMessageRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('text, file')
+            ->recordTitleAttribute('text')
             ->columns([
                 Tables\Columns\TextColumn::make('text'),
             ])

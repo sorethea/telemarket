@@ -28,6 +28,11 @@ class ViewCustomer extends ViewRecord
         $this->customerId = $record;
     }
 
+    public function hasCombinedRelationManagerTabsWithContent(): bool
+    {
+        return true;
+    }
+
     public function voiceRecord(): void
     {
         $this->dispatch('voiceRecordStart',['message'=>"This is a dispatch."]);

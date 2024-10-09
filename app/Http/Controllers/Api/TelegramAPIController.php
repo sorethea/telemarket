@@ -64,27 +64,28 @@ class TelegramAPIController extends Controller
     public function saveVoice(Request $request){
         $path = $request->file('audio')->store('','public');
         //$ffmpeg = FFMpeg::create();
-        $ffmpeg = FFMpeg::create(array(
-            'temporary_directory' => '/var/ffmpeg-tmp'
-        ));
-        $file = "/var/www/storage/app/public/".$path;
-        \logger($file);
-        if(file_exists($file)){
-            $audioFile = $ffmpeg->open($file);
-            //$audioFile = $ffmpeg->open($request->file('audio'));
-            $formatVorbis = new Vorbis();
-            $formatVorbis->on('progress',$this->showTranscodeProgress());
-            $audioFileName = Str::random(16).".ogg";
-            $audioFile->save($formatVorbis,"/var/www/storage/app/public/".$audioFileName);
-            $customerId = $request->get('customer_id');
-            $replyMessage = new ReplyMessage();
-            $replyMessage->customer_id = $customerId;
-            $replyMessage->status = "draft";
-            $replyMessage->file = $audioFile->getPathfile();
-            $replyMessage->type = "voice";
-            $replyMessage->save();
-        }
-
+//        $ffmpeg = FFMpeg::create(array(
+//            'temporary_directory' => '/var/ffmpeg-tmp'
+//        ));
+//        $file = "/var/www/storage/app/public/".$path;
+//        \logger($file);
+//        if(file_exists($file)){
+//            $audioFile = $ffmpeg->open($file);
+//            //$audioFile = $ffmpeg->open($request->file('audio'));
+//            $formatVorbis = new Vorbis();
+//            $formatVorbis->on('progress',$this->showTranscodeProgress());
+//            $audioFileName = Str::random(16).".ogg";
+//            $audioFile->save($formatVorbis,"/var/www/storage/app/public/".$audioFileName);
+//
+//
+//        }
+        $customerId = $request->get('customer_id');
+        $replyMessage = new ReplyMessage();
+        $replyMessage->customer_id = $customerId;
+        $replyMessage->status = "draft";
+        $replyMessage->file = $path;
+        $replyMessage->type = "voice";
+        $replyMessage->save();
 
     }
 

@@ -20,6 +20,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "novadaemon/filament-pretty-json": "^2.2",
+        "pbmedia/laravel-ffmpeg": "^8.5",
         "pepperfm/filament-json": "^1.1",
         "pxlrbt/filament-activity-log": "^1.1",
         "stechstudio/filament-impersonate": "^3.14",

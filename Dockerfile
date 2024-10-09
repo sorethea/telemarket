@@ -23,6 +23,7 @@ libonig-dev \
     unzip \
     git \
     nano \
+    ffmpeg \
     curl
 
 RUN apt-get update && apt-get install -y libicu-dev

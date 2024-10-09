@@ -100,10 +100,9 @@ class CustomerResource extends Resource implements HasShieldPermissions
     public static function getRelations(): array
     {
         return [
-            RelationGroup::make("Message",[
-                RelationManagers\MessagesRelationManager::class,
-                RelationManagers\ReplyMessageRelationManager::class,
-            ]),
+
+            RelationManagers\MessagesRelationManager::class,
+            RelationManagers\ReplyMessageRelationManager::class,
 
         ];
     }

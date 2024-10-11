@@ -39,11 +39,11 @@ class Start extends Command
         }
 
         $replyMarkup = Keyboard::make()
-            ->inline()
+            //->inline()
             ->row([
                 Keyboard::button([
                     'text'=>'Register',
-                    'url'=>'https://tele.hieatapps.com/register?tid='.$chatId,
+                    "request_contact"=>true,
                 ])
             ])
             ->setResizeKeyboard(true)

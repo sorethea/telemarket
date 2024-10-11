@@ -48,9 +48,9 @@ class CommandResource extends Resource implements HasShieldPermissions
                         ->multiple()
                         ->image()
                         ->required(fn($get)=>!$get('text')),
-                    Forms\Components\FileUpload::make('reply_markup')
-                        ->label(trans('market.command.reply_markup'))
-                        ->acceptedFileTypes(['application/json']),
+//                    Forms\Components\FileUpload::make('reply_markup')
+//                        ->label(trans('market.command.reply_markup'))
+//                        ->acceptedFileTypes(['application/json']),
                 ]),
             ]);
     }

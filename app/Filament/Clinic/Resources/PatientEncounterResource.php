@@ -44,12 +44,14 @@ class PatientEncounterResource extends Resource
                         ->required(),
                     Forms\Components\DateTimePicker::make('encounter_date')
                         ->required(),
-                    Forms\Components\Textarea::make('symptoms')
+                    Forms\Components\Select::make('symptoms')
+                        ->options()
+                        ->multiple()
                         ->required()
                         ->columnSpanFull(),
                     Forms\Components\Textarea::make('diagnosis')
                         ->columnSpanFull(),
-                ])
+                ])->columns(2)
             ]);
     }
 

@@ -29,7 +29,7 @@ services:
   web:
     image: nginx:alpine
     container_name: web
-    restart: unless-stopped
+#    restart: unless-stopped
     tty: true
     ports:
       - "80:80"

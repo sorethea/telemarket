@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 
 # Copy composer.json
 #COPY ./ /var/www
@@ -34,8 +34,8 @@ RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath intl
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 #install nodejs
-RUN apt-get update && apt-get install -y nodejs npm
-RUN npm install -g npm@10.8.3
+#RUN apt-get update && apt-get install -y nodejs npm
+#RUN npm install -g npm@10.8.3
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
